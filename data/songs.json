@@ -1,0 +1,902 @@
+[
+  {
+    "id": "song_001",
+    "title": "밤편지",
+    "artist": "아이유",
+    "genre": "발라드",
+    "mood_tags": ["새벽", "잔잔한", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=아이유+밤편지",
+    "lyrics": "이 밤 그날의 반딧불을 기억해 네가 한 말들 아직 귓가에 맴돌아\n잠 못 드는 새벽 혼자 창가에 앉아 멀리 있는 너를 생각해\n고요한 밤 별빛만이 나를 비추고 너의 온기가 그리워지는 시간\n혼자인 이 밤이 참 길게만 느껴져 네가 보고 싶어 이 새벽에"
+  },
+  {
+    "id": "song_002",
+    "title": "모든 날 모든 순간",
+    "artist": "폴킴",
+    "genre": "발라드",
+    "mood_tags": ["새벽", "잔잔한", "그리움"],
+    "youtube_music_url": "https://music.youtube.com/search?q=폴킴+모든날모든순간",
+    "lyrics": "모든 날 모든 순간 네가 함께였으면 해\n지금 이 순간도 너와 함께라면 좋겠어\n혼자 걷는 새벽길이 이렇게 외로운 건\n네가 없기 때문이라는 걸 이제야 알아"
+  },
+  {
+    "id": "song_003",
+    "title": "위잉위잉",
+    "artist": "혁오",
+    "genre": "인디",
+    "mood_tags": ["새벽", "몽환적", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=혁오+위잉위잉",
+    "lyrics": "위잉위잉 머릿속이 울려 잠을 이룰 수가 없어\n새벽 세 시 혼자 깨어 아무도 없는 방 안에\n창밖의 불빛들이 흔들리고 내 마음도 흔들려\n이 감각 이 느낌 설명할 수가 없어"
+  },
+  {
+    "id": "song_004",
+    "title": "주저하는 연인들을 위해",
+    "artist": "잔나비",
+    "genre": "인디",
+    "mood_tags": ["새벽", "감성적", "몽환적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=잔나비+주저하는연인들을위해",
+    "lyrics": "뜨거운 여름밤이 지나고 우린 어딘가에 있겠지\n새벽빛이 창문을 물들이면 네 생각이 나\n말하지 못한 감정들이 새벽 공기에 녹아\n오늘도 이렇게 혼자 밤을 지새우는 거야"
+  },
+  {
+    "id": "song_005",
+    "title": "기억해",
+    "artist": "검정치마",
+    "genre": "인디",
+    "mood_tags": ["새벽", "잔잔한", "그리움"],
+    "youtube_music_url": "https://music.youtube.com/search?q=검정치마+기억해",
+    "lyrics": "기억해 그 날 밤 우리가 걷던 골목\n가로등 아래 나란히 서서 웃던 우리\n새벽 바람이 차갑게 불어와도\n너의 온기가 아직 손에 남아 있어"
+  },
+  {
+    "id": "song_006",
+    "title": "기억을 걷는 시간",
+    "artist": "넬",
+    "genre": "인디",
+    "mood_tags": ["새벽", "감성적", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=넬+기억을걷는시간",
+    "lyrics": "희미해진 기억의 끝에 네가 서 있어\n잠 못 드는 새벽마다 그 기억이 떠올라\n시간이 흘러도 변하지 않는 감정\n조용한 밤 혼자 걷는 이 기억의 길"
+  },
+  {
+    "id": "song_007",
+    "title": "어딘가에서",
+    "artist": "에릭남",
+    "genre": "발라드",
+    "mood_tags": ["새벽", "그리움", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=에릭남+어딘가에서",
+    "lyrics": "어딘가에서 너도 나를 생각하고 있을까\n이 새벽에 혼자 음악을 들으며 생각해\n멀리 있어도 같은 하늘 아래 있다는 게\n위로가 되는 건지 더 그리운 건지"
+  },
+  {
+    "id": "song_008",
+    "title": "사랑하긴 했었나요",
+    "artist": "오혁",
+    "genre": "인디",
+    "mood_tags": ["새벽", "감성적", "그리움"],
+    "youtube_music_url": "https://music.youtube.com/search?q=오혁+사랑하긴했었나요",
+    "lyrics": "사랑하긴 했었나요 우리 그 시절에\n새벽 공기처럼 차갑고도 맑았던 감정\n지금은 흐릿해진 기억들 사이로\n당신의 목소리가 들리는 것 같아"
+  },
+  {
+    "id": "song_009",
+    "title": "BLUE",
+    "artist": "로꼬 & Gray",
+    "genre": "R&B",
+    "mood_tags": ["새벽", "감성적", "몽환적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=로꼬+Gray+BLUE",
+    "lyrics": "새벽이 되면 더 선명해지는 네 얼굴\n파란 하늘 아래 혼자 걷던 그 날처럼\n지금 이 순간 아무것도 느껴지지 않아\n블루한 기분으로 오늘도 하루를 마쳐"
+  },
+  {
+    "id": "song_010",
+    "title": "술이야",
+    "artist": "선우정아",
+    "genre": "인디",
+    "mood_tags": ["새벽", "감성적", "쓸쓸한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=선우정아+술이야",
+    "lyrics": "새벽 두 시 혼자 앉아 한 잔 마셔\n창밖에 비가 내리고 음악이 흘러\n네 생각을 지우려 해도 잘 되지 않아\n이 쓸쓸한 새벽이 언제쯤 끝날지"
+  },
+  {
+    "id": "song_011",
+    "title": "when the party's over",
+    "artist": "Billie Eilish",
+    "genre": "팝",
+    "mood_tags": ["새벽", "감성적", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=Billie+Eilish+when+the+party+is+over",
+    "lyrics": "Don't you know I'm no good for you\nI've learned to lose you can't afford to\nTearing me apart in the dark\nQuiet when the party's over"
+  },
+  {
+    "id": "song_012",
+    "title": "Liability",
+    "artist": "Lorde",
+    "genre": "팝",
+    "mood_tags": ["새벽", "쓸쓸한", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=Lorde+Liability",
+    "lyrics": "I know you say I'm too much for you\nAlone at 3am thinking of you\nThe party's over and I'm alone again\nAll the feelings flood back in the quiet night"
+  },
+  {
+    "id": "song_013",
+    "title": "우산",
+    "artist": "에픽하이 (feat. 윤하)",
+    "genre": "힙합",
+    "mood_tags": ["비", "감성적", "그리움"],
+    "youtube_music_url": "https://music.youtube.com/search?q=에픽하이+우산+윤하",
+    "lyrics": "비가 와 나는 우산이 없어\n젖어도 괜찮아 어차피 혼자니까\n빗속에서 네 생각이 나\n그 날도 비가 왔었는데 넌 우산을 펼쳐줬지"
+  },
+  {
+    "id": "song_014",
+    "title": "비도 오고 그래서",
+    "artist": "멜로망스",
+    "genre": "발라드",
+    "mood_tags": ["비", "그리움", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=멜로망스+비도오고그래서",
+    "lyrics": "비도 오고 그래서 더 보고 싶은 날\n창가에 앉아 빗소리를 듣고 있으면\n자꾸 네 생각이 나 어쩌면 좋아\n이 빗소리가 마치 네 목소리 같아서"
+  },
+  {
+    "id": "song_015",
+    "title": "당신과는 천천히",
+    "artist": "장범준",
+    "genre": "인디",
+    "mood_tags": ["비", "잔잔한", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=장범준+당신과는천천히",
+    "lyrics": "비가 오면 생각나는 사람이 있어\n천천히 걸어도 좋을 것 같은 사람\n빗속에서도 따뜻한 네가 좋아\n이 비가 그칠 때까지 함께 있어줘"
+  },
+  {
+    "id": "song_016",
+    "title": "거짓말",
+    "artist": "빅뱅",
+    "genre": "팝",
+    "mood_tags": ["비", "이별", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=빅뱅+거짓말",
+    "lyrics": "거짓말이라도 해줘 사랑한다고\n비가 오는 날이면 더 생각나는 너\n빗속을 걸어도 느껴지지 않아\n네가 없는 이 세상이 다 흑백 같아"
+  },
+  {
+    "id": "song_017",
+    "title": "나무",
+    "artist": "한로로",
+    "genre": "인디",
+    "mood_tags": ["비", "잔잔한", "위로"],
+    "youtube_music_url": "https://music.youtube.com/search?q=한로로+나무",
+    "lyrics": "비가 내리는 날 창가에 기대어\n혼자 음악을 들으며 빗소리에 귀 기울여\n촉촉하게 젖어드는 이 감성\n마음도 함께 씻겨 내려가는 것 같아"
+  },
+  {
+    "id": "song_018",
+    "title": "Blue Bird",
+    "artist": "오왠",
+    "genre": "인디",
+    "mood_tags": ["비", "감성적", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=오왠+Blue+Bird",
+    "lyrics": "파란 새는 어디로 날아갔나\n비가 오는 창가에서 너를 기다려\n빗속에 흔들리는 나뭇잎처럼\n내 마음도 이리저리 흔들리고 있어"
+  },
+  {
+    "id": "song_019",
+    "title": "건너편",
+    "artist": "헤이즈",
+    "genre": "R&B",
+    "mood_tags": ["비", "그리움", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=헤이즈+건너편",
+    "lyrics": "비가 오는 날 길 건너편에 네가 보여\n우산 없이 서 있는 나와 달리 넌 괜찮아\n부르고 싶었지만 목소리가 나오지 않아\n그냥 바라만 보다가 비에 젖어버렸어"
+  },
+  {
+    "id": "song_020",
+    "title": "우주를 줄게",
+    "artist": "볼빨간사춘기",
+    "genre": "팝",
+    "mood_tags": ["비", "감성적", "사랑"],
+    "youtube_music_url": "https://music.youtube.com/search?q=볼빨간사춘기+우주를줄게",
+    "lyrics": "비가 오는 날이면 생각나는 사람\n우산 하나 들고 함께 걷고 싶어\n촉촉한 빗속에서 손을 잡고\n세상 끝까지 걸어가고 싶어"
+  },
+  {
+    "id": "song_021",
+    "title": "별 보러 가자",
+    "artist": "적재",
+    "genre": "인디",
+    "mood_tags": ["비", "잔잔한", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=적재+별보러가자",
+    "lyrics": "비가 그치고 나면 별이 보일까\n오늘 밤 촉촉한 공기 속에 앉아\n빗소리를 들으며 네 생각을 해\n이 비가 그치면 함께 별 보러 가자"
+  },
+  {
+    "id": "song_022",
+    "title": "Shelter",
+    "artist": "The xx",
+    "genre": "인디",
+    "mood_tags": ["비", "감성적", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=The+xx+Shelter",
+    "lyrics": "Shelter from the rain\nYour hands the only warmth I need\nThe sound of raindrops on the window\nMakes me think of you and me"
+  },
+  {
+    "id": "song_023",
+    "title": "Creep",
+    "artist": "Radiohead",
+    "genre": "인디",
+    "mood_tags": ["비", "우울한", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=Radiohead+Creep",
+    "lyrics": "When you were here before\nCouldn't look you in the eye\nYou're just like an angel\nYour skin makes me cry"
+  },
+  {
+    "id": "song_024",
+    "title": "이 밤이 지나면",
+    "artist": "임재범",
+    "genre": "발라드",
+    "mood_tags": ["그리움", "이별", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=임재범+이밤이지나면",
+    "lyrics": "이 밤이 지나면 다시 볼 수 있을까\n보고 싶은 마음을 어디다 두어야 할지\n혼자 남겨진 이 방에 네 향기만 남아\n그리움이 파도처럼 밀려와"
+  },
+  {
+    "id": "song_025",
+    "title": "이런 엔딩",
+    "artist": "아이유",
+    "genre": "발라드",
+    "mood_tags": ["그리움", "이별", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=아이유+이런엔딩",
+    "lyrics": "이런 엔딩은 원하지 않았는데\n우리 이야기가 이렇게 끝나버렸어\n헤어지고 나서야 네가 얼마나 소중했는지\n뒤늦게 깨달아 더 가슴이 아파"
+  },
+  {
+    "id": "song_026",
+    "title": "어떻게 이별까지 사랑하겠어, 널 사랑하는 거지",
+    "artist": "악동뮤지션",
+    "genre": "발라드",
+    "mood_tags": ["그리움", "이별", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=악동뮤지션+어떻게이별까지사랑하겠어",
+    "lyrics": "어떻게 이별까지 사랑하겠어\n그것까지는 바라지 않아\n하지만 지금 이 순간만큼은\n네가 보고 싶어 미칠 것 같아"
+  },
+  {
+    "id": "song_027",
+    "title": "초록빛",
+    "artist": "폴킴",
+    "genre": "발라드",
+    "mood_tags": ["그리움", "감성적", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=폴킴+초록빛",
+    "lyrics": "그 날의 초록빛 기억이 아직 남아\n함께 걷던 그 길이 선명하게 떠올라\n세월이 흘러도 변하지 않는 것이 있어\n너를 그리워하는 내 마음"
+  },
+  {
+    "id": "song_028",
+    "title": "광화문에서",
+    "artist": "규현",
+    "genre": "발라드",
+    "mood_tags": ["그리움", "이별", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=규현+광화문에서",
+    "lyrics": "광화문에서 너를 기다렸어\n사람들 사이로 네가 보이길 바라며\n이제 여기선 더 이상 볼 수 없는 너\n그래도 혹시나 하는 마음으로 서 있어"
+  },
+  {
+    "id": "song_029",
+    "title": "거리에서",
+    "artist": "성시경",
+    "genre": "발라드",
+    "mood_tags": ["그리움", "이별", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=성시경+거리에서",
+    "lyrics": "거리에서 우연히 너를 마주치면\n어떻게 해야 할지 모르겠어\n보고 싶었다 한 마디 못 하고\n그냥 지나쳐 버릴 것 같아"
+  },
+  {
+    "id": "song_030",
+    "title": "선물",
+    "artist": "멜로망스",
+    "genre": "발라드",
+    "mood_tags": ["그리움", "이별", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=멜로망스+선물",
+    "lyrics": "너와 보낸 시간들이 모두 선물 같아\n지금은 함께할 수 없지만\n그 기억들만으로도 충분해\n고마워 내 곁에 있어줘서"
+  },
+  {
+    "id": "song_031",
+    "title": "180도",
+    "artist": "벤",
+    "genre": "발라드",
+    "mood_tags": ["그리움", "이별", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=벤+180도",
+    "lyrics": "헤어지고 나서 180도 달라진 하루\n혼자 밥 먹고 혼자 잠들고\n네가 없는 일상이 이렇게 낯설 줄은\n몰랐어 그리움이 이렇게 클 줄도"
+  },
+  {
+    "id": "song_032",
+    "title": "옛사랑",
+    "artist": "이문세",
+    "genre": "발라드",
+    "mood_tags": ["그리움", "이별", "추억"],
+    "youtube_music_url": "https://music.youtube.com/search?q=이문세+옛사랑",
+    "lyrics": "지금도 그 사람이 생각나요\n오래된 사진 속 그 미소가\n가끔씩 문득 떠오르는 옛날이\n그리울 때면 이 노래를 불러요"
+  },
+  {
+    "id": "song_033",
+    "title": "바람이 분다",
+    "artist": "이소라",
+    "genre": "발라드",
+    "mood_tags": ["그리움", "이별", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=이소라+바람이분다",
+    "lyrics": "바람이 분다 서러운 마음에\n텅 빈 풍경이 불어와 쓸쓸하다\n보고 싶다는 말이 목구멍에서\n나오지 않아 혼자 삼켜버려"
+  },
+  {
+    "id": "song_034",
+    "title": "이 바보야",
+    "artist": "정승환",
+    "genre": "발라드",
+    "mood_tags": ["그리움", "이별", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=정승환+이바보야",
+    "lyrics": "이 바보야 왜 말을 못 했니\n좋아한다는 말 한 마디가 그렇게 어려웠어\n이제 와서 후회해도 늦었는데\n그래도 보고 싶어 이 바보 같은 마음"
+  },
+  {
+    "id": "song_035",
+    "title": "Someone Like You",
+    "artist": "Adele",
+    "genre": "팝",
+    "mood_tags": ["그리움", "이별", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=Adele+Someone+Like+You",
+    "lyrics": "I hate to turn up out of the blue uninvited\nBut I couldn't stay away I couldn't fight it\nI had hoped you'd see my face and that you'd be reminded\nThat for me it isn't over"
+  },
+  {
+    "id": "song_036",
+    "title": "Someone You Loved",
+    "artist": "Lewis Capaldi",
+    "genre": "팝",
+    "mood_tags": ["그리움", "이별", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=Lewis+Capaldi+Someone+You+Loved",
+    "lyrics": "I was getting used to being someone you loved\nNow I'm living without you\nI need somebody to hold me together\nI'm missing you so much"
+  },
+  {
+    "id": "song_037",
+    "title": "야생화",
+    "artist": "박효신",
+    "genre": "발라드",
+    "mood_tags": ["그리움", "위로", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=박효신+야생화",
+    "lyrics": "야생화처럼 피어나렴 강하게\n바람에 흔들려도 꺾이지 않는\n너의 눈물이 보여 가슴이 아파\n괜찮아 다시 일어날 수 있어"
+  },
+  {
+    "id": "song_038",
+    "title": "좋은 날",
+    "artist": "아이유",
+    "genre": "팝",
+    "mood_tags": ["설렘", "사랑", "행복한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=아이유+좋은날",
+    "lyrics": "좋은 날 오늘 정말 좋은 날\n네가 웃어줘서 세상이 환해\n두근두근 설레는 마음으로\n네 옆에 서 있는 이 순간이 좋아"
+  },
+  {
+    "id": "song_039",
+    "title": "What is Love?",
+    "artist": "TWICE",
+    "genre": "팝",
+    "mood_tags": ["설렘", "사랑", "행복한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=TWICE+What+is+Love",
+    "lyrics": "두근두근 두근두근 네가 다가올 때\n가슴이 콩닥콩닥 거려\n이게 바로 사랑인가요\n설레는 이 감정이 너무 좋아"
+  },
+  {
+    "id": "song_040",
+    "title": "Boy With Luv",
+    "artist": "BTS (feat. Halsey)",
+    "genre": "팝",
+    "mood_tags": ["설렘", "사랑", "행복한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=BTS+Boy+With+Luv+Halsey",
+    "lyrics": "오 내 심장이 뛰어 너 때문에\n작은 것에 행복을 느끼는 법을 배웠어\n너와 함께하는 모든 순간이 좋아\n이게 바로 사랑이라고 생각해"
+  },
+  {
+    "id": "song_041",
+    "title": "나만, 봄",
+    "artist": "볼빨간사춘기",
+    "genre": "인디",
+    "mood_tags": ["설렘", "사랑", "행복한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=볼빨간사춘기+나만봄",
+    "lyrics": "봄바람이 불어와 네 생각이 나\n꽃잎처럼 설레는 이 마음\n너만 보면 심장이 두근거려\n나만 봄인 건지 네 눈엔 나만 보이는지"
+  },
+  {
+    "id": "song_042",
+    "title": "벚꽃 엔딩",
+    "artist": "버스커버스커",
+    "genre": "인디",
+    "mood_tags": ["설렘", "사랑", "봄"],
+    "youtube_music_url": "https://music.youtube.com/search?q=버스커버스커+벚꽃엔딩",
+    "lyrics": "벚꽃이 피는 이 봄에 네가 떠올라\n손 잡고 걷던 그 길이 생각나\n분홍빛 꽃잎이 흩날리는 날\n너에게 고백하고 싶어 설레는 마음"
+  },
+  {
+    "id": "song_043",
+    "title": "사랑은 은하수 다방에서",
+    "artist": "10cm",
+    "genre": "인디",
+    "mood_tags": ["설렘", "사랑", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=10cm+사랑은은하수다방에서",
+    "lyrics": "네 눈이 별처럼 빛나는 것 같아\n함께 마시는 커피가 달달해\n오늘 이 순간 너와 함께여서 행복해\n사랑이 시작되는 것 같은 설레는 저녁"
+  },
+  {
+    "id": "song_044",
+    "title": "11:11",
+    "artist": "태연",
+    "genre": "발라드",
+    "mood_tags": ["설렘", "사랑", "그리움"],
+    "youtube_music_url": "https://music.youtube.com/search?q=태연+11:11",
+    "lyrics": "11시 11분 네 생각이 나\n오늘도 소원을 빌어 네가 나타나길\n두근거리는 마음으로 기다려\n언제쯤 다시 볼 수 있을까 설레는 밤"
+  },
+  {
+    "id": "song_045",
+    "title": "Any Song",
+    "artist": "지코",
+    "genre": "팝",
+    "mood_tags": ["설렘", "행복한", "신남"],
+    "youtube_music_url": "https://music.youtube.com/search?q=지코+Any+Song",
+    "lyrics": "아무 노래나 틀어 흥겨운 날\n기분 좋은 이 날 네 생각이 나\n같이 춤추고 싶어 신나는 음악에\n이 좋은 날 함께하고 싶어"
+  },
+  {
+    "id": "song_046",
+    "title": "Perfect",
+    "artist": "Ed Sheeran",
+    "genre": "팝",
+    "mood_tags": ["설렘", "사랑", "행복한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=Ed+Sheeran+Perfect",
+    "lyrics": "I found a love for me\nDarling just dive right in and follow my lead\nWell I found a girl beautiful and sweet\nI never knew you were the someone waiting for me"
+  },
+  {
+    "id": "song_047",
+    "title": "Just the Way You Are",
+    "artist": "Bruno Mars",
+    "genre": "팝",
+    "mood_tags": ["설렘", "사랑", "행복한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=Bruno+Mars+Just+The+Way+You+Are",
+    "lyrics": "Her eyes her eyes make the stars look like they're not shining\nHer hair her hair falls perfectly without her trying\nShe's so beautiful and I tell her every day\nWhen I see your face there's not a thing that I would change"
+  },
+  {
+    "id": "song_048",
+    "title": "처음엔",
+    "artist": "버스커버스커",
+    "genre": "인디",
+    "mood_tags": ["설렘", "사랑", "행복한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=버스커버스커+처음엔",
+    "lyrics": "처음엔 그냥 친구인 줄 알았어\n언제부터인지 설레기 시작했어\n너만 보면 심장이 멈추는 것 같아\n이게 사랑인지 몰랐는데"
+  },
+  {
+    "id": "song_049",
+    "title": "소녀",
+    "artist": "에릭남 (feat. 정키)",
+    "genre": "R&B",
+    "mood_tags": ["설렘", "사랑", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=에릭남+소녀+정키",
+    "lyrics": "너를 처음 봤을 때 심장이 멎는 것 같았어\n소녀처럼 수줍게 웃는 네 모습에\n나도 모르게 설레는 마음이 생겨\n용기내어 말하고 싶어 좋아한다고"
+  },
+  {
+    "id": "song_050",
+    "title": "팔레트",
+    "artist": "아이유 (feat. G-DRAGON)",
+    "genre": "팝",
+    "mood_tags": ["위로", "힐링", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=아이유+팔레트+지드래곤",
+    "lyrics": "괜찮아 지금 이 모습이 나야\n더 이상 남의 눈치 보지 않아도 돼\n내가 좋아하는 것들로 가득 채워\n내 인생의 팔레트를 그려가"
+  },
+  {
+    "id": "song_051",
+    "title": "다행이다",
+    "artist": "이적",
+    "genre": "발라드",
+    "mood_tags": ["위로", "힐링", "따뜻한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=이적+다행이다",
+    "lyrics": "다행이다 네가 내 곁에 있어서\n힘든 날도 함께 이겨낼 수 있어\n있는 그대로의 나를 받아줘서 고마워\n네 덕분에 오늘도 웃을 수 있어"
+  },
+  {
+    "id": "song_052",
+    "title": "어른",
+    "artist": "윤딴딴",
+    "genre": "인디",
+    "mood_tags": ["위로", "힐링", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=윤딴딴+어른",
+    "lyrics": "어른이 된다는 게 이런 건가 봐\n힘들어도 괜찮은 척 해야 하는\n그래도 괜찮아 다 잘될 거야\n지쳐있을 때 들어봐 위로가 될 거야"
+  },
+  {
+    "id": "song_053",
+    "title": "소금인형",
+    "artist": "선우정아",
+    "genre": "인디",
+    "mood_tags": ["위로", "힐링", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=선우정아+소금인형",
+    "lyrics": "지쳐있을 때 이 노래를 들어봐\n마음이 조금 가벼워질 거야\n따뜻한 위로 한 마디가 필요해\n괜찮아 다 잘될 거야 힘내"
+  },
+  {
+    "id": "song_054",
+    "title": "오늘도 맑음",
+    "artist": "빈지노",
+    "genre": "힙합",
+    "mood_tags": ["위로", "힐링", "긍정적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=빈지노+오늘도맑음",
+    "lyrics": "오늘도 맑음 내 하루도 맑음\n힘든 일이 있어도 웃으며 살아가\n작은 것들에 감사하는 법을 배워\n오늘 하루도 소중하게 살아가"
+  },
+  {
+    "id": "song_055",
+    "title": "제발",
+    "artist": "이기찬",
+    "genre": "발라드",
+    "mood_tags": ["위로", "힐링", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=이기찬+제발",
+    "lyrics": "제발 힘내줘 포기하지 마\n네 곁에 내가 있잖아 혼자가 아니야\n지쳐도 괜찮아 쉬어가도 돼\n함께라면 뭐든 다 할 수 있어"
+  },
+  {
+    "id": "song_056",
+    "title": "한숨",
+    "artist": "이하이",
+    "genre": "R&B",
+    "mood_tags": ["위로", "힐링", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=이하이+한숨",
+    "lyrics": "한숨을 쉬어도 괜찮아\n지쳐서 쓰러져도 괜찮아\n숨을 들이쉬고 내쉬면서\n조금씩 나아지면 돼 천천히"
+  },
+  {
+    "id": "song_057",
+    "title": "위로",
+    "artist": "에픽하이",
+    "genre": "힙합",
+    "mood_tags": ["위로", "힐링", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=에픽하이+위로",
+    "lyrics": "지쳐있을 때 이 노래가 위로가 됐으면\n힘든 하루 끝에 찾아오는 위안\n포기하지 마 아직 끝나지 않았어\n내일은 더 나아질 거야 분명히"
+  },
+  {
+    "id": "song_058",
+    "title": "Fix You",
+    "artist": "Coldplay",
+    "genre": "팝",
+    "mood_tags": ["위로", "힐링", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=Coldplay+Fix+You",
+    "lyrics": "When you try your best but you don't succeed\nWhen you get what you want but not what you need\nWhen you feel so tired but you can't sleep\nI will try to fix you"
+  },
+  {
+    "id": "song_059",
+    "title": "Slow Dancing in a Burning Room",
+    "artist": "John Mayer",
+    "genre": "팝",
+    "mood_tags": ["위로", "감성적", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=John+Mayer+Slow+Dancing+in+a+Burning+Room",
+    "lyrics": "It's not a silly little moment\nIt's not the storm before the calm\nThis is the deep and dying breath of\nThis love that we've been working on"
+  },
+  {
+    "id": "song_060",
+    "title": "Beautiful",
+    "artist": "크러쉬",
+    "genre": "R&B",
+    "mood_tags": ["위로", "힐링", "따뜻한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=크러쉬+Beautiful",
+    "lyrics": "지금 이 순간 아름다운 너\n힘든 시간도 지나면 다 아름다워져\n울고 싶을 때 울어도 괜찮아\n그 눈물도 결국엔 빛이 될 거야"
+  },
+  {
+    "id": "song_061",
+    "title": "강남스타일",
+    "artist": "PSY",
+    "genre": "팝",
+    "mood_tags": ["신남", "파티", "에너지"],
+    "youtube_music_url": "https://music.youtube.com/search?q=PSY+강남스타일",
+    "lyrics": "낮에는 따사로운 인간적인 여자\n강남스타일 강남스타일\n오빤 강남스타일 에헤이\n신나게 춤추고 즐겨봐"
+  },
+  {
+    "id": "song_062",
+    "title": "Cherry Bomb",
+    "artist": "NCT 127",
+    "genre": "팝",
+    "mood_tags": ["신남", "파티", "에너지"],
+    "youtube_music_url": "https://music.youtube.com/search?q=NCT127+Cherry+Bomb",
+    "lyrics": "터지는 에너지 폭발하는 무대\n온몸을 흔들어 신나는 이 밤\n체리 봄 체리 봄 폭발해봐\n에너지 넘치는 이 순간을 즐겨"
+  },
+  {
+    "id": "song_063",
+    "title": "Ko Ko Bop",
+    "artist": "EXO",
+    "genre": "팝",
+    "mood_tags": ["신남", "파티", "에너지"],
+    "youtube_music_url": "https://music.youtube.com/search?q=EXO+Ko+Ko+Bop",
+    "lyrics": "코코밥 신나는 비트에 맞춰\n온몸으로 느껴봐 이 음악을\n지금 이 순간 모두 함께 즐겨\n에너지 넘치는 이 파티의 밤"
+  },
+  {
+    "id": "song_064",
+    "title": "Dynamite",
+    "artist": "BTS",
+    "genre": "팝",
+    "mood_tags": ["신남", "파티", "행복한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=BTS+Dynamite",
+    "lyrics": "Cause I I I'm in the stars tonight\nSo watch me bring the fire and set the night alight\nShining through the city with a little funk and soul\nSo I'm gonna light it up like dynamite"
+  },
+  {
+    "id": "song_065",
+    "title": "How You Like That",
+    "artist": "BLACKPINK",
+    "genre": "팝",
+    "mood_tags": ["신남", "파티", "에너지"],
+    "youtube_music_url": "https://music.youtube.com/search?q=BLACKPINK+How+You+Like+That",
+    "lyrics": "BLACKPINK in your area\n신나는 비트에 몸을 맡겨봐\n에너지 폭발하는 이 무대\n오늘 밤 함께 즐겨봐"
+  },
+  {
+    "id": "song_066",
+    "title": "I Am the Best",
+    "artist": "2NE1",
+    "genre": "팝",
+    "mood_tags": ["신남", "파티", "자신감"],
+    "youtube_music_url": "https://music.youtube.com/search?q=2NE1+I+Am+the+Best",
+    "lyrics": "내가 제일 잘 나가 제일 잘 나가\n자신감 넘치는 이 무대\n에너지 폭발 신나는 날\n다 함께 외쳐 나가 제일 잘 나가"
+  },
+  {
+    "id": "song_067",
+    "title": "Back Door",
+    "artist": "Stray Kids",
+    "genre": "팝",
+    "mood_tags": ["신남", "파티", "에너지"],
+    "youtube_music_url": "https://music.youtube.com/search?q=Stray+Kids+Back+Door",
+    "lyrics": "뒷문으로 들어와 파티가 시작돼\n신나는 음악에 몸을 맡겨\n에너지 폭발 온몸으로 느껴\n오늘 밤은 다 함께 즐겨보자"
+  },
+  {
+    "id": "song_068",
+    "title": "빨개요",
+    "artist": "현아",
+    "genre": "팝",
+    "mood_tags": ["신남", "파티", "에너지"],
+    "youtube_music_url": "https://music.youtube.com/search?q=현아+빨개요",
+    "lyrics": "빨개요 신나는 이 기분\n뜨겁게 달아오른 이 밤\n에너지 폭발 온몸으로 느껴봐\n함께 춤춰봐 신나게"
+  },
+  {
+    "id": "song_069",
+    "title": "ROLLER COASTER",
+    "artist": "청하",
+    "genre": "팝",
+    "mood_tags": ["신남", "파티", "에너지"],
+    "youtube_music_url": "https://music.youtube.com/search?q=청하+ROLLER+COASTER",
+    "lyrics": "롤러코스터처럼 신나게 달려\n에너지 폭발 이 순간을 즐겨\n오르락내리락 스릴 넘치는 밤\n함께 소리질러 더 신나게"
+  },
+  {
+    "id": "song_070",
+    "title": "Levitating",
+    "artist": "Dua Lipa",
+    "genre": "팝",
+    "mood_tags": ["신남", "파티", "행복한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=Dua+Lipa+Levitating",
+    "lyrics": "I got you moonlight you're my starlight\nI need you all night come on dance with me\nI'm levitating the Milky Way\nI'm in a new dimension every time I see your face"
+  },
+  {
+    "id": "song_071",
+    "title": "Blinding Lights",
+    "artist": "The Weeknd",
+    "genre": "팝",
+    "mood_tags": ["신남", "드라이브", "에너지"],
+    "youtube_music_url": "https://music.youtube.com/search?q=The+Weeknd+Blinding+Lights",
+    "lyrics": "I've been trying to call\nI've been on my own for long enough\nMaybe you can show me how to love maybe\nI'm going through withdrawals"
+  },
+  {
+    "id": "song_072",
+    "title": "instagram",
+    "artist": "DEAN",
+    "genre": "R&B",
+    "mood_tags": ["집중", "공부", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=DEAN+instagram",
+    "lyrics": "조용히 흐르는 음악처럼\n아무 말 없이 집중하는 시간\n머릿속 복잡한 생각들을 지우고\n지금 이 순간에만 집중해봐"
+  },
+  {
+    "id": "song_073",
+    "title": "있어줘",
+    "artist": "죠지",
+    "genre": "인디",
+    "mood_tags": ["집중", "공부", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=죠지+있어줘",
+    "lyrics": "잔잔한 음악이 흐르는 공간\n집중하기 좋은 조용한 이 시간\n방해받지 않고 나만의 세계 속에\n오롯이 지금 이 순간을 즐겨"
+  },
+  {
+    "id": "song_074",
+    "title": "군밤타령",
+    "artist": "카더가든",
+    "genre": "인디",
+    "mood_tags": ["집중", "공부", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=카더가든+군밤타령",
+    "lyrics": "조용하고 잔잔한 멜로디\n공부할 때 딱 좋은 이 음악\n가사가 방해되지 않아 집중하기 좋아\n반복되는 리듬이 마음을 안정시켜"
+  },
+  {
+    "id": "song_075",
+    "title": "못된 것만 배워서",
+    "artist": "죠지",
+    "genre": "인디",
+    "mood_tags": ["집중", "공부", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=죠지+못된것만배워서",
+    "lyrics": "조용히 앉아 집중하는 밤\n이 음악을 배경 삼아 공부해\n잔잔한 멜로디에 마음이 차분해져\n집중력이 높아지는 것 같아"
+  },
+  {
+    "id": "song_076",
+    "title": "Pour Up",
+    "artist": "DEAN",
+    "genre": "R&B",
+    "mood_tags": ["집중", "공부", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=DEAN+Pour+Up",
+    "lyrics": "잔잔하게 흐르는 R&B\n집중하기 좋은 조용한 리듬\n공부하다 지칠 때 이 음악 들어봐\n마음이 편안해지고 집중이 돼"
+  },
+  {
+    "id": "song_077",
+    "title": "너",
+    "artist": "로꼬",
+    "genre": "R&B",
+    "mood_tags": ["집중", "공부", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=로꼬+너",
+    "lyrics": "조용한 오후 혼자 앉아\n음악 하나 틀고 집중하는 시간\n세상의 소음을 차단하고\n나만의 세계에서 집중해봐"
+  },
+  {
+    "id": "song_078",
+    "title": "Anchor",
+    "artist": "Novo Amor",
+    "genre": "인디",
+    "mood_tags": ["집중", "공부", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=Novo+Amor+Anchor",
+    "lyrics": "Quiet melodies flowing through\nA peaceful space to think and focus\nThe gentle rhythm keeps me grounded\nIn this moment of clarity"
+  },
+  {
+    "id": "song_079",
+    "title": "Skinny Love",
+    "artist": "Bon Iver",
+    "genre": "인디",
+    "mood_tags": ["집중", "공부", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=Bon+Iver+Skinny+Love",
+    "lyrics": "Come on skinny love just last the year\nPour a little salt we were never here\nMy my my my my my my my\nStaring at the sink of blood and crushed veneer"
+  },
+  {
+    "id": "song_080",
+    "title": "Death With Dignity",
+    "artist": "Sufjan Stevens",
+    "genre": "인디",
+    "mood_tags": ["집중", "잔잔한", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=Sufjan+Stevens+Death+With+Dignity",
+    "lyrics": "Spirit of my silence I can hear you\nBut I'm afraid to be near you\nAnd I don't know where to begin\nForgive me for not speaking"
+  },
+  {
+    "id": "song_081",
+    "title": "Colourway",
+    "artist": "Novo Amor",
+    "genre": "인디",
+    "mood_tags": ["집중", "공부", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=Novo+Amor+Colourway",
+    "lyrics": "Soft melodies to calm the mind\nA gentle backdrop for focused work\nNo words to distract just pure sound\nThe perfect companion for study time"
+  },
+  {
+    "id": "song_082",
+    "title": "여수 밤바다",
+    "artist": "버스커버스커",
+    "genre": "인디",
+    "mood_tags": ["여행", "자유", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=버스커버스커+여수밤바다",
+    "lyrics": "여수 밤바다 이 조명에 담긴\n아름다운 하늘과 바다 그리고 너\n훌쩍 떠나고 싶은 날\n탁 트인 바다를 바라보며 자유롭게"
+  },
+  {
+    "id": "song_083",
+    "title": "봄이 좋냐",
+    "artist": "10cm",
+    "genre": "인디",
+    "mood_tags": ["여행", "자유", "설렘"],
+    "youtube_music_url": "https://music.youtube.com/search?q=10cm+봄이좋냐",
+    "lyrics": "봄이 좋냐 나는 네가 좋냐\n훌쩍 어딘가 떠나고 싶은 날\n자유롭게 바람을 맞으며\n아무 걱정 없이 걷고 싶어"
+  },
+  {
+    "id": "song_084",
+    "title": "TOMBOY",
+    "artist": "혁오",
+    "genre": "인디",
+    "mood_tags": ["여행", "자유", "에너지"],
+    "youtube_music_url": "https://music.youtube.com/search?q=혁오+TOMBOY",
+    "lyrics": "자유롭게 달려가고 싶어\n어디로 가는지 모르지만 괜찮아\n바람을 가르며 신나게 달려\n이 세상 끝까지 자유롭게"
+  },
+  {
+    "id": "song_085",
+    "title": "전설",
+    "artist": "잔나비",
+    "genre": "인디",
+    "mood_tags": ["여행", "자유", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=잔나비+전설",
+    "lyrics": "훌쩍 떠나버린 여행지에서\n낯선 하늘 아래 자유롭게 숨 쉬어\n탁 트인 풍경에 마음이 열려\n이게 바로 자유라는 걸 느껴"
+  },
+  {
+    "id": "song_086",
+    "title": "여행",
+    "artist": "에픽하이",
+    "genre": "힙합",
+    "mood_tags": ["여행", "자유", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=에픽하이+여행",
+    "lyrics": "훌쩍 떠나고 싶다 이 일상에서\n어디로든 자유롭게 날아가고 싶어\n탁 트인 하늘 아래 서서\n세상 모든 걱정을 내려놓아"
+  },
+  {
+    "id": "song_087",
+    "title": "광화문 연가",
+    "artist": "이문세",
+    "genre": "발라드",
+    "mood_tags": ["여행", "감성적", "그리움"],
+    "youtube_music_url": "https://music.youtube.com/search?q=이문세+광화문연가",
+    "lyrics": "언젠가는 모두 다 떠나가버리지만\n광화문 연가 그 시절이 그리워\n훌쩍 그 날로 돌아가고 싶어\n자유로웠던 그 시절 그 공간으로"
+  },
+  {
+    "id": "song_088",
+    "title": "유일한 사람",
+    "artist": "이루",
+    "genre": "발라드",
+    "mood_tags": ["여행", "자유", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=이루+유일한사람",
+    "lyrics": "탁 트인 바다 앞에 서서\n자유롭게 소리질러봐\n이 세상 어디서든 괜찮아\n자유로운 영혼이면 돼"
+  },
+  {
+    "id": "song_089",
+    "title": "여행을 떠나요",
+    "artist": "조용필",
+    "genre": "팝",
+    "mood_tags": ["여행", "자유", "행복한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=조용필+여행을떠나요",
+    "lyrics": "여행을 떠나요 둘이서 함께\n아무 걱정 없이 훌쩍 떠나요\n탁 트인 자연 속에서 자유롭게\n이 세상 모든 것을 잊어버려요"
+  },
+  {
+    "id": "song_090",
+    "title": "서울",
+    "artist": "뷔 (BTS)",
+    "genre": "팝",
+    "mood_tags": ["여행", "감성적", "그리움"],
+    "youtube_music_url": "https://music.youtube.com/search?q=BTS+V+서울",
+    "lyrics": "서울의 밤이 아름다워\n이 도시의 불빛 속에서\n자유롭게 걷고 싶어\n어디론가 훌쩍 떠나고 싶어"
+  },
+  {
+    "id": "song_091",
+    "title": "Banana Pancakes",
+    "artist": "Jack Johnson",
+    "genre": "팝",
+    "mood_tags": ["여행", "자유", "행복한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=Jack+Johnson+Banana+Pancakes",
+    "lyrics": "Can't you see that it's just raining\nThere ain't no need to go outside\nBut baby you hardly even notice\nWhen I try to show you this song"
+  },
+  {
+    "id": "song_092",
+    "title": "Steal My Kisses",
+    "artist": "Ben Harper",
+    "genre": "팝",
+    "mood_tags": ["여행", "자유", "행복한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=Ben+Harper+Steal+My+Kisses",
+    "lyrics": "I pulled into town on a broken down road\nI need you by my side\nLet's take this journey together\nFree as the open sky"
+  },
+  {
+    "id": "song_093",
+    "title": "광야에서",
+    "artist": "EXO",
+    "genre": "팝",
+    "mood_tags": ["여행", "자유", "에너지"],
+    "youtube_music_url": "https://music.youtube.com/search?q=EXO+광야에서",
+    "lyrics": "광야처럼 넓은 세상에서\n자유롭게 날아오르고 싶어\n탁 트인 이 공간에서 소리질러\n이 세상 끝까지 달려가자"
+  },
+  {
+    "id": "song_094",
+    "title": "산책",
+    "artist": "옥상달빛",
+    "genre": "인디",
+    "mood_tags": ["여행", "자유", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=옥상달빛+산책",
+    "lyrics": "천천히 걸어가는 이 길이 좋아\n아무 목적지 없이 그냥 걷는 거야\n자유롭게 바람을 맞으며\n이 순간을 온전히 즐겨봐"
+  },
+  {
+    "id": "song_095",
+    "title": "나의 사춘기에게",
+    "artist": "볼빨간사춘기",
+    "genre": "팝",
+    "mood_tags": ["위로", "힐링", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=볼빨간사춘기+나의사춘기에게",
+    "lyrics": "그 시절 힘들었던 나에게\n괜찮아 다 잘될 거야 말해줘\n위로 한 마디가 필요했던 그때\n지금의 내가 그때의 나를 안아줄게"
+  },
+  {
+    "id": "song_096",
+    "title": "눈의 꽃",
+    "artist": "박효신",
+    "genre": "발라드",
+    "mood_tags": ["위로", "힐링", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=박효신+눈의꽃",
+    "lyrics": "눈이 내리는 이 겨울밤에\n따뜻한 위로가 필요한 순간\n모든 게 하얗게 뒤덮이듯\n마음의 상처도 치유될 거야"
+  },
+  {
+    "id": "song_097",
+    "title": "그대라는 시",
+    "artist": "나얼",
+    "genre": "R&B",
+    "mood_tags": ["위로", "사랑", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=나얼+그대라는시",
+    "lyrics": "그대는 내 인생의 시\n힘든 순간마다 떠오르는 이름\n따뜻한 위로가 되어줘서 고마워\n네가 있어 오늘도 살아갈 수 있어"
+  },
+  {
+    "id": "song_098",
+    "title": "아름다운 밤이야",
+    "artist": "BOBBY",
+    "genre": "힙합",
+    "mood_tags": ["신남", "행복한", "에너지"],
+    "youtube_music_url": "https://music.youtube.com/search?q=BOBBY+아름다운밤이야",
+    "lyrics": "오늘 밤은 정말 아름다워\n신나는 음악에 몸을 맡겨봐\n에너지 폭발 즐거운 이 밤\n다 함께 소리질러 신나게"
+  },
+  {
+    "id": "song_099",
+    "title": "취중고백",
+    "artist": "김민석",
+    "genre": "인디",
+    "mood_tags": ["새벽", "그리움", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=김민석+취중고백",
+    "lyrics": "취해서 하는 고백이라도\n이 마음은 진짜야 믿어줘\n새벽에 혼자 음악 들으며\n네 생각에 전화기를 들었어"
+  },
+  {
+    "id": "song_100",
+    "title": "밤새",
+    "artist": "로이킴",
+    "genre": "발라드",
+    "mood_tags": ["새벽", "그리움", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=로이킴+밤새",
+    "lyrics": "밤새 네 생각에 잠 못 들어\n창밖을 보며 혼자 음악을 틀어\n이 새벽이 언제쯤 지나갈까\n동이 트면 조금 괜찮아질까"
+  }
+]

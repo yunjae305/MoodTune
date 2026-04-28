@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "additionalDirectories": [
+      "c:\\Users\\김윤재\\.vscode\\MoodTune"
+    ],
+    "allow": [
+      "Read(//c/Users/김윤재/.claude/projects/c--Users------vscode-MoodTune/**)"
+    ]
+  }
+}
