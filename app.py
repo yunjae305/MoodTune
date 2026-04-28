@@ -653,7 +653,9 @@ def render_nav() -> None:
     )
 
     for item in NAV_ITEMS:
-        disabled = item["id"] != "home" and not st.session_state["last_query"]
+        is_compare = item["id"] == "compare"
+        disabled = (item["id"] != "home" and not st.session_state["last_query"]) or \
+                   (is_compare and st.session_state.get("use_spotify", False))
         clicked = st.button(
             item["label"],
             key=f"nav_{item['id']}",
@@ -982,6 +984,9 @@ def render_map() -> None:
         )
 
 def render_compare() -> None:
+    if st.session_state.get("use_spotify", False):
+        render_empty_state("비교 분석 사용 불가", "비교 분석은 로컬 임베딩 검색 전용 기능입니다. Spotify 추천 토글을 끄고 다시 검색해주세요.")
+        return
     results = active_results()
     if not results:
         render_empty_state("비교 분석 불가", "검색 결과가 있어야 시맨틱 결과와 키워드 결과를 비교할 수 있습니다.")
