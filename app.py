@@ -186,6 +186,10 @@ footer {{
   display: flex !important;
   visibility: visible !important;
   opacity: 1 !important;
+  position: fixed !important;
+  top: 0.5rem !important;
+  left: 0.5rem !important;
+  z-index: 9999 !important;
 }}
 
 .block-container {{
