@@ -105,27 +105,20 @@ class SpotifyClient:
                 import random as _random
                 genre_hint = valid_genres[0] if valid_genres else "pop"
 
-                # 연도 범위를 랜덤으로 선택하여 매번 다른 결과 유도
-                year_pools = [
-                    "2020-2025", "2018-2022", "2015-2020",
-                    "2012-2018", "2010-2015", "2005-2012",
-                ]
-                year_filter = _random.choice(year_pools)
-
-                # 랜덤 offset (0~40 사이, 10 단위)
-                offset = _random.choice([0, 10, 20, 30, 40])
+                # 랜덤 offset (0~20 사이, 10 단위) - 높은 offset은 KR 마켓에서 400 유발
+                offset = _random.choice([0, 10, 20])
 
                 if query:
-                    base = f"{query} {genre_hint} K-pop" if region == "국내" else f"{query} {genre_hint}"
+                    base = f"{query} K-pop" if region == "국내" else query
                 elif region == "국내":
                     base = f"{genre_hint} K-pop"
                 else:
                     base = genre_hint
-                search_query = f"{base} year:{year_filter}"
+                search_query = base
 
                 search_results = self.sp.search(
                     q=search_query, type="track",
-                    limit=limit * 2, offset=offset, market=market,
+                    limit=limit, offset=offset, market=market,
                 )
                 tracks = search_results["tracks"]["items"]
                 _random.shuffle(tracks)
