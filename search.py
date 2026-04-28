@@ -6,6 +6,7 @@
 
 import os
 import pickle
+import random
 from pathlib import Path
 
 import numpy as np
@@ -90,6 +91,7 @@ def search_from_query_vector(
     top_k: int = 5,
     mood_filter: str | None = None,
     prioritized_mood: str | None = None,
+    randomize: bool = False,
 ) -> list[dict]:
     songs = cache["songs"]
     embeddings_matrix = np.array(cache["embeddings"])
@@ -106,12 +108,43 @@ def search_from_query_vector(
             similarities = mask
         prioritized_mood = None
 
-    sorted_indices = prioritize_indices_by_mood(
-        songs=songs,
-        similarities=similarities,
-        top_k=top_k,
-        top_mood=prioritized_mood,
-    )
+    # randomize: 상위 후보군에서 유사도 가중 랜덤 샘플링
+    if randomize:
+        pool_size = min(top_k * 4, len(songs))
+        candidate_indices = prioritize_indices_by_mood(
+            songs=songs,
+            similarities=similarities,
+            top_k=pool_size,
+            top_mood=prioritized_mood,
+        )
+        # 유사도를 양수로 변환하여 가중치로 사용
+        weights = [max(float(similarities[i]), 0.0) for i in candidate_indices]
+        total = sum(weights)
+        if total > 0:
+            weights = [w / total for w in weights]
+            chosen = random.choices(candidate_indices, weights=weights, k=min(top_k, len(candidate_indices)))
+            # 중복 제거 (순서 유지)
+            seen = set()
+            sorted_indices = []
+            for idx in chosen:
+                if idx not in seen:
+                    seen.add(idx)
+                    sorted_indices.append(idx)
+            # 모자라면 나머지에서 보충
+            for idx in candidate_indices:
+                if len(sorted_indices) >= top_k:
+                    break
+                if idx not in seen:
+                    sorted_indices.append(idx)
+        else:
+            sorted_indices = candidate_indices[:top_k]
+    else:
+        sorted_indices = prioritize_indices_by_mood(
+            songs=songs,
+            similarities=similarities,
+            top_k=top_k,
+            top_mood=prioritized_mood,
+        )
 
     results = []
     for rank, idx in enumerate(sorted_indices):

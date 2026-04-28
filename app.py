@@ -554,6 +554,7 @@ def execute_search(query: str) -> dict:
             top_k=st.session_state["top_k"],
             mood_filter=None,
             prioritized_mood=prioritized_mood,
+            randomize=True,
         )
     if simple_cache_data is not None:
         simple_results = search_from_query_vector(
@@ -562,6 +563,7 @@ def execute_search(query: str) -> dict:
             top_k=st.session_state["top_k"],
             mood_filter=None,
             prioritized_mood=prioritized_mood,
+            randomize=True,
         )
 
     kw_results = keyword_search(query, top_k=st.session_state["top_k"])
