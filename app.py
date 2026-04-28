@@ -1024,12 +1024,14 @@ def render_compare() -> None:
     with semantic_col:
         st.markdown("<div class='compare-head'>Semantic Results</div>", unsafe_allow_html=True)
         semantic_items = []
-        for row in results:
+        for idx, row in enumerate(results, start=1):
+            rank = row.get("rank", idx)
+            similarity = row.get("similarity", 0.0)
             semantic_items.append(
                 f"""
 <div class="compare-item">
-  <div><span class="compare-rank">{row['rank']:02d}</span><strong>{escape(row['title'])}</strong> <span class="result-artist">- {escape(row['artist'])}</span></div>
-  <div class="helper-text">유사도 {row['similarity']:.4f}</div>
+  <div><span class="compare-rank">{rank:02d}</span><strong>{escape(row['title'])}</strong> <span class="result-artist">- {escape(row['artist'])}</span></div>
+  <div class="helper-text">유사도 {similarity:.4f}</div>
 </div>
                 """
             )
@@ -1040,14 +1042,16 @@ def render_compare() -> None:
         keyword_items = []
         for row in st.session_state["kw_results"]:
             common_keywords = ", ".join(row.get("common_keywords", [])[:4]) or "없음"
-        keyword_items.append(
-            f"""
+            keyword_items.append(
+                f"""
 <div class="compare-item">
   <div><span class="compare-rank">{row['rank']:02d}</span><strong>{escape(row['title'])}</strong> <span class="result-artist">- {escape(row['artist'])}</span></div>
   <div class="helper-text">TF-IDF {row['tfidf_similarity']:.4f} · 키워드: {escape(common_keywords)}</div>
 </div>
             """
-        )
+            )
+        if not keyword_items:
+            keyword_items.append("<div class='helper-text'>키워드 검색 결과 없음 (Spotify 모드)</div>")
         st.markdown("<div class='compare-list'>" + "".join(keyword_items) + "</div>", unsafe_allow_html=True)
 
     compare_rows = build_compare_rows(
