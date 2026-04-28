@@ -64,7 +64,7 @@ def init_state() -> None:
         "last_query": "",
         "top_k": FIXED_TOP_K,
         "use_enriched": True,
-        "use_spotify": True,  # 기본적으로 스포티파이 사용
+        "use_spotify": False,  # 기본값: 로컬 임베딩 검색 (Spotify Recommendations API deprecated)
         "music_region": "국내",  # 기본 지역 설정 (국내/국외)
         "enriched_results": [],
         "simple_results": [],
@@ -517,9 +517,10 @@ def execute_search(query: str) -> dict:
             # 국내/국외 설정 전달
             region = st.session_state.get("music_region", "국내")
             spotify_results = sp.search_recommendations(
-                features, 
+                features,
                 limit=st.session_state["top_k"],
-                region=region
+                region=region,
+                query=query,
             )
             
             if spotify_results:

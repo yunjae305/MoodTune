@@ -62,7 +62,7 @@ class SpotifyClient:
         except:
             return []
 
-    def search_recommendations(self, features: Dict, limit: int = 8, region: str = "국내") -> List[Dict]:
+    def search_recommendations(self, features: Dict, limit: int = 8, region: str = "국내", query: str = "") -> List[Dict]:
         if not self.sp:
             import streamlit as st
             st.error("Spotify 설정을 완료해주세요 (ID/Secret 미로드)")
@@ -101,15 +101,20 @@ class SpotifyClient:
                 return [self._format_track(track) for track in results["tracks"]]
             except Exception as rec_err:
                 print(f"Spotify Recommendations API 실패 (market={market}): {rec_err}")
-                # 2. 추천 API 실패 시 검색(Search) API로 폴백
-                search_query = valid_genres[0] if valid_genres else "pop"
-                
-                # 국내인 경우 검색어에 'K-pop' 키워드 추가하여 정확도 향상
-                if region == "국내":
-                    search_query = f"{search_query} K-pop"
-                
-                search_results = self.sp.search(q=search_query, type="track", limit=limit, market=market)
-                return [self._format_track(track) for track in search_results["tracks"]["items"]]
+                # 2. 추천 API 실패 시 검색(Search) API로 폴백 (실제 쿼리 포함)
+                genre_hint = valid_genres[0] if valid_genres else "pop"
+                if query:
+                    search_query = f"{query} {genre_hint} K-pop" if region == "국내" else f"{query} {genre_hint}"
+                elif region == "국내":
+                    search_query = f"{genre_hint} K-pop"
+                else:
+                    search_query = genre_hint
+
+                search_results = self.sp.search(q=search_query, type="track", limit=limit * 3, market=market)
+                tracks = search_results["tracks"]["items"]
+                import random as _random
+                _random.shuffle(tracks)
+                return [self._format_track(t) for t in tracks[:limit]]
 
         except Exception as e:
             import streamlit as st
