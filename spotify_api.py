@@ -101,18 +101,33 @@ class SpotifyClient:
                 return [self._format_track(track) for track in results["tracks"]]
             except Exception as rec_err:
                 print(f"Spotify Recommendations API 실패 (market={market}): {rec_err}")
-                # 2. 추천 API 실패 시 검색(Search) API로 폴백 (실제 쿼리 포함)
-                genre_hint = valid_genres[0] if valid_genres else "pop"
-                if query:
-                    search_query = f"{query} {genre_hint} K-pop" if region == "국내" else f"{query} {genre_hint}"
-                elif region == "국내":
-                    search_query = f"{genre_hint} K-pop"
-                else:
-                    search_query = genre_hint
-
-                search_results = self.sp.search(q=search_query, type="track", limit=limit * 3, market=market)
-                tracks = search_results["tracks"]["items"]
+                # 2. 추천 API 실패 시 검색(Search) API로 폴백
                 import random as _random
+                genre_hint = valid_genres[0] if valid_genres else "pop"
+
+                # 연도 범위를 랜덤으로 선택하여 매번 다른 결과 유도
+                year_pools = [
+                    "2020-2025", "2018-2022", "2015-2020",
+                    "2012-2018", "2010-2015", "2005-2012",
+                ]
+                year_filter = _random.choice(year_pools)
+
+                # 랜덤 offset (0~40 사이, 10 단위)
+                offset = _random.choice([0, 10, 20, 30, 40])
+
+                if query:
+                    base = f"{query} {genre_hint} K-pop" if region == "국내" else f"{query} {genre_hint}"
+                elif region == "국내":
+                    base = f"{genre_hint} K-pop"
+                else:
+                    base = genre_hint
+                search_query = f"{base} year:{year_filter}"
+
+                search_results = self.sp.search(
+                    q=search_query, type="track",
+                    limit=limit * 2, offset=offset, market=market,
+                )
+                tracks = search_results["tracks"]["items"]
                 _random.shuffle(tracks)
                 return [self._format_track(t) for t in tracks[:limit]]
 
