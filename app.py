@@ -173,7 +173,6 @@ html, body, [class*="stApp"] {{
 
 [data-testid="stHeader"],
 [data-testid="stToolbar"],
-[data-testid="collapsedControl"],
 footer {{
   display: none;
 }}
@@ -423,6 +422,32 @@ div[data-testid="stFormSubmitButton"] > button[kind="primary"] { background: lin
 
 @media (max-width: 1100px) {
   .stats-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Mobile ─────────────────────────────────── */
+@media (max-width: 768px) {
+  .block-container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-top: 3rem !important;
+  }
+  .result-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem 0.6rem;
+  }
+  .hero-title {
+    font-size: 1.8rem !important;
+  }
+  .matching-title {
+    font-size: 1.8rem !important;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .compare-table th, .compare-table td {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
 }
 </style>
         """,
@@ -694,16 +719,13 @@ def render_home() -> None:
     )
 
     with st.form("search_form", clear_on_submit=False):
-        search_cols = st.columns([5.2, 1.2])
-        with search_cols[0]:
-            st.text_input(
-                "감성 검색",
-                key="query_input",
-                label_visibility="collapsed",
-                placeholder="지금 어떤 기분이신가요?",
-            )
-        with search_cols[1]:
-            submitted = st.form_submit_button("검색")
+        st.text_input(
+            "감성 검색",
+            key="query_input",
+            label_visibility="collapsed",
+            placeholder="지금 어떤 기분이신가요?",
+        )
+        submitted = st.form_submit_button("검색", use_container_width=True)
 
     if submitted:
         queue_search(st.session_state["query_input"], source="input")
@@ -715,17 +737,14 @@ def render_home() -> None:
         unsafe_allow_html=True,
     )
 
-    cols = st.columns(len(QUERY_CHIPS))
-    for col, chip in zip(cols, QUERY_CHIPS):
-        with col:
-            chip_clicked = st.button(
-                chip,
-                key=f"chip_{chip}",
-                use_container_width=True,
-            )
-            if chip_clicked:
-                queue_search(chip, source="chip")
-                st.rerun()
+    for i in range(0, len(QUERY_CHIPS), 2):
+        row_chips = QUERY_CHIPS[i:i+2]
+        cols = st.columns(len(row_chips))
+        for col, chip in zip(cols, row_chips):
+            with col:
+                if st.button(chip, key=f"chip_{chip}", use_container_width=True):
+                    queue_search(chip, source="chip")
+                    st.rerun()
 
 
 def render_matching() -> None:
@@ -1108,11 +1127,9 @@ def main() -> None:
         )
         st.stop()
 
-    nav_col, content_col = st.columns([1.12, 4.2], gap="large")
-    with nav_col:
+    with st.sidebar:
         render_nav()
-    with content_col:
-        render_main()
+    render_main()
 
 
 main()
