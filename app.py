@@ -674,18 +674,6 @@ def render_nav() -> None:
             unsafe_allow_html=True,
         )
 
-    st.markdown("<div style='height:3rem;'></div>", unsafe_allow_html=True)
-    st.markdown("<div class='nav-title'>검색 설정</div>", unsafe_allow_html=True)
-    st.radio(
-        "음악 범위",
-        ["국내", "국외"],
-        key="music_region",
-        horizontal=True,
-        help="추천받을 음악의 지역 범위를 선택합니다."
-    )
-    st.toggle("풍부한 임베딩 사용", key="use_enriched")
-    st.toggle("실시간 Spotify 추천", key="use_spotify")
-
     if st.session_state["last_query"]:
         rerun_clicked = st.button(
             "현재 쿼리로 다시 검색",
@@ -737,26 +725,11 @@ def render_home() -> None:
 
     setting_cols = st.columns([1, 1, 1, 1])
     with setting_cols[0]:
-        region = st.radio(
-            "음악 범위", ["국내", "국외"],
-            index=["국내", "국외"].index(st.session_state.get("music_region", "국내")),
-            key="music_region_home", horizontal=True,
-        )
-        st.session_state["music_region"] = region
+        st.radio("음악 범위", ["국내", "국외"], key="music_region", horizontal=True)
     with setting_cols[1]:
-        enriched = st.toggle(
-            "풍부한 임베딩",
-            value=st.session_state.get("use_enriched", True),
-            key="use_enriched_home",
-        )
-        st.session_state["use_enriched"] = enriched
+        st.toggle("풍부한 임베딩", key="use_enriched")
     with setting_cols[2]:
-        spotify = st.toggle(
-            "Spotify 추천",
-            value=st.session_state.get("use_spotify", False),
-            key="use_spotify_home",
-        )
-        st.session_state["use_spotify"] = spotify
+        st.toggle("Spotify 추천", key="use_spotify")
 
     st.markdown("<div style='height:2rem;'></div>", unsafe_allow_html=True)
     st.markdown(
