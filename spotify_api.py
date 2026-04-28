@@ -7,39 +7,53 @@ from dotenv import load_dotenv
 # 환경 변수 강제 로드
 load_dotenv(override=True)
 
+SPOTIFY_SCOPE = "playlist-modify-private playlist-modify-public"
+
+
+def get_oauth_manager() -> SpotifyOAuth:
+    return SpotifyOAuth(
+        client_id=os.environ.get("SPOTIFY_CLIENT_ID"),
+        client_secret=os.environ.get("SPOTIFY_CLIENT_SECRET"),
+        redirect_uri=os.environ.get("SPOTIFY_REDIRECT_URI", "http://localhost:8501/"),
+        scope=SPOTIFY_SCOPE,
+        open_browser=False,
+        cache_handler=None,
+    )
+
+
+def get_spotify_auth_url() -> str:
+    """사용자를 Spotify 로그인 페이지로 보내기 위한 URL 반환"""
+    return get_oauth_manager().get_authorize_url()
+
+
+def exchange_code_for_token(code: str) -> Optional[Dict]:
+    """Spotify가 리다이렉트로 돌려준 code를 access_token으로 교환"""
+    try:
+        return get_oauth_manager().get_access_token(code, as_dict=True, check_cache=False)
+    except Exception as e:
+        print(f"토큰 교환 실패: {e}")
+        return None
+
+
 class SpotifyClient:
-    def __init__(self, client_id: str = None, client_secret: str = None, user_token: str = None, use_oauth: bool = False):
+    def __init__(self, client_id: str = None, client_secret: str = None, user_token: str = None):
         self.client_id = client_id or os.environ.get("SPOTIFY_CLIENT_ID")
         self.client_secret = client_secret or os.environ.get("SPOTIFY_CLIENT_SECRET")
         self.user_token = user_token
-        self.redirect_uri = "http://localhost:8501/" # Streamlit 기본 포트
-        
+
         try:
             if user_token:
                 self.sp = spotipy.Spotify(auth=user_token)
-            elif use_oauth:
-                # OAuth Flow (브라우저 로그인용)
-                self.auth_manager = SpotifyOAuth(
-                    client_id=self.client_id,
-                    client_secret=self.client_secret,
-                    redirect_uri=self.redirect_uri,
-                    scope="playlist-modify-private playlist-modify-public"
-                )
-                self.sp = spotipy.Spotify(auth_manager=self.auth_manager)
             else:
                 # Client Credentials (단순 검색용)
                 auth_manager = SpotifyClientCredentials(
-                    client_id=self.client_id, 
+                    client_id=self.client_id,
                     client_secret=self.client_secret
                 )
                 self.sp = spotipy.Spotify(auth_manager=auth_manager)
         except Exception as e:
             print(f"Spotify 연결 실패: {e}")
             self.sp = None
-
-    def get_auth_url(self) -> str:
-        """로그인을 위한 인증 URL 생성"""
-        return self.auth_manager.get_authorize_url()
 
     def get_available_genres(self) -> List[str]:
         if not self.sp: return []

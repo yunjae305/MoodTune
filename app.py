@@ -18,7 +18,7 @@ from keyword_search import compare_search_results, keyword_search
 from search import search_from_query_vector
 from tsne_visualizer import get_tsne_coords_for_query
 from image_fetcher import get_album_art_url
-from spotify_api import SpotifyClient
+from spotify_api import SpotifyClient, get_spotify_auth_url, exchange_code_for_token
 from spotify_mapper import map_mood_to_spotify_features
 from ui_reference import (
     NAV_ITEMS,
@@ -77,6 +77,7 @@ def init_state() -> None:
         "comparison": None,
         "map_requested": False,
         "last_search_settings": {"top_k": FIXED_TOP_K},
+        "spotify_access_token": None,
     }
     for key, value in defaults.items():
         if key not in st.session_state:
@@ -805,26 +806,30 @@ def render_results() -> None:
                 </div>
                 """, unsafe_allow_html=True)
                 
-                if st.button("Spotify 계정 연결 및 저장"):
-                    try:
-                        # OAuth Flow 실행
-                        sp_client = SpotifyClient(use_oauth=True)
-                        track_ids = [s["id"] for s in results]
-                        playlist_name = f"MoodTune: {st.session_state['last_query']}"
-                        
-                        playlist = sp_client.create_playlist(
-                            name=playlist_name,
-                            description=f"MoodTune이 추천한 '{st.session_state['last_query']}' 무드 플레이리스트입니다.",
-                            track_ids=track_ids
-                        )
-                        
-                        if playlist:
-                            st.success(f"'{playlist_name}' 저장 완료!")
-                            st.session_state["last_created_playlist_id"] = playlist["id"]
-                            st.rerun()
-                    except Exception as e:
-                        st.error(f"저장 중 오류가 발생했습니다: {e}")
-                        st.info("로그인 창이 뜨지 않는다면 브라우저의 팝업 차단을 확인해주세요.")
+                token = st.session_state.get("spotify_access_token")
+                if not token:
+                    auth_url = get_spotify_auth_url()
+                    st.link_button("SPOTIFY 계정 연결 및 저장", auth_url, use_container_width=True)
+                else:
+                    if st.button("플레이리스트 저장", use_container_width=True):
+                        try:
+                            sp_client = SpotifyClient(user_token=token)
+                            track_ids = [s["id"] for s in results if s.get("id")]
+                            playlist_name = f"MoodTune: {st.session_state['last_query']}"
+                            playlist = sp_client.create_playlist(
+                                name=playlist_name,
+                                description=f"MoodTune이 추천한 '{st.session_state['last_query']}' 무드 플레이리스트입니다.",
+                                track_ids=track_ids
+                            )
+                            if playlist:
+                                st.success(f"'{playlist_name}' 저장 완료!")
+                                st.session_state["last_created_playlist_id"] = playlist["id"]
+                                st.rerun()
+                        except Exception as e:
+                            st.error(f"저장 중 오류가 발생했습니다: {e}")
+                    if st.button("로그아웃", use_container_width=True):
+                        st.session_state["spotify_access_token"] = None
+                        st.rerun()
 
     if st.session_state.get("last_created_playlist_id"):
         pid = st.session_state["last_created_playlist_id"]
@@ -1075,8 +1080,21 @@ def render_main() -> None:
         render_home()
 
 
+def handle_spotify_oauth_callback() -> None:
+    """URL의 ?code= 파라미터를 감지하여 액세스 토큰으로 교환"""
+    params = st.query_params
+    code = params.get("code")
+    if code and not st.session_state.get("spotify_access_token"):
+        token_info = exchange_code_for_token(code)
+        if token_info:
+            st.session_state["spotify_access_token"] = token_info["access_token"]
+        st.query_params.clear()
+        st.rerun()
+
+
 def main() -> None:
     init_state()
+    handle_spotify_oauth_callback()
     apply_theme(current_theme())
 
     enriched_cache_data = load_embeddings_cache(enriched=True)
