@@ -737,11 +737,26 @@ def render_home() -> None:
 
     setting_cols = st.columns([1, 1, 1, 1])
     with setting_cols[0]:
-        st.radio("음악 범위", ["국내", "국외"], key="music_region", horizontal=True)
+        region = st.radio(
+            "음악 범위", ["국내", "국외"],
+            index=["국내", "국외"].index(st.session_state.get("music_region", "국내")),
+            key="music_region_home", horizontal=True,
+        )
+        st.session_state["music_region"] = region
     with setting_cols[1]:
-        st.toggle("풍부한 임베딩", key="use_enriched")
+        enriched = st.toggle(
+            "풍부한 임베딩",
+            value=st.session_state.get("use_enriched", True),
+            key="use_enriched_home",
+        )
+        st.session_state["use_enriched"] = enriched
     with setting_cols[2]:
-        st.toggle("Spotify 추천", key="use_spotify")
+        spotify = st.toggle(
+            "Spotify 추천",
+            value=st.session_state.get("use_spotify", False),
+            key="use_spotify_home",
+        )
+        st.session_state["use_spotify"] = spotify
 
     st.markdown("<div style='height:2rem;'></div>", unsafe_allow_html=True)
     st.markdown(
