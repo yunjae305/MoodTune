@@ -1064,10 +1064,12 @@ def render_compare() -> None:
         enriched = row["enriched"]
         simple_text = "없음"
         if simple is not None:
-            simple_text = f"{simple['title']} - {simple['artist']} ({simple['similarity']:.4f})"
+            sim = simple.get('similarity', 0.0)
+            simple_text = f"{simple['title']} - {simple['artist']} ({sim:.4f})"
         enriched_text = "없음"
         if enriched is not None:
-            enriched_text = f"{enriched['title']} - {enriched['artist']} ({enriched['similarity']:.4f})"
+            sim = enriched.get('similarity', 0.0)
+            enriched_text = f"{enriched['title']} - {enriched['artist']} ({sim:.4f})"
         body.append(
             f"""
 <tr>
