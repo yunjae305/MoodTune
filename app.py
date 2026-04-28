@@ -720,13 +720,16 @@ def render_home() -> None:
     )
 
     with st.form("search_form", clear_on_submit=False):
-        st.text_input(
-            "감성 검색",
-            key="query_input",
-            label_visibility="collapsed",
-            placeholder="지금 어떤 기분이신가요?",
-        )
-        submitted = st.form_submit_button("검색", use_container_width=True)
+        search_cols = st.columns([5.2, 1.2])
+        with search_cols[0]:
+            st.text_input(
+                "감성 검색",
+                key="query_input",
+                label_visibility="collapsed",
+                placeholder="지금 어떤 기분이신가요?",
+            )
+        with search_cols[1]:
+            submitted = st.form_submit_button("검색", use_container_width=True)
 
     if submitted:
         queue_search(st.session_state["query_input"], source="input")
@@ -738,8 +741,8 @@ def render_home() -> None:
         unsafe_allow_html=True,
     )
 
-    for i in range(0, len(QUERY_CHIPS), 2):
-        row_chips = QUERY_CHIPS[i:i+2]
+    for i in range(0, len(QUERY_CHIPS), 3):
+        row_chips = QUERY_CHIPS[i:i+3]
         cols = st.columns(len(row_chips))
         for col, chip in zip(cols, row_chips):
             with col:
