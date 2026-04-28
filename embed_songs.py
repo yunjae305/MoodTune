@@ -90,7 +90,7 @@ def main() -> None:
     # --- 단순 임베딩 (가사 텍스트만) ---
     print("[1/2] 단순 임베딩 생성 (가사 텍스트)")
     if EMBEDDINGS_PATH.exists():
-        print("  캐시 파일 존재 — 건너뜀")
+        print("  캐시 파일 존재 - 건너뜀")
     else:
         lyrics_texts = [s["lyrics"] for s in songs]
         embeddings = get_embeddings(client, lyrics_texts)
@@ -105,7 +105,7 @@ def main() -> None:
     # --- 풍부한 임베딩 (제목 + 아티스트 + 무드태그 + 가사) ---
     print("\n[2/2] 풍부한 임베딩 생성 (제목+아티스트+무드+가사)")
     if ENRICHED_EMBEDDINGS_PATH.exists():
-        print("  캐시 파일 존재 — 건너뜀")
+        print("  캐시 파일 존재 - 건너뜀")
     else:
         enriched_texts = [build_enriched_text(s) for s in songs]
         enriched_embeddings = get_embeddings(client, enriched_texts)
