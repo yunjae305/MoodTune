@@ -99,7 +99,7 @@ def compare_search_results(
     query_tokens = set(re.findall(r"\w+", query))
     zero_overlap_semantic = [
         r for r in semantic_results
-        if not (query_tokens & set(re.findall(r"\w+", r["lyrics"])))
+        if not (query_tokens & set(re.findall(r"\w+", r.get("lyrics", ""))))
     ]
 
     return {
