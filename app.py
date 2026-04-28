@@ -735,7 +735,15 @@ def render_home() -> None:
         queue_search(st.session_state["query_input"], source="input")
         st.rerun()
 
-    st.markdown("<div style='height:4rem;'></div>", unsafe_allow_html=True)
+    setting_cols = st.columns([1, 1, 1, 1])
+    with setting_cols[0]:
+        st.radio("음악 범위", ["국내", "국외"], key="music_region", horizontal=True)
+    with setting_cols[1]:
+        st.toggle("풍부한 임베딩", key="use_enriched")
+    with setting_cols[2]:
+        st.toggle("Spotify 추천", key="use_spotify")
+
+    st.markdown("<div style='height:2rem;'></div>", unsafe_allow_html=True)
     st.markdown(
         "<div class='nav-title'>이런 검색어는 어때요?</div>",
         unsafe_allow_html=True,
