@@ -49,6 +49,8 @@ coverage.xml
 *.py,cover
 .cwd
 .env
+*.pkl
+cache/
 .hypothesis/
 .pytest_cache/
 cover/
@@ -142,6 +144,7 @@ dmypy.json
 cython_debug/
 
 # MoodTune Specific
+cache/*.pkl
 cache/*.csv
 .vscode/
 *.env
