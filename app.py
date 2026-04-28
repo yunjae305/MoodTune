@@ -182,6 +182,12 @@ footer {{
   height: 2.5rem;
 }}
 
+[data-testid="collapsedControl"] {{
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}}
+
 .block-container {{
   padding-top: 1rem;
   padding-bottom: 1rem;
