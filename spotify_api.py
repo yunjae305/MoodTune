@@ -1,108 +1,128 @@
 import os
-import requests
-import base64
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
 from typing import List, Dict, Optional
+from dotenv import load_dotenv
+
+# 환경 변수 강제 로드
+load_dotenv(override=True)
 
 class SpotifyClient:
-    def __init__(self, client_id: str = None, client_secret: str = None, user_token: str = None):
+    def __init__(self, client_id: str = None, client_secret: str = None, user_token: str = None, use_oauth: bool = False):
         self.client_id = client_id or os.environ.get("SPOTIFY_CLIENT_ID")
         self.client_secret = client_secret or os.environ.get("SPOTIFY_CLIENT_SECRET")
-        self.access_token = user_token # 유저 토큰이 제공되면 우선 사용
-        self.user_token_mode = user_token is not None
+        self.user_token = user_token
+        self.redirect_uri = "http://localhost:8501/" # Streamlit 기본 포트
+        
+        try:
+            if user_token:
+                self.sp = spotipy.Spotify(auth=user_token)
+            elif use_oauth:
+                # OAuth Flow (브라우저 로그인용)
+                self.auth_manager = SpotifyOAuth(
+                    client_id=self.client_id,
+                    client_secret=self.client_secret,
+                    redirect_uri=self.redirect_uri,
+                    scope="playlist-modify-private playlist-modify-public"
+                )
+                self.sp = spotipy.Spotify(auth_manager=self.auth_manager)
+            else:
+                # Client Credentials (단순 검색용)
+                auth_manager = SpotifyClientCredentials(
+                    client_id=self.client_id, 
+                    client_secret=self.client_secret
+                )
+                self.sp = spotipy.Spotify(auth_manager=auth_manager)
+        except Exception as e:
+            print(f"Spotify 연결 실패: {e}")
+            self.sp = None
 
-    def _get_access_token(self) -> bool:
-        """Client Credentials Flow를 통해 액세스 토큰을 가져옵니다 (검색용)."""
-        if self.user_token_mode:
-            return True # 이미 유저 토큰이 있음
-            
-        if not self.client_id or not self.client_secret:
-            return False
+    def get_auth_url(self) -> str:
+        """로그인을 위한 인증 URL 생성"""
+        return self.auth_manager.get_authorize_url()
 
-        auth_header = base64.b64encode(f"{self.client_id}:{self.client_secret}".encode()).decode()
-        response = requests.post(
-            "https://accounts.spotify.com/api/token",
-            data={"grant_type": "client_credentials"},
-            headers={"Authorization": f"Basic {auth_header}"}
-        )
-        
-        if response.status_code == 200:
-            self.access_token = response.json().get("access_token")
-            return True
-        return False
-
-    def create_playlist(self, name: str, description: str, track_ids: List[str]) -> Optional[Dict]:
-        """사용자 계정에 플레이리스트를 생성하고 곡을 추가합니다."""
-        if not self.access_token:
-            return None
-
-        headers = {"Authorization": f"Bearer {self.access_token}", "Content-Type": "application/json"}
-        
-        # 1. 플레이리스트 생성
-        user_res = requests.get("https://api.spotify.com/v1/me", headers=headers)
-        if user_res.status_code != 200:
-            return None
-        
-        user_id = user_res.json()["id"]
-        create_res = requests.post(
-            f"https://api.spotify.com/v1/users/{user_id}/playlists",
-            headers=headers,
-            json={"name": name, "description": description, "public": False}
-        )
-        
-        if create_res.status_code not in [200, 201]:
-            return None
-            
-        playlist = create_res.json()
-        
-        # 2. 곡 추가
-        track_uris = [f"spotify:track:{tid}" for tid in track_ids]
-        add_res = requests.post(
-            f"https://api.spotify.com/v1/playlists/{playlist['id']}/items",
-            headers=headers,
-            json={"uris": track_uris}
-        )
-        
-        if add_res.status_code in [200, 201]:
-            return playlist
-        return None
-
-    def search_recommendations(self, features: Dict, limit: int = 8) -> List[Dict]:
-        """Spotify Recommendations API를 사용하여 곡을 추천받습니다."""
-        if not self.access_token and not self._get_access_token():
+    def get_available_genres(self) -> List[str]:
+        if not self.sp: return []
+        try:
+            return self.sp.recommendation_genre_seeds()["genres"]
+        except:
             return []
 
-        # 추천 API 파라미터 구성
-        params = {
-            "limit": limit,
-            "market": "KR",
-            "seed_genres": features.get("seed_genres", "pop,k-pop"),
-            "target_energy": features.get("target_energy", 0.5),
-            "target_valence": features.get("target_valence", 0.5),
-            "target_danceability": features.get("target_danceability", 0.5),
-            "target_tempo": features.get("target_tempo", 120),
-        }
+    def search_recommendations(self, features: Dict, limit: int = 8, region: str = "국내") -> List[Dict]:
+        if not self.sp:
+            import streamlit as st
+            st.error("Spotify 설정을 완료해주세요 (ID/Secret 미로드)")
+            return []
 
-        response = requests.get(
-            "https://api.spotify.com/v1/recommendations",
-            params=params,
-            headers={"Authorization": f"Bearer {self.access_token}"}
-        )
+        try:
+            # 장르 보정
+            available = self.get_available_genres()
+            
+            # seed_genres가 리스트인 경우 콤마로 연결된 문자열로 변환
+            raw_genres = features.get("seed_genres", "pop")
+            if isinstance(raw_genres, list):
+                raw_genres = ",".join(raw_genres)
+            
+            valid_genres = [g.strip() for g in raw_genres.split(",") if g.strip() in available]
+            if not valid_genres: valid_genres = ["pop"]
 
-        if response.status_code == 200:
-            tracks = response.json().get("tracks", [])
-            return [self._format_track(track) for track in tracks]
-        return []
+            # 지역 설정에 따른 마켓 및 검색어 보정
+            market = "KR" if region == "국내" else "US"
+            
+            # 1. 추천 호출 시도
+            try:
+                # 국내 음악 위주인 경우 k-pop 장르 강제 추가 시도
+                seeds = valid_genres[:5]
+                if region == "국내" and "k-pop" in available and "k-pop" not in seeds:
+                    seeds = ["k-pop"] + seeds[:4]
+
+                results = self.sp.recommendations(
+                    seed_genres=seeds,
+                    limit=limit,
+                    country=market,
+                    target_energy=float(features.get("target_energy", 0.5)),
+                    target_valence=float(features.get("target_valence", 0.5)),
+                    target_danceability=float(features.get("target_danceability", 0.5))
+                )
+                return [self._format_track(track) for track in results["tracks"]]
+            except Exception as rec_err:
+                print(f"Spotify Recommendations API 실패 (market={market}): {rec_err}")
+                # 2. 추천 API 실패 시 검색(Search) API로 폴백
+                search_query = valid_genres[0] if valid_genres else "pop"
+                
+                # 국내인 경우 검색어에 'K-pop' 키워드 추가하여 정확도 향상
+                if region == "국내":
+                    search_query = f"{search_query} K-pop"
+                
+                search_results = self.sp.search(q=search_query, type="track", limit=limit, market=market)
+                return [self._format_track(track) for track in search_results["tracks"]["items"]]
+
+        except Exception as e:
+            import streamlit as st
+            st.error(f"[Spotify 에러] 연동 실패: {e}")
+            return []
+
+    def create_playlist(self, name: str, description: str, track_ids: List[str]) -> Optional[Dict]:
+        if not self.user_token or not self.sp: return None
+        try:
+            user_id = self.sp.current_user()["id"]
+            playlist = self.sp.user_playlist_create(user_id, name, public=False, description=description)
+            self.sp.playlist_add_items(playlist["id"], track_ids)
+            return playlist
+        except Exception as e:
+            import streamlit as st
+            st.error(f"플레이리스트 저장 실패: {e}")
+            return None
 
     def _format_track(self, track: Dict) -> Dict:
-        """Spotify 트랙 정보를 MoodTune 형식으로 변환합니다."""
         return {
             "id": track["id"],
             "title": track["name"],
             "artist": ", ".join([a["name"] for a in track["artists"]]),
             "album": track["album"]["name"],
             "image_url": track["album"]["images"][0]["url"] if track["album"]["images"] else "",
-            "youtube_music_url": f"https://music.youtube.com/search?q={track['name']} {track['artists'][0]['name']}",
+            "youtube_music_url": f"https://music.youtube.com/watch?v={track['name']} {track['artists'][0]['name']}",
             "spotify_url": track["external_urls"]["spotify"],
-            "preview_url": track["preview_url"],
+            "preview_url": track.get("preview_url"),
             "source": "spotify"
         }

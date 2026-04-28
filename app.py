@@ -34,7 +34,7 @@ from ui_reference import (
 )
 
 
-load_dotenv()
+load_dotenv(override=True)
 
 CACHE_DIR = Path("cache")
 EMBEDDING_MODEL = "text-embedding-3-small"
@@ -63,9 +63,9 @@ def init_state() -> None:
         "pending_query": "",
         "last_query": "",
         "top_k": FIXED_TOP_K,
-        "selected_mood": "전체",
         "use_enriched": True,
-        "use_spotify": False,
+        "use_spotify": True,  # 기본적으로 스포티파이 사용
+        "music_region": "국내",  # 기본 지역 설정 (국내/국외)
         "enriched_results": [],
         "simple_results": [],
         "kw_results": [],
@@ -76,17 +76,13 @@ def init_state() -> None:
         "result_summary": "",
         "comparison": None,
         "map_requested": False,
-        "last_search_settings": {"top_k": FIXED_TOP_K, "selected_mood": "전체"},
+        "last_search_settings": {"top_k": FIXED_TOP_K},
     }
     for key, value in defaults.items():
         if key not in st.session_state:
             st.session_state[key] = value
     st.session_state["top_k"] = FIXED_TOP_K
-    last_search_settings = dict(st.session_state.get("last_search_settings", {}))
-    last_search_settings["top_k"] = FIXED_TOP_K
-    if "selected_mood" not in last_search_settings:
-        last_search_settings["selected_mood"] = st.session_state["selected_mood"]
-    st.session_state["last_search_settings"] = last_search_settings
+    st.session_state["last_search_settings"] = {"top_k": FIXED_TOP_K}
 
 
 @st.cache_resource
@@ -123,11 +119,6 @@ def embed_text(text: str) -> np.ndarray:
     return np.array(response.data[0].embedding)
 
 
-def current_mood_filter() -> str | None:
-    selected = st.session_state["selected_mood"]
-    return None if selected == "전체" else selected
-
-
 def current_theme() -> dict:
     return get_mood_theme(st.session_state.get("top_mood", DEFAULT_MOOD))
 
@@ -136,11 +127,6 @@ def active_results() -> list[dict]:
     if st.session_state["use_enriched"]:
         return st.session_state.get("enriched_results", [])
     return st.session_state.get("simple_results", [])
-
-
-def settings_are_stale() -> bool:
-    last_settings = st.session_state.get("last_search_settings", {})
-    return last_settings.get("selected_mood") != st.session_state["selected_mood"]
 
 
 def apply_theme(theme: dict) -> None:
@@ -242,7 +228,7 @@ footer {{
 
 .result-container {{
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.2rem 0.8rem;
   margin-top: 1.2rem;
   width: 100%;
@@ -502,10 +488,16 @@ def execute_search(query: str) -> dict:
         with st.spinner("Spotify에서 실시간 추천 곡을 찾는 중..."):
             features = map_mood_to_spotify_features(query)
             sp = SpotifyClient()
-            spotify_results = sp.search_recommendations(features, limit=st.session_state["top_k"])
+            # 국내/국외 설정 전달
+            region = st.session_state.get("music_region", "국내")
+            spotify_results = sp.search_recommendations(
+                features, 
+                limit=st.session_state["top_k"],
+                region=region
+            )
             
             if spotify_results:
-                # Spotify 결과는 로컬 분류 모델을 통해 무드만 매핑
+                # 무드 분석
                 query_vec = embed_text(query)
                 client = get_openai_client()
                 mood_embeddings = load_mood_embeddings_cache()
@@ -518,7 +510,7 @@ def execute_search(query: str) -> dict:
                 return {
                     "last_query": query,
                     "pending_query": "",
-                    "enriched_results": spotify_results, # Spotify 결과를 메인 결과로 사용
+                    "enriched_results": spotify_results,
                     "simple_results": spotify_results,
                     "kw_results": [],
                     "mood_ranking": mood_ranking,
@@ -529,15 +521,13 @@ def execute_search(query: str) -> dict:
                     "comparison": None,
                     "last_search_settings": {
                         "top_k": st.session_state["top_k"],
-                        "selected_mood": st.session_state["selected_mood"],
                     },
                     "view": "results",
                     "map_requested": False,
                 }
             else:
-                st.error("Spotify API 연결에 실패했습니다. 환경 변수(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)를 확인해주세요.")
-                # 실패 시 로컬 검색으로 폴백하지 않고 중단 (사용자에게 알림)
-                st.stop()
+                # SpotifyClient 내부에서 이미 st.error를 띄웠을 것이므로 안내만 출력
+                st.info("Spotify 검색 결과를 찾지 못했습니다. 로컬 데이터베이스 검색으로 전환합니다.")
 
     # 2. 기존 로컬 검색 모드
     query_vec = embed_text(query)
@@ -549,8 +539,7 @@ def execute_search(query: str) -> dict:
 
     mood_ranking = classify_mood(query_vec, mood_embeddings)
     top_mood, top_mood_score = mood_ranking[0]
-    mood_filter = current_mood_filter()
-    prioritized_mood = None if mood_filter else top_mood
+    prioritized_mood = top_mood
 
     enriched_cache_data = load_embeddings_cache(enriched=True)
     simple_cache_data = load_embeddings_cache(enriched=False)
@@ -562,7 +551,7 @@ def execute_search(query: str) -> dict:
             query_vec=query_vec,
             cache=enriched_cache_data,
             top_k=st.session_state["top_k"],
-            mood_filter=mood_filter,
+            mood_filter=None,
             prioritized_mood=prioritized_mood,
         )
     if simple_cache_data is not None:
@@ -570,7 +559,7 @@ def execute_search(query: str) -> dict:
             query_vec=query_vec,
             cache=simple_cache_data,
             top_k=st.session_state["top_k"],
-            mood_filter=mood_filter,
+            mood_filter=None,
             prioritized_mood=prioritized_mood,
         )
 
@@ -601,7 +590,6 @@ def execute_search(query: str) -> dict:
         "comparison": comparison,
         "last_search_settings": {
             "top_k": st.session_state["top_k"],
-            "selected_mood": st.session_state["selected_mood"],
         },
         "view": "results",
         "map_requested": False,
@@ -659,15 +647,17 @@ def render_nav() -> None:
 
     st.markdown("<div style='height:3rem;'></div>", unsafe_allow_html=True)
     st.markdown("<div class='nav-title'>검색 설정</div>", unsafe_allow_html=True)
-    st.selectbox(
-        "무드 필터",
-        ["전체"] + list(MOOD_CATEGORIES.keys()),
-        key="selected_mood",
+    st.radio(
+        "음악 범위",
+        ["국내", "국외"],
+        key="music_region",
+        horizontal=True,
+        help="추천받을 음악의 지역 범위를 선택합니다."
     )
     st.toggle("풍부한 임베딩 사용", key="use_enriched")
     st.toggle("실시간 Spotify 추천", key="use_spotify")
 
-    if st.session_state["last_query"] and settings_are_stale():
+    if st.session_state["last_query"]:
         rerun_clicked = st.button(
             "현재 쿼리로 다시 검색",
             key="rerun_current_query",
@@ -784,29 +774,57 @@ def render_results() -> None:
             st.session_state["view"] = "home"
             st.rerun()
             
+    # YouTube Music 결과일 경우 첫 번째 곡 플레이어 표시
+    # is_yt = any(song.get("source") == "youtube_music" for song in results)
+    # if is_yt:
+    #     st.markdown("<div style='height:1rem;'></div>", unsafe_allow_html=True)
+    #     top_song = results[0]
+    #     video_id = top_song.get("id")
+    #     if video_id:
+    #         st.markdown(f"<div class='result-label'>FEATURED TRACK</div>", unsafe_allow_html=True)
+    #         st.markdown(
+    #             f"""
+    #             <div style="border-radius: 8px; overflow: hidden; margin-bottom: 1.5rem; border: 1px solid var(--line);">
+    #                 <iframe width="100%" height="200" src="https://www.youtube.com/embed/{video_id}?rel=0&modestbranding=1" 
+    #                 title="YouTube video player" frameborder="0" 
+    #                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    #                 allowfullscreen></iframe>
+    #             </div>
+    #             """,
+    #             unsafe_allow_html=True
+    #         )
+
     # Spotify 결과일 경우 저장 기능 활성화
     is_spotify = any(song.get("source") == "spotify" for song in results)
     if is_spotify:
         with col2:
             with st.expander("🎵 Spotify 플레이리스트로 저장"):
-                token = st.text_input("Spotify Access Token", type="password", help="Spotify Developer Console에서 발급받은 토큰이 필요합니다.")
-                if st.button("내 계정에 저장하기"):
-                    if not token:
-                        st.error("토큰을 입력해주세요.")
-                    else:
-                        sp = SpotifyClient(user_token=token)
+                st.markdown("""
+                <div style='font-size: 0.85rem; color: var(--fg-2); margin-bottom: 1rem;'>
+                스포티파이 계정에 로그인하여 현재 플레이리스트를 즉시 저장합니다.
+                </div>
+                """, unsafe_allow_html=True)
+                
+                if st.button("Spotify 계정 연결 및 저장"):
+                    try:
+                        # OAuth Flow 실행
+                        sp_client = SpotifyClient(use_oauth=True)
                         track_ids = [s["id"] for s in results]
                         playlist_name = f"MoodTune: {st.session_state['last_query']}"
-                        playlist = sp.create_playlist(
+                        
+                        playlist = sp_client.create_playlist(
                             name=playlist_name,
                             description=f"MoodTune이 추천한 '{st.session_state['last_query']}' 무드 플레이리스트입니다.",
                             track_ids=track_ids
                         )
+                        
                         if playlist:
-                            st.success(f"'{playlist_name}' 플레이리스트 생성 완료!")
+                            st.success(f"'{playlist_name}' 저장 완료!")
                             st.session_state["last_created_playlist_id"] = playlist["id"]
-                        else:
-                            st.error("플레이리스트 생성에 실패했습니다. 토큰 권한을 확인해주세요.")
+                            st.rerun()
+                    except Exception as e:
+                        st.error(f"저장 중 오류가 발생했습니다: {e}")
+                        st.info("로그인 창이 뜨지 않는다면 브라우저의 팝업 차단을 확인해주세요.")
 
     if st.session_state.get("last_created_playlist_id"):
         pid = st.session_state["last_created_playlist_id"]
@@ -922,10 +940,11 @@ def render_map() -> None:
         st.markdown(
             """
 <div class="info-card">
-  <div class="helper-text">
-    각 점은 곡의 감정 임베딩을 2차원으로 축소한 위치입니다. 
-    가까운 점일수록 서로 비슷한 분위기를 공유합니다. 
-    별표는 현재 당신이 검색한 쿼리의 위치입니다.
+  <div class="helper-text" style="font-size: 0.95rem; line-height: 1.6;">
+    이 지도는 AI가 파악한 음악들의 <strong>'감성 거리'</strong>를 보여줍니다.<br><br>
+    - <strong>색깔 점들</strong>: 서비스에 등록된 다양한 노래들입니다. 끼리끼리 모여있는 점들은 서로 비슷한 분위기를 가진 곡들이에요.<br>
+    - <strong>빨간 별표(★)</strong>: 지금 당신이 검색한 기분의 위치입니다.<br>
+    - <strong>결과</strong>: 별표 주변에 옹기종기 모여있는 점들이 바로 당신의 무드와 가장 닮았다고 판단되어 추천된 곡들입니다.
   </div>
 </div>
             """,
