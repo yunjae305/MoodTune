@@ -133,7 +133,7 @@ class SpotifyClient:
 
         except Exception as e:
             import streamlit as st
-            st.error(f"[Spotify 에러] 연동 실패: {e}")
+            st.error(f"[Spotify 에러] 연동 실패: {type(e).__name__}: {e}")
             return []
 
     def create_playlist(self, name: str, description: str, track_ids: List[str]) -> Optional[Dict]:
