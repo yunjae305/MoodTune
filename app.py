@@ -179,21 +179,10 @@ footer {{
 
 [data-testid="stHeader"] {{
   background: transparent;
-  height: 2.5rem;
-}}
-
-[data-testid="collapsedControl"] {{
-  display: flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  position: fixed !important;
-  top: 0.5rem !important;
-  left: 0.5rem !important;
-  z-index: 9999 !important;
 }}
 
 .block-container {{
-  padding-top: 1rem;
+  padding-top: 3rem;
   padding-bottom: 1rem;
   max-width: 1000px;
 }}
