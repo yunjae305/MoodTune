@@ -45,7 +45,7 @@ st.set_page_config(
     page_title="MoodTune",
     page_icon="🎵",
     layout="wide",
-    initial_sidebar_state="collapsed",
+    initial_sidebar_state="auto",
 )
 
 
@@ -171,10 +171,15 @@ html, body, [class*="stApp"] {{
   background-color: transparent;
 }}
 
-[data-testid="stHeader"],
 [data-testid="stToolbar"],
+[data-testid="stDecoration"],
 footer {{
   display: none;
+}}
+
+[data-testid="stHeader"] {{
+  background: transparent;
+  height: 2.5rem;
 }}
 
 .block-container {{
