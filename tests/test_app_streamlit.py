@@ -43,6 +43,7 @@ namespace["render_results"]()
         at.run()
 
         self.assertFalse(any("Session Mix" in item.value for item in at.markdown))
+        self.assertTrue(any("sample summary" in item.value for item in at.markdown))
 
     def test_map_page_omits_session_mix_summary_card(self):
         app_path = Path(__file__).resolve().parents[1] / "app.py"

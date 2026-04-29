@@ -1,44 +1,156 @@
 import json
-from openai import OpenAI
 import os
 
+from openai import OpenAI
+
+
+DEFAULT_SPOTIFY_MODEL = "gpt-4.1-mini"
+
+
+def get_spotify_query_model() -> str:
+    return os.environ.get("OPENAI_SUMMARY_MODEL", DEFAULT_SPOTIFY_MODEL).strip() or DEFAULT_SPOTIFY_MODEL
+
+
+def _coerce_list(value) -> list[str]:
+    if isinstance(value, list):
+        items = value
+    else:
+        items = str(value or "").split(",")
+    output = []
+    seen = set()
+    for item in items:
+        text = str(item).strip()
+        if not text:
+            continue
+        lowered = text.lower()
+        if lowered in seen:
+            continue
+        seen.add(lowered)
+        output.append(text)
+    return output
+
+
+def _clamp(value, minimum: float, maximum: float, default: float) -> float:
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return default
+    return max(minimum, min(maximum, number))
+
+
+def sanitize_spotify_features(payload: dict) -> dict:
+    seed_genres = _coerce_list(payload.get("seed_genres"))
+    search_terms = _coerce_list(payload.get("search_terms"))
+
+    if not seed_genres:
+        seed_genres = ["pop"]
+    if not search_terms:
+        search_terms = seed_genres[:2] or ["pop"]
+
+    return {
+        "seed_genres": seed_genres[:3],
+        "search_terms": search_terms[:3],
+        "target_energy": _clamp(payload.get("target_energy"), 0.0, 1.0, 0.5),
+        "target_valence": _clamp(payload.get("target_valence"), 0.0, 1.0, 0.5),
+        "target_danceability": _clamp(payload.get("target_danceability"), 0.0, 1.0, 0.5),
+        "target_tempo": int(_clamp(payload.get("target_tempo"), 60, 180, 120)),
+    }
+
+
+def keyword_override_features(query: str) -> dict:
+    text = (query or "").strip().lower()
+    overrides = {}
+
+    if any(keyword in text for keyword in ["운동", "헬스", "gym", "workout"]):
+        overrides = {
+            "seed_genres": ["work-out", "edm", "dance"],
+            "search_terms": ["workout", "gym", "energetic"],
+            "target_energy": 0.9,
+            "target_valence": 0.7,
+            "target_danceability": 0.8,
+            "target_tempo": 140,
+        }
+    elif any(keyword in text for keyword in ["비", "rain", "밤", "새벽", "잔잔", "calm"]):
+        overrides = {
+            "seed_genres": ["ambient", "chill", "indie-pop"],
+            "search_terms": ["rainy night", "calm", "late night"],
+            "target_energy": 0.25,
+            "target_valence": 0.35,
+            "target_danceability": 0.25,
+            "target_tempo": 75,
+        }
+    elif any(keyword in text for keyword in ["드라이브", "drive"]):
+        overrides = {
+            "seed_genres": ["road-trip", "pop", "indie-pop"],
+            "search_terms": ["night drive", "road trip", "open road"],
+            "target_energy": 0.65,
+            "target_valence": 0.55,
+            "target_danceability": 0.55,
+            "target_tempo": 115,
+        }
+    elif any(keyword in text for keyword in ["우울", "슬픔", "sad", "이별"]):
+        overrides = {
+            "seed_genres": ["sad", "ballad", "r-n-b"],
+            "search_terms": ["sad", "heartbreak", "melancholy"],
+            "target_energy": 0.25,
+            "target_valence": 0.15,
+            "target_danceability": 0.2,
+            "target_tempo": 72,
+        }
+
+    if not overrides:
+        return {}
+    return sanitize_spotify_features(overrides)
+
+
 def map_mood_to_spotify_features(query: str) -> dict:
-    """
-    사용자의 자연어 쿼리를 Spotify API에서 사용할 수 있는 오디오 특징 파라미터로 변환합니다.
-    """
     client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
-    
     prompt = f"""
-    당신은 음악 전문가입니다. 사용자의 기분이나 상황을 나타내는 문장을 듣고, 이에 어울리는 음악을 Spotify에서 찾기 위한 오디오 특징 값을 JSON 형식으로 추천해야 합니다.
+사용자의 감정이나 상황을 Spotify 검색에 유리한 장르와 키워드로 바꿔주세요.
 
-    입력 문장: "{query}"
+입력 문장: "{query}"
 
-    다음 필드들을 포함하는 JSON을 반환하세요:
-    1. seed_genres: 해당 무드에 어울리는 Spotify 장르 1~2개. 
-       반드시 다음 허용된 목록 중에서만 선택하세요: [acoustic, afrobeat, alt-rock, alternative, ambient, anime, black-metal, bluegrass, blues, bossanova, brazil, breakbeat, british, cantopop, chicago-house, children, chill, classical, club, comedy, country, dance, dancehall, death-metal, deep-house, detroit-techno, disco, disney, drum-and-bass, dub, dubstep, edm, electro, electronic, emo, folk, forro, french, funk, garage, german, gospel, goth, grindcore, groove, grunge, guitar, happy, hard-rock, hardcore, hardstyle, heavy-metal, hip-hop, holidays, honky-tonk, house, idm, indian, indie, indie-pop, industrial, Iranian, j-dance, j-idol, j-pop, j-rock, jazz, k-pop, kids, latin, latino, malay, mandopop, metal, metal-core, metal-heavy, minimal-techno, movies, mpb, new-age, new-release, opera, pagode, party, philippines-opm, piano, pop, pop-film, post-dubstep, power-pop, progressive-house, psych-rock, punk, punk-rock, r-n-b, rainy-day, reggae, reggaeton, road-trip, rock, rock-n-roll, rockabilly, romance, sad, salsa, samba, sertanejo, show-tunes, singer-songwriter, ska, sleep, songwriter, soul, soundtracks, spanish, study, summer, swedish, synth-pop, tango, techno, trance, trip-hop, turkish, work-out, world-music]
-       (반드시 소문자 콤마로 구분)
-    2. target_energy: 0.0 ~ 1.0 (에너지 레벨)
-    3. target_valence: 0.0 ~ 1.0 (음악의 밝기/긍정적 느낌)
-    4. target_danceability: 0.0 ~ 1.0 (댄스 지수)
-    5. target_tempo: 60 ~ 180 (BPM)
-
-    JSON 형식으로만 대답하세요.
-    """
+아래 JSON만 반환하세요.
+- seed_genres: Spotify 장르 1~3개
+- search_terms: Spotify 검색용 영어 키워드 1~3개
+- target_energy: 0.0 ~ 1.0
+- target_valence: 0.0 ~ 1.0
+- target_danceability: 0.0 ~ 1.0
+- target_tempo: 60 ~ 180
+"""
 
     try:
         response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model=get_spotify_query_model(),
             messages=[{"role": "user", "content": prompt}],
-            response_format={"type": "json_object"}
+            response_format={"type": "json_object"},
+            temperature=0.2,
         )
-        return json.loads(response.choices[0].message.content)
+        model_features = sanitize_spotify_features(json.loads(response.choices[0].message.content))
+        override_features = keyword_override_features(query)
+        if not override_features:
+            return model_features
+        merged = {
+            "seed_genres": override_features["seed_genres"],
+            "search_terms": override_features["search_terms"],
+            "target_energy": override_features["target_energy"],
+            "target_valence": override_features["target_valence"],
+            "target_danceability": override_features["target_danceability"],
+            "target_tempo": override_features["target_tempo"],
+        }
+        return sanitize_spotify_features(merged)
     except Exception as e:
         print(f"Error mapping mood: {e}")
-        # 기본값 반환
-        return {
-            "seed_genres": "pop,k-pop",
-            "target_energy": 0.5,
-            "target_valence": 0.5,
-            "target_danceability": 0.5,
-            "target_tempo": 120
-        }
+        override_features = keyword_override_features(query)
+        if override_features:
+            return override_features
+        return sanitize_spotify_features(
+            {
+                "seed_genres": ["pop"],
+                "search_terms": ["pop"],
+                "target_energy": 0.5,
+                "target_valence": 0.5,
+                "target_danceability": 0.5,
+                "target_tempo": 120,
+            }
+        )
