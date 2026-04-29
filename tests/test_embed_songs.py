@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from embed_songs import get_api_key
+from embed_songs import get_api_key, is_cache_valid
 
 
 class EmbedSongsEnvTests(unittest.TestCase):
@@ -36,6 +36,31 @@ class EmbedSongsEnvTests(unittest.TestCase):
                     os.environ["OPENAI_API_KEY"] = previous
 
         self.assertIn("OPENAI_API_KEY", str(context.exception))
+
+
+class EmbedSongsCacheTests(unittest.TestCase):
+    def test_is_cache_valid_returns_false_when_cache_missing(self):
+        songs = [{"id": "song_001"}, {"id": "song_002"}]
+
+        self.assertFalse(is_cache_valid(None, songs))
+
+    def test_is_cache_valid_returns_false_when_song_ids_change(self):
+        songs = [{"id": "song_001"}, {"id": "song_002"}]
+        cache = {
+            "songs": [{"id": "song_001"}, {"id": "song_003"}],
+            "embeddings": [[0.1], [0.2]],
+        }
+
+        self.assertFalse(is_cache_valid(cache, songs))
+
+    def test_is_cache_valid_returns_true_for_matching_song_ids(self):
+        songs = [{"id": "song_001"}, {"id": "song_002"}]
+        cache = {
+            "songs": [{"id": "song_001"}, {"id": "song_002"}],
+            "embeddings": [[0.1], [0.2]],
+        }
+
+        self.assertTrue(is_cache_valid(cache, songs))
 
 
 if __name__ == "__main__":

@@ -82,6 +82,18 @@ def load_cache(path: Path) -> dict | None:
         return pickle.load(f)
 
 
+def is_cache_valid(cache: dict | None, songs: list[dict]) -> bool:
+    if cache is None:
+        return False
+    cached_songs = cache.get("songs", [])
+    cached_embeddings = cache.get("embeddings", [])
+    if len(cached_songs) != len(songs) or len(cached_embeddings) != len(songs):
+        return False
+    cached_ids = [song.get("id") for song in cached_songs]
+    current_ids = [song.get("id") for song in songs]
+    return cached_ids == current_ids
+
+
 def main() -> None:
     client = OpenAI(api_key=get_api_key())
     songs = load_songs()
@@ -89,7 +101,8 @@ def main() -> None:
 
     # --- 단순 임베딩 (가사 텍스트만) ---
     print("[1/2] 단순 임베딩 생성 (가사 텍스트)")
-    if EMBEDDINGS_PATH.exists():
+    simple_cache = load_cache(EMBEDDINGS_PATH)
+    if is_cache_valid(simple_cache, songs):
         print("  캐시 파일 존재 - 건너뜀")
     else:
         lyrics_texts = [s["lyrics"] for s in songs]
@@ -104,7 +117,8 @@ def main() -> None:
 
     # --- 풍부한 임베딩 (제목 + 아티스트 + 무드태그 + 가사) ---
     print("\n[2/2] 풍부한 임베딩 생성 (제목+아티스트+무드+가사)")
-    if ENRICHED_EMBEDDINGS_PATH.exists():
+    enriched_cache = load_cache(ENRICHED_EMBEDDINGS_PATH)
+    if is_cache_valid(enriched_cache, songs):
         print("  캐시 파일 존재 - 건너뜀")
     else:
         enriched_texts = [build_enriched_text(s) for s in songs]

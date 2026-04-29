@@ -6,7 +6,8 @@ from pathlib import Path
 class SongDatasetTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.songs = json.loads(Path("data/songs.json").read_text(encoding="utf-8"))
+        dataset_path = Path(__file__).resolve().parents[1] / "data" / "songs.json"
+        cls.songs = json.loads(dataset_path.read_text(encoding="utf-8"))
 
     def test_dataset_has_expanded_song_count(self):
         self.assertGreaterEqual(len(self.songs), 110)
