@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 from openai import OpenAI
 
 from ai_summary import generate_result_summary, get_summary_model
-from classify import MOOD_CATEGORIES, load_or_create_mood_embeddings
+from classify import MOOD_CATEGORIES, classify_mood, load_or_create_mood_embeddings, rerank_mood_ranking
 from keyword_search import compare_search_results, keyword_search
 from search import search_from_query_vector
 from tsne_visualizer import get_tsne_coords_for_query
@@ -599,9 +599,8 @@ def execute_search(query: str) -> dict:
     mood_embeddings = load_mood_embeddings_cache()
     if mood_embeddings is None:
         mood_embeddings = load_or_create_mood_embeddings(client)
-    from classify import classify_mood
-
     mood_ranking = classify_mood(query_vec, mood_embeddings)
+    mood_ranking = rerank_mood_ranking(query, mood_ranking)
     top_mood, top_mood_score = mood_ranking[0]
     prioritized_mood = top_mood
 

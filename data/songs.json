@@ -898,5 +898,95 @@
     "mood_tags": ["새벽", "그리움", "잔잔한"],
     "youtube_music_url": "https://music.youtube.com/search?q=로이킴+밤새",
     "lyrics": "밤새 네 생각에 잠 못 들어\n창밖을 보며 혼자 음악을 틀어\n이 새벽이 언제쯤 지나갈까\n동이 트면 조금 괜찮아질까"
+  },
+  {
+    "id": "song_101",
+    "title": "카페 창가",
+    "artist": "윤하",
+    "genre": "인디",
+    "mood_tags": ["집중", "공부", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=윤하+카페창가",
+    "lyrics": "카페 창가에 앉아 커피 향을 맡으며\n노트북을 켜고 조용히 집중하는 오후\n잔잔한 피아노가 배경음악처럼 흐르고\n공부와 작업이 편안하게 이어지는 시간"
+  },
+  {
+    "id": "song_102",
+    "title": "Coffee Study Session",
+    "artist": "Sam Kim",
+    "genre": "R&B",
+    "mood_tags": ["집중", "공부", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=Sam+Kim+Coffee+Study+Session",
+    "lyrics": "조용한 카페 안쪽 자리에서 책장을 넘기고\n커피 한 잔과 함께 로파이 비트에 몸을 맡겨\n복잡한 생각은 잠시 접어 두고\n공부가 잘 되는 차분한 공기가 번져가"
+  },
+  {
+    "id": "song_103",
+    "title": "로파이 오후",
+    "artist": "카더가든",
+    "genre": "인디",
+    "mood_tags": ["집중", "공부", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=카더가든+로파이오후",
+    "lyrics": "로파이 리듬이 천천히 흐르는 카페 오후\n창가 너머 햇살을 보며 메모를 정리해\n잔잔하지만 또렷한 멜로디가 이어지고\n집중이 필요한 순간마다 마음을 고르게 해"
+  },
+  {
+    "id": "song_104",
+    "title": "늦은 오후 서점",
+    "artist": "스텔라장",
+    "genre": "인디",
+    "mood_tags": ["집중", "공부", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=스텔라장+늦은오후서점",
+    "lyrics": "카페와 서점이 함께 있는 조용한 공간\n책과 노트 사이로 흐르는 잔잔한 기타\n오늘 해야 할 작업을 하나씩 마무리하며\n차분하게 집중이 깊어지는 늦은 오후"
+  },
+  {
+    "id": "song_105",
+    "title": "Midnight Drive",
+    "artist": "The Midnight",
+    "genre": "신스팝",
+    "mood_tags": ["여행", "자유", "드라이브"],
+    "youtube_music_url": "https://music.youtube.com/search?q=The+Midnight+Midnight+Drive",
+    "lyrics": "한밤중 드라이브를 나서며 도시의 야경을 지나\n차창 너머 스치는 불빛이 마음을 가볍게 해\n혼자 달리는 고속도로 위에서\n자유로운 여행의 시작을 느끼게 돼"
+  },
+  {
+    "id": "song_106",
+    "title": "Coastal Highway",
+    "artist": "LANY",
+    "genre": "팝",
+    "mood_tags": ["여행", "자유", "드라이브"],
+    "youtube_music_url": "https://music.youtube.com/search?q=LANY+Coastal+Highway",
+    "lyrics": "해안 고속도로를 따라 바다 옆을 달려가\n차창을 열면 짠 바람이 여행의 기분을 채워\n드라이브 플레이리스트를 크게 틀어 놓고\n오늘만큼은 어디든 갈 수 있을 것 같아"
+  },
+  {
+    "id": "song_107",
+    "title": "야간 주행",
+    "artist": "혁오",
+    "genre": "인디",
+    "mood_tags": ["여행", "자유", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=혁오+야간주행",
+    "lyrics": "깊은 밤 혼자 떠나는 야간 드라이브\n고속도로 위에 번지는 불빛을 바라보며\n차창에 비친 내 얼굴도 낯설게 스쳐가고\n어디론가 멀리 떠나는 자유가 차오른다"
+  },
+  {
+    "id": "song_108",
+    "title": "Night Road",
+    "artist": "HONNE",
+    "genre": "팝",
+    "mood_tags": ["여행", "자유", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=HONNE+Night+Road",
+    "lyrics": "긴 도로를 따라 이어지는 밤의 드라이브\n차창 밖으로 바다가 잠깐씩 얼굴을 비추고\n고속도로 위 작은 라디오 소리에 기대어\n혼자 떠나는 여행이 더 또렷해진다"
+  },
+  {
+    "id": "song_109",
+    "title": "혼자 떠나는 열차",
+    "artist": "10CM",
+    "genre": "인디",
+    "mood_tags": ["여행", "자유", "감성적"],
+    "youtube_music_url": "https://music.youtube.com/search?q=10CM+혼자떠나는열차",
+    "lyrics": "혼자 표를 끊고 아침 열차에 몸을 싣고\n낯선 여행지로 천천히 떠나 보는 거야\n바다를 보러 가는 길마저 설레고\n자유로운 마음이 창문 너머로 번져 간다"
+  },
+  {
+    "id": "song_110",
+    "title": "비 오는 카페",
+    "artist": "적재",
+    "genre": "인디",
+    "mood_tags": ["비", "집중", "잔잔한"],
+    "youtube_music_url": "https://music.youtube.com/search?q=적재+비오는카페",
+    "lyrics": "비 오는 카페 창가에 조용히 앉아\n빗소리와 커피 향 사이로 생각을 정리해\n잔잔한 기타와 함께 공부가 잘 되는 오후\n차분한 마음이 천천히 자리를 잡아 간다"
   }
 ]
