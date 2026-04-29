@@ -62,6 +62,21 @@ class EmbedSongsCacheTests(unittest.TestCase):
 
         self.assertTrue(is_cache_valid(cache, songs))
 
+    def test_is_cache_valid_returns_false_when_song_content_changes(self):
+        songs = [
+            {"id": "song_001", "lyrics": "new lyrics"},
+            {"id": "song_002", "lyrics": "same lyrics"},
+        ]
+        cache = {
+            "songs": [
+                {"id": "song_001", "lyrics": "old lyrics"},
+                {"id": "song_002", "lyrics": "same lyrics"},
+            ],
+            "embeddings": [[0.1], [0.2]],
+        }
+
+        self.assertFalse(is_cache_valid(cache, songs))
+
 
 if __name__ == "__main__":
     unittest.main()

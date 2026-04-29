@@ -89,9 +89,7 @@ def is_cache_valid(cache: dict | None, songs: list[dict]) -> bool:
     cached_embeddings = cache.get("embeddings", [])
     if len(cached_songs) != len(songs) or len(cached_embeddings) != len(songs):
         return False
-    cached_ids = [song.get("id") for song in cached_songs]
-    current_ids = [song.get("id") for song in songs]
-    return cached_ids == current_ids
+    return cached_songs == songs
 
 
 def main() -> None:

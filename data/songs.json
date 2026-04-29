@@ -1,5 +1,1435 @@
 [
   {
+    "id": "song_001",
+    "title": "밤편지",
+    "artist": "아이유",
+    "genre": "발라드",
+    "mood_tags": [
+      "새벽",
+      "잔잔한",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=아이유+밤편지",
+    "lyrics": "이 밤 그날의 반딧불을 당신의 창 가까이 보낼게요 음 사랑한다는 말이에요"
+  },
+  {
+    "id": "song_002",
+    "title": "모든 날, 모든 순간",
+    "artist": "폴킴",
+    "genre": "발라드",
+    "mood_tags": [
+      "새벽",
+      "잔잔한",
+      "그리움"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=폴킴+모든날모든순간",
+    "lyrics": "네가 없이 웃을 수 있을까 생각만 해도 눈물이나 힘든 시간 날 지켜준 사람"
+  },
+  {
+    "id": "song_003",
+    "title": "위잉위잉",
+    "artist": "혁오",
+    "genre": "인디",
+    "mood_tags": [
+      "새벽",
+      "몽환적",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=혁오+위잉위잉",
+    "lyrics": "비틀비틀 걷는 다리에 적당히 기분 좋은 농담들에 핑핑 도는 내 머릿속에"
+  },
+  {
+    "id": "song_004",
+    "title": "주저하는 연인들을 위해",
+    "artist": "잔나비",
+    "genre": "인디",
+    "mood_tags": [
+      "새벽",
+      "감성적",
+      "몽환적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=잔나비+주저하는연인들을위해",
+    "lyrics": "나는 읽기 쉬운 마음이야 당신도 스윽 훑고 가셔요 달랠 길 없는 외로운 마음 있지"
+  },
+  {
+    "id": "song_005",
+    "title": "Everything",
+    "artist": "검정치마",
+    "genre": "인디",
+    "mood_tags": [
+      "새벽",
+      "잔잔한",
+      "그리움"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=검정치마+Everything",
+    "lyrics": "넌 내 모든 거야 내 여름이고 내 꿈이야 넌 내 모든 거야 나 있는 그대로 받아줄게요"
+  },
+  {
+    "id": "song_006",
+    "title": "기억을 걷는 시간",
+    "artist": "넬",
+    "genre": "인디",
+    "mood_tags": [
+      "새벽",
+      "감성적",
+      "잔잔한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=넬+기억을걷는시간",
+    "lyrics": "아직도 너의 소리를 듣고 아직도 너의 손길을 느껴 오늘도 난 너의 흔적 안에 살았죠"
+  },
+  {
+    "id": "song_007",
+    "title": "Good For You",
+    "artist": "에릭남",
+    "genre": "R&B",
+    "mood_tags": [
+      "새벽",
+      "위로",
+      "잔잔한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=에릭남+Good+For+You",
+    "lyrics": "아무리 바빠도 널 챙겨줄게 끼니는 거르지 말고 잘 챙겨 먹어"
+  },
+  {
+    "id": "song_008",
+    "title": "소녀",
+    "artist": "오혁",
+    "genre": "발라드",
+    "mood_tags": [
+      "새벽",
+      "감성적",
+      "그리움"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=오혁+소녀",
+    "lyrics": "내 곁에만 머물러요 떠나면 안돼요 그리움 두고 머나먼 길 그대 무지개를 찾아올 순 없어요"
+  },
+  {
+    "id": "song_009",
+    "title": "시차 (We Are)",
+    "artist": "우원재 (feat. 로꼬 & GRAY)",
+    "genre": "힙합",
+    "mood_tags": [
+      "새벽",
+      "감성적",
+      "몽환적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=우원재+시차",
+    "lyrics": "밤새 모니터에 튀긴 침이 마르기도 전에 대기실 아 참 교수님 닥치세요 다들 가는 평화로운 서울의 밤"
+  },
+  {
+    "id": "song_010",
+    "title": "도망가자",
+    "artist": "선우정아",
+    "genre": "인디",
+    "mood_tags": [
+      "새벽",
+      "위로",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=선우정아+도망가자",
+    "lyrics": "도망가자 어디든 가야 할 것 같아 넌 금방이라도 울 것 같아 괜찮아"
+  },
+  {
+    "id": "song_011",
+    "title": "when the party's over",
+    "artist": "Billie Eilish",
+    "genre": "팝",
+    "mood_tags": [
+      "새벽",
+      "감성적",
+      "잔잔한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=Billie+Eilish+when+the+party+is+over",
+    "lyrics": "Don't you know I'm no good for you I've learned to lose you can't afford to"
+  },
+  {
+    "id": "song_012",
+    "title": "Liability",
+    "artist": "Lorde",
+    "genre": "팝",
+    "mood_tags": [
+      "새벽",
+      "쓸쓸한",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=Lorde+Liability",
+    "lyrics": "They say, You're a little much for me, you're a liability, you're a little much for me"
+  },
+  {
+    "id": "song_013",
+    "title": "우산",
+    "artist": "에픽하이 (feat. 윤하)",
+    "genre": "힙합",
+    "mood_tags": [
+      "비",
+      "감성적",
+      "그리움"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=에픽하이+우산+윤하",
+    "lyrics": "어느새 빗물이 내 발목에 고이고 참았던 눈물이 내 눈가에 고이고 I cry"
+  },
+  {
+    "id": "song_014",
+    "title": "비도 오고 그래서",
+    "artist": "헤이즈",
+    "genre": "R&B",
+    "mood_tags": [
+      "비",
+      "그리움",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=헤이즈+비도오고그래서",
+    "lyrics": "비도 오고 그래서 네 생각이 났어 생각이 나서 그래서 그랬던 거지 별 의미 없지"
+  },
+  {
+    "id": "song_015",
+    "title": "당신과는 천천히",
+    "artist": "장범준",
+    "genre": "인디",
+    "mood_tags": [
+      "비",
+      "잔잔한",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=장범준+당신과는천천히",
+    "lyrics": "당신과는 천천히 오래오래 걷고 싶어 마음이 너무 급해서 앞서가기 싫어요"
+  },
+  {
+    "id": "song_016",
+    "title": "거짓말",
+    "artist": "빅뱅",
+    "genre": "댄스",
+    "mood_tags": [
+      "비",
+      "이별",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=빅뱅+거짓말",
+    "lyrics": "늦은 밤 비가 내려와 널 데려와 젖은 기억 끝에 뒤척여 나 너 없이 잘 살 수 있다고"
+  },
+  {
+    "id": "song_017",
+    "title": "입춘",
+    "artist": "한로로",
+    "genre": "인디",
+    "mood_tags": [
+      "위로",
+      "잔잔한",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=한로로+입춘",
+    "lyrics": "여기에 내어줄 자린 없으니 돌아가라 눈물로 얼룩진 이 땅에 봄은 오고 있으니"
+  },
+  {
+    "id": "song_018",
+    "title": "오늘",
+    "artist": "오왠",
+    "genre": "인디",
+    "mood_tags": [
+      "새벽",
+      "감성적",
+      "위로"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=오왠+오늘",
+    "lyrics": "나만 안 되는 연애 나만 안 되는 하루 내 맘 같지 않은 오늘"
+  },
+  {
+    "id": "song_019",
+    "title": "널 너무 모르고",
+    "artist": "헤이즈",
+    "genre": "R&B",
+    "mood_tags": [
+      "이별",
+      "그리움",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=헤이즈+널너무모르고",
+    "lyrics": "널 너무 모르고 네 맘도 모르고 네가 나에게서 멀어지고 있는 줄도"
+  },
+  {
+    "id": "song_020",
+    "title": "우주를 줄게",
+    "artist": "볼빨간사춘기",
+    "genre": "인디",
+    "mood_tags": [
+      "설렘",
+      "감성적",
+      "사랑"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=볼빨간사춘기+우주를줄게",
+    "lyrics": "커피를 너무 많이 마셨나 봐요 심장이 막 두근대고 잠은 잘 안 오고"
+  },
+  {
+    "id": "song_021",
+    "title": "별 보러 가자",
+    "artist": "적재",
+    "genre": "인디",
+    "mood_tags": [
+      "밤",
+      "잔잔한",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=적재+별보러가자",
+    "lyrics": "찬 바람이 조금씩 불어오면은 밤 하늘이 반짝인다고 나랑 별 보러 가지 않을래"
+  },
+  {
+    "id": "song_022",
+    "title": "Shelter",
+    "artist": "The xx",
+    "genre": "인디",
+    "mood_tags": [
+      "비",
+      "감성적",
+      "잔잔한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=The+xx+Shelter",
+    "lyrics": "I find shelter, in this way, under cover, hide away"
+  },
+  {
+    "id": "song_023",
+    "title": "Creep",
+    "artist": "Radiohead",
+    "genre": "인디",
+    "mood_tags": [
+      "우울한",
+      "감성적",
+      "명곡"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=Radiohead+Creep",
+    "lyrics": "When you were here before Couldn't look you in the eye You're just like an angel"
+  },
+  {
+    "id": "song_024",
+    "title": "이 밤이 지나면",
+    "artist": "임재범",
+    "genre": "발라드",
+    "mood_tags": [
+      "그리움",
+      "이별",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=임재범+이밤이지나면",
+    "lyrics": "이 밤이 지나면 우리는 또 다시 헤어져야 하는데 아무런 말 없이"
+  },
+  {
+    "id": "song_025",
+    "title": "이런 엔딩",
+    "artist": "아이유",
+    "genre": "발라드",
+    "mood_tags": [
+      "그리움",
+      "이별",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=아이유+이런엔딩",
+    "lyrics": "안녕 오랜만이야 물음표 없이 참 너다운 목소리 정해진 규칙처럼"
+  },
+  {
+    "id": "song_026",
+    "title": "어떻게 이별까지 사랑하겠어, 널 사랑하는 거지",
+    "artist": "AKMU",
+    "genre": "발라드",
+    "mood_tags": [
+      "그리움",
+      "이별",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=AKMU+어떻게이별까지사랑하겠어",
+    "lyrics": "일부러 몇 발자국 물러나 내가 없이 혼자 걷는 널 바라본다"
+  },
+  {
+    "id": "song_027",
+    "title": "초록빛",
+    "artist": "폴킴",
+    "genre": "발라드",
+    "mood_tags": [
+      "그리움",
+      "감성적",
+      "잔잔한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=폴킴+초록빛",
+    "lyrics": "초록빛 고운 자태를 뽐내는 너를 보고 있으면 내 마음이 편안해져"
+  },
+  {
+    "id": "song_028",
+    "title": "광화문에서",
+    "artist": "규현",
+    "genre": "발라드",
+    "mood_tags": [
+      "그리움",
+      "이별",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=규현+광화문에서",
+    "lyrics": "넌 어땠니 아직 여름이 남아 왠지 난 조금 지쳤던 하루 광화문 가로수 은행잎 물들 때"
+  },
+  {
+    "id": "song_029",
+    "title": "거리에서",
+    "artist": "성시경",
+    "genre": "발라드",
+    "mood_tags": [
+      "그리움",
+      "이별",
+      "잔잔한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=성시경+거리에서",
+    "lyrics": "니가 없는 거리에는 내가 할 일이 없어서 마냥 걷다 걷다보면 추억을 가끔 마주치지"
+  },
+  {
+    "id": "song_030",
+    "title": "선물",
+    "artist": "멜로망스",
+    "genre": "발라드",
+    "mood_tags": [
+      "설렘",
+      "사랑",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=멜로망스+선물",
+    "lyrics": "빛이 들어오면 자연스레 뜨던 두 눈이 내겐 기적같이 느껴져"
+  },
+  {
+    "id": "song_031",
+    "title": "180도",
+    "artist": "벤",
+    "genre": "발라드",
+    "mood_tags": [
+      "그리움",
+      "이별",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=벤+180도",
+    "lyrics": "너의 그 한 마디 말도 그 웃음도 나한텐 얼마나 의미 있었는지 180도 달라진 너의 표정"
+  },
+  {
+    "id": "song_032",
+    "title": "옛사랑",
+    "artist": "이문세",
+    "genre": "발라드",
+    "mood_tags": [
+      "그리움",
+      "이별",
+      "추억"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=이문세+옛사랑",
+    "lyrics": "남들도 모르게 서성이다 울었지 지나온 일들이 가슴에 사무쳐"
+  },
+  {
+    "id": "song_033",
+    "title": "바람이 분다",
+    "artist": "이소라",
+    "genre": "발라드",
+    "mood_tags": [
+      "그리움",
+      "이별",
+      "잔잔한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=이소라+바람이분다",
+    "lyrics": "바람이 분다 서러운 마음에 텅 빈 풍경이 불어온다"
+  },
+  {
+    "id": "song_034",
+    "title": "이 바보야",
+    "artist": "정승환",
+    "genre": "발라드",
+    "mood_tags": [
+      "그리움",
+      "이별",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=정승환+이바보야",
+    "lyrics": "이 바보야 진짜 아니야 왜 아직도 모르는 거야 널 향한 내 맘을"
+  },
+  {
+    "id": "song_035",
+    "title": "Someone Like You",
+    "artist": "Adele",
+    "genre": "팝",
+    "mood_tags": [
+      "그리움",
+      "이별",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=Adele+Someone+Like+You",
+    "lyrics": "I heard that you're settled down That you found a girl and you're married now"
+  },
+  {
+    "id": "song_036",
+    "title": "Someone You Loved",
+    "artist": "Lewis Capaldi",
+    "genre": "팝",
+    "mood_tags": [
+      "그리움",
+      "이별",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=Lewis+Capaldi+Someone+You+Loved",
+    "lyrics": "Now the day bleeds Into nightfall And you're not here To get me through it all"
+  },
+  {
+    "id": "song_037",
+    "title": "야생화",
+    "artist": "박효신",
+    "genre": "발라드",
+    "mood_tags": [
+      "그리움",
+      "위로",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=박효신+야생화",
+    "lyrics": "하얗게 피어난 얼음꽃 하나가 달가운 바람에 얼굴을 내밀어"
+  },
+  {
+    "id": "song_038",
+    "title": "좋은 날",
+    "artist": "아이유",
+    "genre": "댄스",
+    "mood_tags": [
+      "설렘",
+      "사랑",
+      "행복한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=아이유+좋은날",
+    "lyrics": "어쩜 이렇게 하늘은 더 파란 건지 오늘따라 왜 바람은 또 완벽한지"
+  },
+  {
+    "id": "song_039",
+    "title": "What is Love?",
+    "artist": "TWICE",
+    "genre": "댄스",
+    "mood_tags": [
+      "설렘",
+      "사랑",
+      "행복한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=TWICE+What+is+Love",
+    "lyrics": "매일같이 영화 속에서나 책 속에서나 드라마 속에서 사랑을 느껴 Um 사랑을 배워"
+  },
+  {
+    "id": "song_040",
+    "title": "작은 것들을 위한 시 (Boy With Luv)",
+    "artist": "BTS",
+    "genre": "팝",
+    "mood_tags": [
+      "설렘",
+      "사랑",
+      "행복한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=BTS+Boy+With+Luv",
+    "lyrics": "모든 게 궁금해 How's your day Oh tell me 뭐가 널 행복하게 하는지"
+  },
+  {
+    "id": "song_041",
+    "title": "나만, 봄",
+    "artist": "볼빨간사춘기",
+    "genre": "인디",
+    "mood_tags": [
+      "설렘",
+      "사랑",
+      "행복한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=볼빨간사춘기+나만봄",
+    "lyrics": "안돼 그만둬 거기까지 해 더 다가가면 너 정신 못 차려"
+  },
+  {
+    "id": "song_042",
+    "title": "벚꽃 엔딩",
+    "artist": "버스커버스커",
+    "genre": "인디",
+    "mood_tags": [
+      "설렘",
+      "사랑",
+      "봄"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=버스커버스커+벚꽃엔딩",
+    "lyrics": "봄바람 휘날리며 흩날리는 벚꽃 잎이 울려 퍼질 이 거리를 둘이 걸어요"
+  },
+  {
+    "id": "song_043",
+    "title": "사랑은 은하수 다방에서",
+    "artist": "10cm",
+    "genre": "인디",
+    "mood_tags": [
+      "설렘",
+      "사랑",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=10cm+사랑은은하수다방에서",
+    "lyrics": "사랑은 은하수 다방 문 앞에서 만나 홍차와 냉커피를 마시며"
+  },
+  {
+    "id": "song_044",
+    "title": "11:11",
+    "artist": "태연",
+    "genre": "발라드",
+    "mood_tags": [
+      "설렘",
+      "사랑",
+      "그리움"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=태연+11:11",
+    "lyrics": "It’s 11:11 오늘이 한 칸이 채 안 남은 그런 시간 우리 소원을 빌며 웃던 그 시간"
+  },
+  {
+    "id": "song_045",
+    "title": "아무노래",
+    "artist": "지코",
+    "genre": "힙합",
+    "mood_tags": [
+      "신남",
+      "행복한",
+      "드라이브"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=지코+아무노래",
+    "lyrics": "아무 노래나 일단 틀어 아무거나 신나는 걸로 아무렇게나 춤춰"
+  },
+  {
+    "id": "song_046",
+    "title": "Perfect",
+    "artist": "Ed Sheeran",
+    "genre": "팝",
+    "mood_tags": [
+      "설렘",
+      "사랑",
+      "행복한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=Ed+Sheeran+Perfect",
+    "lyrics": "I found a love for me Darling just dive right in and follow my lead"
+  },
+  {
+    "id": "song_047",
+    "title": "Just the Way You Are",
+    "artist": "Bruno Mars",
+    "genre": "팝",
+    "mood_tags": [
+      "설렘",
+      "사랑",
+      "행복한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=Bruno+Mars+Just+The+Way+You+Are",
+    "lyrics": "When I see your face There's not a thing that I would change"
+  },
+  {
+    "id": "song_048",
+    "title": "처음엔 사랑이란게",
+    "artist": "버스커버스커",
+    "genre": "인디",
+    "mood_tags": [
+      "이별",
+      "사랑",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=버스커버스커+처음엔사랑이란게",
+    "lyrics": "처음엔 사랑이란 게 참 쉽게 영원할 거라 그렇게 믿었었는데"
+  },
+  {
+    "id": "song_049",
+    "title": "솔직히 (Honestly)",
+    "artist": "에릭남",
+    "genre": "팝",
+    "mood_tags": [
+      "이별",
+      "솔직한",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=에릭남+솔직히",
+    "lyrics": "솔직히 말할게 나 이제 더는 못하겠어 너를 사랑하는 일도"
+  },
+  {
+    "id": "song_050",
+    "title": "팔레트",
+    "artist": "아이유",
+    "genre": "팝",
+    "mood_tags": [
+      "위로",
+      "힐링",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=아이유+팔레트",
+    "lyrics": "이상하게도 요즘엔 그냥 쉬운 게 좋아 하긴 그래도 여전히 코르카는 좋더라"
+  },
+  {
+    "id": "song_051",
+    "title": "다행이다",
+    "artist": "이적",
+    "genre": "발라드",
+    "mood_tags": [
+      "사랑",
+      "힐링",
+      "따뜻한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=이적+다행이다",
+    "lyrics": "그대를 만나고 그대의 머릿결을 만질 수가 있어서 그대를 만나고"
+  },
+  {
+    "id": "song_052",
+    "title": "어른",
+    "artist": "Sondia",
+    "genre": "OST",
+    "mood_tags": [
+      "위로",
+      "힐링",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=Sondia+어른",
+    "lyrics": "고단한 하루 끝에 떨구는 눈물 난 어디를 향해 가는 걸까 아플 만큼 아팠다 생각했는데"
+  },
+  {
+    "id": "song_053",
+    "title": "고양이",
+    "artist": "선우정아",
+    "genre": "인디",
+    "mood_tags": [
+      "재즈",
+      "힐링",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=선우정아+고양이",
+    "lyrics": "저기 좀 봐요 커다란 인간들이야 툭 치고 도망가자 냥냐냐냐냥"
+  },
+  {
+    "id": "song_054",
+    "title": "Dali, Van, Picasso",
+    "artist": "빈지노",
+    "genre": "힙합",
+    "mood_tags": [
+      "집중",
+      "예술",
+      "감각적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=빈지노+Dali+Van+Picasso",
+    "lyrics": "내 육신이 쓰러져도 내 영혼은 계속 살어 마치 Dali, Van, Picasso"
+  },
+  {
+    "id": "song_055",
+    "title": "제발",
+    "artist": "이소라",
+    "genre": "발라드",
+    "mood_tags": [
+      "위로",
+      "이별",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=이소라+제발",
+    "lyrics": "잊지 못해 너를 있잖아 아직도 눈물 흘리며 널 생각해"
+  },
+  {
+    "id": "song_056",
+    "title": "한숨",
+    "artist": "이하이",
+    "genre": "발라드",
+    "mood_tags": [
+      "위로",
+      "힐링",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=이하이+한숨",
+    "lyrics": "숨을 크게 쉬어봐요 당신의 가슴 양쪽이 저리게 조금은 아파올 때까지"
+  },
+  {
+    "id": "song_057",
+    "title": "빈차",
+    "artist": "에픽하이 (feat. 오혁)",
+    "genre": "힙합",
+    "mood_tags": [
+      "위로",
+      "새벽",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=에픽하이+빈차",
+    "lyrics": "내가 해야 할 일 벌어야 할 돈 말고도 뭐가 있었는데 내가 가야 할 길"
+  },
+  {
+    "id": "song_058",
+    "title": "Fix You",
+    "artist": "Coldplay",
+    "genre": "팝",
+    "mood_tags": [
+      "위로",
+      "힐링",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=Coldplay+Fix+You",
+    "lyrics": "When you try your best but you don't succeed When you get what you want"
+  },
+  {
+    "id": "song_059",
+    "title": "Slow Dancing in a Burning Room",
+    "artist": "John Mayer",
+    "genre": "팝",
+    "mood_tags": [
+      "위로",
+      "감성적",
+      "잔잔한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=John+Mayer+Slow+Dancing+in+a+Burning+Room",
+    "lyrics": "It's not a silly little moment It's not the storm before the calm"
+  },
+  {
+    "id": "song_060",
+    "title": "Beautiful",
+    "artist": "크러쉬",
+    "genre": "R&B",
+    "mood_tags": [
+      "위로",
+      "힐링",
+      "따뜻한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=크러쉬+Beautiful",
+    "lyrics": "It's a beautiful life 난 너의 곁에 있을게 It's a beautiful life"
+  },
+  {
+    "id": "song_061",
+    "title": "강남스타일",
+    "artist": "PSY",
+    "genre": "댄스",
+    "mood_tags": [
+      "신남",
+      "파티",
+      "에너지"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=PSY+강남스타일",
+    "lyrics": "오빤 강남스타일 강남스타일 낮에는 따사로운 인간적인 여자"
+  },
+  {
+    "id": "song_062",
+    "title": "Cherry Bomb",
+    "artist": "NCT 127",
+    "genre": "댄스",
+    "mood_tags": [
+      "신남",
+      "파티",
+      "에너지"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=NCT127+Cherry+Bomb",
+    "lyrics": "빨리빨리 피해 right cherry bomb feel it yum I'm the biggest hit on this stage"
+  },
+  {
+    "id": "song_063",
+    "title": "Ko Ko Bop",
+    "artist": "EXO",
+    "genre": "댄스",
+    "mood_tags": [
+      "신남",
+      "파티",
+      "에너지"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=EXO+Ko+Ko+Bop",
+    "lyrics": "Shimmie shimmie Ko Ko Bop I think I like it 긴장은 down down 부끄러 말고"
+  },
+  {
+    "id": "song_064",
+    "title": "Dynamite",
+    "artist": "BTS",
+    "genre": "팝",
+    "mood_tags": [
+      "신남",
+      "파티",
+      "행복한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=BTS+Dynamite",
+    "lyrics": "Cause I, I, I'm in the stars tonight So watch me bring the fire and set the night alight"
+  },
+  {
+    "id": "song_065",
+    "title": "How You Like That",
+    "artist": "BLACKPINK",
+    "genre": "댄스",
+    "mood_tags": [
+      "신남",
+      "파티",
+      "에너지"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=BLACKPINK+How+You+Like+That",
+    "lyrics": "보란 듯이 무너졌어 바닥을 뚫고 저 지하까지 옷 끝자락 잡겠다고"
+  },
+  {
+    "id": "song_066",
+    "title": "내가 제일 잘 나가",
+    "artist": "2NE1",
+    "genre": "댄스",
+    "mood_tags": [
+      "신남",
+      "파티",
+      "자신감"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=2NE1+내가제일잘나가",
+    "lyrics": "내가 제일 잘 나가 내가 제일 잘 나가 Bam Ratatata Tatatatata"
+  },
+  {
+    "id": "song_067",
+    "title": "Back Door",
+    "artist": "Stray Kids",
+    "genre": "댄스",
+    "mood_tags": [
+      "신남",
+      "파티",
+      "에너지"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=Stray+Kids+Back+Door",
+    "lyrics": "Hey, you wanna come in? 다 치워 이제 들어가 저기 문 닫고 lock"
+  },
+  {
+    "id": "song_068",
+    "title": "빨개요",
+    "artist": "현아",
+    "genre": "댄스",
+    "mood_tags": [
+      "신남",
+      "파티",
+      "에너지"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=현아+빨개요",
+    "lyrics": "원숭이 엉덩이는 빨개 빨간 건 현아 현아는 Yeah 나를 두고 모두 빙글빙글 타오르는 밤"
+  },
+  {
+    "id": "song_069",
+    "title": "벌써 12시",
+    "artist": "청하",
+    "genre": "댄스",
+    "mood_tags": [
+      "신남",
+      "파티",
+      "매혹적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=청하+벌써12시",
+    "lyrics": "아쉬워 벌써 12시 어떡해 벌써 12시네 보내기 싫은 걸 알고 있어"
+  },
+  {
+    "id": "song_070",
+    "title": "Levitating",
+    "artist": "Dua Lipa",
+    "genre": "팝",
+    "mood_tags": [
+      "신남",
+      "파티",
+      "행복한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=Dua+Lipa+Levitating",
+    "lyrics": "I got you, moonlight, you're my starlight I need you all night"
+  },
+  {
+    "id": "song_071",
+    "title": "Blinding Lights",
+    "artist": "The Weeknd",
+    "genre": "팝",
+    "mood_tags": [
+      "신남",
+      "드라이브",
+      "에너지"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=The+Weeknd+Blinding+Lights",
+    "lyrics": "I said, ooh, I'm blinded by the lights No, I can't sleep until I feel your touch"
+  },
+  {
+    "id": "song_072",
+    "title": "instagram",
+    "artist": "DEAN",
+    "genre": "R&B",
+    "mood_tags": [
+      "새벽",
+      "공허함",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=DEAN+instagram",
+    "lyrics": "내일이 올 걸 아는데 난 핸드폰을 놓지 못해 잠은 올 생각이 없대"
+  },
+  {
+    "id": "song_073",
+    "title": "Boat",
+    "artist": "죠지",
+    "genre": "인디",
+    "mood_tags": [
+      "여행",
+      "휴식",
+      "자유"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=죠지+Boat",
+    "lyrics": "난 맘대로 날아갈래 멀리멀리 어디로 갈까 어딜 가든 상관없는 밤이잖아"
+  },
+  {
+    "id": "song_074",
+    "title": "나무",
+    "artist": "카더가든",
+    "genre": "인디",
+    "mood_tags": [
+      "위로",
+      "사랑",
+      "잔잔한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=카더가든+나무",
+    "lyrics": "춤을 추는 나무 같아요 그대 안에서 나 눈을 감아요"
+  },
+  {
+    "id": "song_075",
+    "title": "이럴거면 그러지말지",
+    "artist": "백아연",
+    "genre": "인디",
+    "mood_tags": [
+      "짝사랑",
+      "공감",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=백아연+이럴거면그러지말지",
+    "lyrics": "궁금해서 잠이 안 와 그때 왜 그랬어 구차해도 묻고 싶어"
+  },
+  {
+    "id": "song_076",
+    "title": "Pour Up",
+    "artist": "DEAN",
+    "genre": "R&B",
+    "mood_tags": [
+      "그루브",
+      "밤",
+      "몽환적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=DEAN+Pour+Up",
+    "lyrics": "아무 데나 걸터앉아 혼잣말을 덜어놔 나를 쳐다보는 시선들은 가벼워"
+  },
+  {
+    "id": "song_077",
+    "title": "남아있어",
+    "artist": "로꼬 (feat. Crush)",
+    "genre": "힙합",
+    "mood_tags": [
+      "밤",
+      "생각",
+      "잔잔한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=로꼬+남아있어",
+    "lyrics": "아직 향기가 남아있어 내 옷엔 여전히 이 방엔 아직 네가 남아있어"
+  },
+  {
+    "id": "song_078",
+    "title": "Anchor",
+    "artist": "Novo Amor",
+    "genre": "인디",
+    "mood_tags": [
+      "집중",
+      "공부",
+      "잔잔한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=Novo+Amor+Anchor",
+    "lyrics": "Took the breath from my open mouth Never known how it broke me down"
+  },
+  {
+    "id": "song_079",
+    "title": "Skinny Love",
+    "artist": "Bon Iver",
+    "genre": "인디",
+    "mood_tags": [
+      "집중",
+      "공부",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=Bon+Iver+Skinny+Love",
+    "lyrics": "Come on skinny love just last the year Pour a little salt we were never here"
+  },
+  {
+    "id": "song_080",
+    "title": "Death With Dignity",
+    "artist": "Sufjan Stevens",
+    "genre": "인디",
+    "mood_tags": [
+      "집중",
+      "잔잔한",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=Sufjan+Stevens+Death+With+Dignity",
+    "lyrics": "Spirit of my silence I can hear you But I'm afraid to be near you"
+  },
+  {
+    "id": "song_081",
+    "title": "Colourway",
+    "artist": "Novo Amor",
+    "genre": "인디",
+    "mood_tags": [
+      "집중",
+      "공부",
+      "잔잔한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=Novo+Amor+Colourway",
+    "lyrics": "Breathe it in, to my lungs, like a fire, to the tongue"
+  },
+  {
+    "id": "song_082",
+    "title": "여수 밤바다",
+    "artist": "버스커버스커",
+    "genre": "인디",
+    "mood_tags": [
+      "여행",
+      "밤바다",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=버스커버스커+여수밤바다",
+    "lyrics": "여수 밤바다 이 조명에 담긴 아름다운 얘기가 있어 네게 들려주고파"
+  },
+  {
+    "id": "song_083",
+    "title": "봄이 좋냐??",
+    "artist": "10cm",
+    "genre": "인디",
+    "mood_tags": [
+      "봄",
+      "유쾌한",
+      "솔로"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=10cm+봄이좋냐",
+    "lyrics": "꽃이 언제 피는지 그딴 게 뭐가 중요한데 날씨가 언제 풀리는지 그딴 거 알면 뭐 할 건데"
+  },
+  {
+    "id": "song_084",
+    "title": "TOMBOY",
+    "artist": "혁오",
+    "genre": "인디",
+    "mood_tags": [
+      "청춘",
+      "자유",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=혁오+TOMBOY",
+    "lyrics": "난 지금 행복해 그래서 불안해 폭풍 전 바다는 늘 고요하니까"
+  },
+  {
+    "id": "song_085",
+    "title": "전설",
+    "artist": "잔나비",
+    "genre": "인디",
+    "mood_tags": [
+      "추억",
+      "회상",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=잔나비+전설",
+    "lyrics": "우리가 머문 자리엔 늘 낡고 거친 것들만 가득했지"
+  },
+  {
+    "id": "song_086",
+    "title": "여행",
+    "artist": "볼빨간사춘기",
+    "genre": "인디",
+    "mood_tags": [
+      "여행",
+      "자유",
+      "설렘"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=볼빨간사춘기+여행",
+    "lyrics": "저 오늘 떠나요 공항으로 핸드폰 꺼 놔요 제발 날 찾지 말아줘"
+  },
+  {
+    "id": "song_087",
+    "title": "광화문 연가",
+    "artist": "이문세",
+    "genre": "발라드",
+    "mood_tags": [
+      "추억",
+      "감성적",
+      "그리움"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=이문세+광화문연가",
+    "lyrics": "이제 모두 세월 따라 흔적도 없이 변하였지만 덕수궁 돌담길엔 아직 남아 있어요"
+  },
+  {
+    "id": "song_088",
+    "title": "까만안경",
+    "artist": "이루",
+    "genre": "발라드",
+    "mood_tags": [
+      "이별",
+      "슬픔",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=이루+까만안경",
+    "lyrics": "사랑해요 나도 울고 있어요 까만 안경 쓰고 우는 내 모습을 볼 수 없겠죠"
+  },
+  {
+    "id": "song_089",
+    "title": "여행을 떠나요",
+    "artist": "조용필",
+    "genre": "록",
+    "mood_tags": [
+      "여행",
+      "자유",
+      "신남"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=조용필+여행을떠나요",
+    "lyrics": "푸른 언덕에 배낭을 메고 황금빛 태양 축제를 여는 광야를 향해서 계곡을 향해서"
+  },
+  {
+    "id": "song_090",
+    "title": "seoul",
+    "artist": "RM",
+    "genre": "힙합",
+    "mood_tags": [
+      "도시",
+      "감성적",
+      "생각"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=RM+seoul",
+    "lyrics": "If love and hate are the same words, I love you Seoul"
+  },
+  {
+    "id": "song_091",
+    "title": "Banana Pancakes",
+    "artist": "Jack Johnson",
+    "genre": "팝",
+    "mood_tags": [
+      "휴식",
+      "자유",
+      "행복한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=Jack+Johnson+Banana+Pancakes",
+    "lyrics": "Can't you see that it's just raining? There ain't no need to go outside"
+  },
+  {
+    "id": "song_092",
+    "title": "Steal My Kisses",
+    "artist": "Ben Harper",
+    "genre": "팝",
+    "mood_tags": [
+      "여행",
+      "자유",
+      "그루브"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=Ben+Harper+Steal+My+Kisses",
+    "lyrics": "I pulled into town on a broken down road I need you by my side"
+  },
+  {
+    "id": "song_093",
+    "title": "Universe",
+    "artist": "EXO",
+    "genre": "발라드",
+    "mood_tags": [
+      "겨울",
+      "사랑",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=EXO+Universe",
+    "lyrics": "I'll search the universe 널 다시 찾을 때까지 나의 세상을 가진 나의 작은 우주가"
+  },
+  {
+    "id": "song_094",
+    "title": "수고했어, 오늘도",
+    "artist": "옥상달빛",
+    "genre": "인디",
+    "mood_tags": [
+      "위로",
+      "퇴근",
+      "잔잔한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=옥상달빛+수고했어오늘도",
+    "lyrics": "수고했어 오늘도 아무도 너의 슬픔에 관심 없대도 난 늘 응원해, 수고했어 오늘도"
+  },
+  {
+    "id": "song_095",
+    "title": "나의 사춘기에게",
+    "artist": "볼빨간사춘기",
+    "genre": "인디",
+    "mood_tags": [
+      "위로",
+      "힐링",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=볼빨간사춘기+나의사춘기에게",
+    "lyrics": "나는 한때 내가 이 세상에 사라지길 바랬어 온 세상이 너무나 캄캄해 매일 밤을 울던 날"
+  },
+  {
+    "id": "song_096",
+    "title": "눈의 꽃",
+    "artist": "박효신",
+    "genre": "발라드",
+    "mood_tags": [
+      "위로",
+      "겨울",
+      "잔잔한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=박효신+눈의꽃",
+    "lyrics": "어느새 길어진 그림자를 따라서 땅거미 진 어둠 속을 그대와 걷고 있네요"
+  },
+  {
+    "id": "song_097",
+    "title": "그대라는 시",
+    "artist": "태연",
+    "genre": "OST",
+    "mood_tags": [
+      "위로",
+      "사랑",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=태연+그대라는시",
+    "lyrics": "언제부터인지 그대를 보면 운명이라고 느꼈던 걸까 밤하늘의 별이 빛난 것처럼"
+  },
+  {
+    "id": "song_098",
+    "title": "아름다운 밤이야",
+    "artist": "비스트",
+    "genre": "댄스",
+    "mood_tags": [
+      "신남",
+      "행복한",
+      "파티"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=비스트+아름다운밤이야",
+    "lyrics": "별이 빛나는 아름다운 밤이야이야 이 밤이 영원하길 내 손을 잡아봐"
+  },
+  {
+    "id": "song_099",
+    "title": "취중고백",
+    "artist": "김민석",
+    "genre": "발라드",
+    "mood_tags": [
+      "새벽",
+      "고백",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=김민석+취중고백",
+    "lyrics": "뭐하고 있었니 늦었지만 잠시 나올래 너의 집 골목에 있는 놀이터에 앉아 있어"
+  },
+  {
+    "id": "song_100",
+    "title": "우리의 밤을 외워요",
+    "artist": "카더가든",
+    "genre": "인디",
+    "mood_tags": [
+      "새벽",
+      "그리움",
+      "잔잔한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=카더가든+우리의밤을외워요",
+    "lyrics": "불 꺼진 창문들 사이로 나만 홀로 남겨진 이 밤 오늘 당신은 어땠나요"
+  },
+  {
+    "id": "song_101",
+    "title": "아메리카노",
+    "artist": "10cm",
+    "genre": "인디",
+    "mood_tags": [
+      "휴식",
+      "카페",
+      "잔잔한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=10cm+아메리카노",
+    "lyrics": "아메리카노 좋아 좋아 좋아 아메리카노 진해 진해 진해 어떻게 하노 시럽 시럽 시럽 빼고 주세요"
+  },
+  {
+    "id": "song_102",
+    "title": "on the street",
+    "artist": "j-hope (with J. Cole)",
+    "genre": "힙합",
+    "mood_tags": [
+      "길거리",
+      "희망",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=j-hope+on+the+street",
+    "lyrics": "Every time I walk, Every time I run, Every time I move, As always, for us"
+  },
+  {
+    "id": "song_103",
+    "title": "목요일 밤",
+    "artist": "어반자카파 (feat. 빈지노)",
+    "genre": "R&B",
+    "mood_tags": [
+      "퇴근",
+      "밤",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=어반자카파+목요일밤",
+    "lyrics": "평범한 목요일 밤 널 데려 갈게 어디든 일주일 중에 네가 제일 지쳐 있을 오늘"
+  },
+  {
+    "id": "song_104",
+    "title": "Colors",
+    "artist": "스텔라장",
+    "genre": "인디팝",
+    "mood_tags": [
+      "상큼한",
+      "기분전환",
+      "경쾌한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=스텔라장+Colors",
+    "lyrics": "I could be red, or I could be yellow, I could be blue, or I could be purple"
+  },
+  {
+    "id": "song_105",
+    "title": "Endless Summer",
+    "artist": "The Midnight",
+    "genre": "신스팝",
+    "mood_tags": [
+      "여행",
+      "자유",
+      "드라이브"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=The+Midnight+Endless+Summer",
+    "lyrics": "We were a postcard in the fading sun I can still see you there"
+  },
+  {
+    "id": "song_106",
+    "title": "ILYSB",
+    "artist": "LANY",
+    "genre": "팝",
+    "mood_tags": [
+      "드라이브",
+      "사랑",
+      "감각적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=LANY+ILYSB",
+    "lyrics": "And you need to know That I'm hella obsessed with your face"
+  },
+  {
+    "id": "song_107",
+    "title": "Comes and Goes",
+    "artist": "혁오",
+    "genre": "인디",
+    "mood_tags": [
+      "생각",
+      "인디",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=혁오+Comes+and+Goes",
+    "lyrics": "어릴 적 늘 조르던 날 자장가로 재워주던 내 친구 나를 위로해주네"
+  },
+  {
+    "id": "song_108",
+    "title": "Warm on a Cold Night",
+    "artist": "HONNE",
+    "genre": "팝",
+    "mood_tags": [
+      "드라이브",
+      "밤",
+      "잔잔한"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=HONNE+Warm+on+a+Cold+Night",
+    "lyrics": "Like a warm on a cold, cold night You're the one that I want in my sight"
+  },
+  {
+    "id": "song_109",
+    "title": "스토커",
+    "artist": "10cm",
+    "genre": "인디",
+    "mood_tags": [
+      "짝사랑",
+      "이별",
+      "감성적"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=10cm+스토커",
+    "lyrics": "나도 알아 나의 문제가 무엇인지 난 못났고 별볼일 없지 그 애가 나를 부끄러워한다는 게"
+  },
+  {
+    "id": "song_110",
+    "title": "Lullaby",
+    "artist": "적재",
+    "genre": "인디",
+    "mood_tags": [
+      "잔잔한",
+      "감성적",
+      "자장가"
+    ],
+    "youtube_music_url": "https://music.youtube.com/search?q=적재+Lullaby",
+    "lyrics": "아무 말도 아무런 생각도 잠시 내려놓고 눈을 감아봐 내일은 조금 더 나을 거야"
+  },
+  {
     "id": "song_111",
     "title": "예뻤어",
     "artist": "DAY6",
@@ -1678,7 +3108,7 @@
   },
   {
     "id": "song_240",
-    "title": "우리 왜 헤어져야 해",
+    "title": "우리 왜 헤어져 해",
     "artist": "신예영",
     "genre": "발라드",
     "mood_tags": [
@@ -1847,8 +3277,8 @@
   },
   {
     "id": "song_253",
-    "title": "Uptown Funk (feat. Bruno Mars)",
-    "artist": "Mark Ronson",
+    "title": "Uptown Funk",
+    "artist": "Mark Ronson (feat. Bruno Mars)",
     "genre": "팝",
     "mood_tags": [
       "신남",
@@ -1886,8 +3316,8 @@
   },
   {
     "id": "song_256",
-    "title": "We Don't Talk Anymore (feat. Selena Gomez)",
-    "artist": "Charlie Puth",
+    "title": "We Don't Talk Anymore",
+    "artist": "Charlie Puth (feat. Selena Gomez)",
     "genre": "팝",
     "mood_tags": [
       "이별",
@@ -2224,8 +3654,8 @@
   },
   {
     "id": "song_282",
-    "title": "Umbrella (feat. JAY-Z)",
-    "artist": "Rihanna",
+    "title": "Umbrella",
+    "artist": "Rihanna (feat. JAY-Z)",
     "genre": "팝",
     "mood_tags": [
       "비",
@@ -2302,8 +3732,8 @@
   },
   {
     "id": "song_288",
-    "title": "Closer (feat. Halsey)",
-    "artist": "The Chainsmokers",
+    "title": "Closer",
+    "artist": "The Chainsmokers (feat. Halsey)",
     "genre": "EDM",
     "mood_tags": [
       "청춘",
@@ -2315,8 +3745,8 @@
   },
   {
     "id": "song_289",
-    "title": "This Is What You Came For (feat. Rihanna)",
-    "artist": "Calvin Harris",
+    "title": "This Is What You Came For",
+    "artist": "Calvin Harris (feat. Rihanna)",
     "genre": "EDM",
     "mood_tags": [
       "클럽",
@@ -2341,8 +3771,8 @@
   },
   {
     "id": "song_291",
-    "title": "Clarity (feat. Foxes)",
-    "artist": "Zedd",
+    "title": "Clarity",
+    "artist": "Zedd (feat. Foxes)",
     "genre": "EDM",
     "mood_tags": [
       "감성적",
@@ -2354,8 +3784,8 @@
   },
   {
     "id": "song_292",
-    "title": "Get Lucky (feat. Pharrell Williams)",
-    "artist": "Daft Punk",
+    "title": "Get Lucky",
+    "artist": "Daft Punk (feat. Pharrell Williams)",
     "genre": "팝",
     "mood_tags": [
       "디스코",
@@ -2471,223 +3901,223 @@
   },
   {
     "id": "song_301",
-    "title": "Cafe Window",
-    "artist": "Younha",
-    "genre": "indie",
+    "title": "카페 창가",
+    "artist": "윤하",
+    "genre": "인디",
     "mood_tags": [
       "집중",
       "공부",
       "잔잔한"
     ],
-    "youtube_music_url": "https://music.youtube.com/search?q=Cafe+Window",
-    "lyrics": "카페 창가 커피 노트북 공부 집중"
+    "youtube_music_url": "https://music.youtube.com/search?q=%EC%9C%A4%ED%95%98+%EC%B9%B4%ED%8E%98%EC%B0%BD%EA%B0%80",
+    "lyrics": "카페 창가에 앉아 커피 향을 맡으며 노트북을 켜고 조용히 집중하는 오후"
   },
   {
     "id": "song_302",
     "title": "Coffee Study Session",
     "artist": "Sam Kim",
-    "genre": "rnb",
+    "genre": "R&B",
     "mood_tags": [
       "집중",
       "공부",
       "감성적"
     ],
-    "youtube_music_url": "https://music.youtube.com/search?q=Coffee+Study+Session",
-    "lyrics": "카페 커피 로파이 공부 집중"
+    "youtube_music_url": "https://music.youtube.com/search?q=Sam+Kim+Coffee+Study+Session",
+    "lyrics": "카페 안쪽 자리에서 커피 한 잔과 로파이 비트에 몸을 맡기며 공부가 잘 되는 시간"
   },
   {
     "id": "song_303",
-    "title": "Lofi Afternoon",
-    "artist": "Carder Garden",
-    "genre": "indie",
+    "title": "로파이 오후",
+    "artist": "카더가든",
+    "genre": "인디",
     "mood_tags": [
       "집중",
       "공부",
       "잔잔한"
     ],
-    "youtube_music_url": "https://music.youtube.com/search?q=Lofi+Afternoon",
-    "lyrics": "로파이 카페 노트북 공부 집중"
+    "youtube_music_url": "https://music.youtube.com/search?q=%EC%B9%B4%EB%8D%94%EA%B0%80%EB%93%A0+%EB%A1%9C%ED%8C%8C%EC%9D%B4%EC%98%A4%ED%9B%84",
+    "lyrics": "로파이 리듬이 흐르는 카페 오후 차분하게 메모를 정리하며 집중이 깊어지는 순간"
   },
   {
     "id": "song_304",
-    "title": "Late Bookstore",
-    "artist": "Stella Jang",
-    "genre": "indie",
+    "title": "늦은 오후 서점",
+    "artist": "스텔라장",
+    "genre": "인디",
     "mood_tags": [
       "집중",
       "공부",
       "잔잔한"
     ],
-    "youtube_music_url": "https://music.youtube.com/search?q=Late+Bookstore",
-    "lyrics": "카페 창가 공부 집중"
+    "youtube_music_url": "https://music.youtube.com/search?q=%EC%8A%A4%ED%85%94%EB%9D%BC%EC%9E%A5+%EB%8A%A6%EC%9D%80%EC%98%A4%ED%9B%84%EC%84%9C%EC%A0%90",
+    "lyrics": "카페와 서점이 함께 있는 조용한 공간에서 차분한 기타와 함께 공부가 이어지는 늦은 오후"
   },
   {
     "id": "song_305",
-    "title": "Quiet Desk",
-    "artist": "Ozone",
-    "genre": "indie",
+    "title": "화이트노이즈 데스크",
+    "artist": "오존",
+    "genre": "인디",
     "mood_tags": [
       "집중",
       "공부",
       "차분한"
     ],
-    "youtube_music_url": "https://music.youtube.com/search?q=Quiet+Desk",
-    "lyrics": "카페 커피 노트북 공부"
+    "youtube_music_url": "https://music.youtube.com/search?q=%EC%98%A4%EC%A1%B4+%ED%99%94%EC%9D%B4%ED%8A%B8%EB%85%B8%EC%9D%B4%EC%A6%88%EB%8D%B0%EC%8A%A4%ED%81%AC",
+    "lyrics": "화이트노이즈가 낮게 깔린 카페 데스크에서 커피를 마시며 조용히 공부에 몰입한다"
   },
   {
     "id": "song_306",
-    "title": "Notebook Mood",
-    "artist": "Peppertones",
-    "genre": "indie",
+    "title": "조용한 노트북",
+    "artist": "페퍼톤스",
+    "genre": "인디",
     "mood_tags": [
       "집중",
       "공부",
       "차분한"
     ],
-    "youtube_music_url": "https://music.youtube.com/search?q=Notebook+Mood",
-    "lyrics": "창가 카페 로파이 공부"
+    "youtube_music_url": "https://music.youtube.com/search?q=%ED%8E%98%ED%8D%BC%ED%86%A4%EC%8A%A4+%EC%A1%B0%EC%9A%A9%ED%95%9C%EB%85%B8%ED%8A%B8%EB%B6%81",
+    "lyrics": "카페 구석 자리에서 노트북을 열고 커피를 내려놓는 순간 차분한 공기 속 집중이 시작된다"
   },
   {
     "id": "song_307",
-    "title": "Study Glow",
-    "artist": "Jukjae",
-    "genre": "indie",
+    "title": "스터디 글로우",
+    "artist": "적재",
+    "genre": "인디",
     "mood_tags": [
       "집중",
       "공부",
       "감성적"
     ],
-    "youtube_music_url": "https://music.youtube.com/search?q=Study+Glow",
-    "lyrics": "카페 집중 공부 커피"
+    "youtube_music_url": "https://music.youtube.com/search?q=%EC%A0%81%EC%9E%AC+%EC%8A%A4%ED%84%B0%EB%94%94%EA%B8%80%EB%A1%9C%EC%9A%B0",
+    "lyrics": "은은한 조명 아래 카페 책상에 앉아 커피 향과 함께 공부 리듬을 천천히 맞춰 간다"
   },
   {
     "id": "song_308",
-    "title": "Rainy Cafe",
-    "artist": "Jukjae",
-    "genre": "indie",
+    "title": "비 오는 카페",
+    "artist": "적재",
+    "genre": "인디",
     "mood_tags": [
       "비",
       "집중",
       "잔잔한"
     ],
-    "youtube_music_url": "https://music.youtube.com/search?q=Rainy+Cafe",
-    "lyrics": "비 빗소리 카페 창가 커피 공부 집중"
+    "youtube_music_url": "https://music.youtube.com/search?q=%EC%A0%81%EC%9E%AC+%EB%B9%84%EC%98%A4%EB%8A%94%EC%B9%B4%ED%8E%98",
+    "lyrics": "비 오는 카페 창가에 앉아 빗소리와 커피 향 사이로 공부와 집중이 잔잔하게 이어진다"
   },
   {
     "id": "song_309",
-    "title": "Under Umbrella",
-    "artist": "Heize",
-    "genre": "ballad",
+    "title": "우산 아래",
+    "artist": "헤이즈",
+    "genre": "발라드",
     "mood_tags": [
       "비",
       "감성적",
       "잔잔한"
     ],
-    "youtube_music_url": "https://music.youtube.com/search?q=Under+Umbrella",
-    "lyrics": "비 빗소리 창가"
+    "youtube_music_url": "https://music.youtube.com/search?q=%ED%97%A4%EC%9D%B4%EC%A6%88+%EC%9A%B0%EC%82%B0%EC%95%84%EB%9E%98",
+    "lyrics": "비 내리는 거리에서 우산을 펴고 걷다 들려오는 빗소리에 마음이 천천히 잠긴다"
   },
   {
     "id": "song_310",
-    "title": "Monsoon Dawn",
-    "artist": "Paul Kim",
-    "genre": "ballad",
+    "title": "장마의 새벽",
+    "artist": "폴킴",
+    "genre": "발라드",
     "mood_tags": [
       "비",
       "쎸쓸한",
       "새벽"
     ],
-    "youtube_music_url": "https://music.youtube.com/search?q=Monsoon+Dawn",
-    "lyrics": "비 장마 빗소리"
+    "youtube_music_url": "https://music.youtube.com/search?q=%ED%8F%B4%ED%82%B4+%EC%9E%A5%EB%A7%88%EC%9D%98%EC%83%88%EB%B2%BD",
+    "lyrics": "장마가 길게 이어지는 새벽 창문에 부딪히는 비 소리만이 방 안을 가득 채운다"
   },
   {
     "id": "song_311",
     "title": "Rainy Window",
-    "artist": "Dean",
-    "genre": "rnb",
+    "artist": "DEAN",
+    "genre": "R&B",
     "mood_tags": [
       "비",
       "몽환적",
       "감성적"
     ],
-    "youtube_music_url": "https://music.youtube.com/search?q=Rainy+Window",
-    "lyrics": "비 빗소리 밤"
+    "youtube_music_url": "https://music.youtube.com/search?q=DEAN+Rainy+Window",
+    "lyrics": "비가 흐르는 창문 너머로 번지는 도시 불빛과 빗소리가 몽환적인 밤을 만든다"
   },
   {
     "id": "song_312",
-    "title": "Evening Walk",
-    "artist": "Sung Si Kyung",
-    "genre": "ballad",
+    "title": "비 오는 저녁 산책",
+    "artist": "성시경",
+    "genre": "발라드",
     "mood_tags": [
       "비",
       "그리움",
       "잔잔한"
     ],
-    "youtube_music_url": "https://music.youtube.com/search?q=Evening+Walk",
-    "lyrics": "비 창가 저녁"
+    "youtube_music_url": "https://music.youtube.com/search?q=%EC%84%B1%EC%8B%9C%EA%B2%BD+%EB%B9%84%EC%98%A4%EB%8A%94%EC%A0%80%EB%85%81%EC%82%B0%EC%B1%85",
+    "lyrics": "비가 천천히 내려앉은 골목을 걷다 보면 빗소리 사이로 오래된 마음이 다시 떠오른다"
   },
   {
     "id": "song_313",
     "title": "Umbrella Night",
     "artist": "Colde",
-    "genre": "rnb",
+    "genre": "R&B",
     "mood_tags": [
       "비",
       "밤",
       "감성적"
     ],
-    "youtube_music_url": "https://music.youtube.com/search?q=Umbrella+Night",
-    "lyrics": "장마 비 빗소리"
+    "youtube_music_url": "https://music.youtube.com/search?q=Colde+Umbrella+Night",
+    "lyrics": "장마의 밤 젖은 도로 위를 걷는 동안 우산 끝으로 떨어지는 비와 빗소리가 마음을 감싼다"
   },
   {
     "id": "song_314",
     "title": "Midnight Drive",
     "artist": "The Midnight",
-    "genre": "synthpop",
+    "genre": "신스팝",
     "mood_tags": [
       "여행",
       "자유",
       "드라이브"
     ],
-    "youtube_music_url": "https://music.youtube.com/search?q=Midnight+Drive",
-    "lyrics": "드라이브 고속도로 야경 차창 혼자 여행 바다"
+    "youtube_music_url": "https://music.youtube.com/search?q=The+Midnight+Midnight+Drive",
+    "lyrics": "한밤중 드라이브를 나서며 고속도로 위 야경과 차창 너머 바다를 바라보는 자유로운 여행의 시작"
   },
   {
     "id": "song_315",
     "title": "Coastal Highway",
     "artist": "LANY",
-    "genre": "pop",
+    "genre": "팝",
     "mood_tags": [
       "여행",
       "자유",
       "드라이브"
     ],
-    "youtube_music_url": "https://music.youtube.com/search?q=Coastal+Highway",
-    "lyrics": "드라이브 고속도로 차창 여행 바다"
+    "youtube_music_url": "https://music.youtube.com/search?q=LANY+Coastal+Highway",
+    "lyrics": "해안 고속도로를 따라 드라이브를 하며 차창 밖 바다와 휴가 같은 공기를 깊게 들이마신다"
   },
   {
     "id": "song_316",
-    "title": "Night Run",
-    "artist": "Hyukoh",
-    "genre": "indie",
+    "title": "야간 주행",
+    "artist": "혁오",
+    "genre": "인디",
     "mood_tags": [
       "여행",
       "자유",
       "감성적"
     ],
-    "youtube_music_url": "https://music.youtube.com/search?q=Night+Run",
-    "lyrics": "야간 드라이브 야경 차창 혼자 여행"
+    "youtube_music_url": "https://music.youtube.com/search?q=%ED%98%81%EC%98%A4+%EC%95%BC%EA%B0%84%EC%A3%BC%ED%96%89",
+    "lyrics": "깊은 밤 드라이브로 고속도로를 달리며 야경을 품은 차창 너머로 자유로운 여행의 기분이 번진다"
   },
   {
     "id": "song_317",
     "title": "Night Road",
     "artist": "HONNE",
-    "genre": "pop",
+    "genre": "팝",
     "mood_tags": [
       "여행",
       "자유",
       "잔잔한"
     ],
-    "youtube_music_url": "https://music.youtube.com/search?q=Night+Road",
-    "lyrics": "드라이브 고속도로 차창 여행 바다 혼자"
+    "youtube_music_url": "https://music.youtube.com/search?q=HONNE+Night+Road",
+    "lyrics": "밤의 도로를 따라 드라이브를 이어가며 차창에 스치는 바다 냄새와 휴가 같은 여행의 자유를 느낀다"
   }
 ]
