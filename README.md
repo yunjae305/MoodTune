@@ -1,147 +1,214 @@
 # MoodTune
 
-> OpenAI 임베딩을 이용해 감정 표현을 의미 공간으로 바꾸고, 그와 가장 가까운 노래를 찾는 시맨틱 음악 검색 프로젝트
+> ChromaDB와 Pinecone을 함께 사용해 감정 기반 음악 검색을 벡터 데이터베이스 시스템으로 확장한 개인 과제 프로젝트
 
 ## 1. 프로젝트 소개
 
-MoodTune은 사용자의 자연어 감정 표현을 입력받아, 가사와 메타데이터를 임베딩한 뒤 의미적으로 가장 가까운 곡을 추천하는 Streamlit 기반 AI 애플리케이션입니다.  
-단순 키워드 일치가 아니라 벡터 공간에서의 유사도를 이용해 검색하며, 같은 원리를 제로샷 무드 분류에도 활용합니다.
+MoodTune은 사용자의 자연어 질의를 OpenAI 임베딩으로 변환하고, 곡 설명과 메타데이터를 함께 저장한 벡터 데이터베이스에서 의미적으로 가까운 노래를 찾는 Streamlit 애플리케이션입니다.
 
-이 프로젝트에서 OpenAI 모델은 두 가지 역할로 분리되어 있습니다.
+이번 과제 버전에서는 기존의 `JSON/pickle + numpy` 기반 검색을 유지하면서, 같은 데이터셋을 ChromaDB와 Pinecone에도 저장해 다음 내용을 직접 비교할 수 있게 만들었습니다.
 
-- 임베딩 생성: `text-embedding-3-small`
-- 생성 기능: `gpt-4.1-mini`
+- 파일 기반 검색과 벡터 DB 검색의 차이
+- ChromaDB의 자동 임베딩 방식과 Pinecone의 외부 벡터 주입 방식의 차이
+- 하이브리드 검색과 메타데이터 필터링
+- update, upsert, delete, idempotency
+- 100 / 500 / 1000개 스케일 벤치마크
 
-기본 검색 모드는 로컬 임베딩 기반 시맨틱 검색입니다. `Spotify 추천` 토글을 켜면 임베딩 검색과 무드 분류를 비활성화하고, Spotify API 기반 추천만 사용합니다.
+## 2. 선택한 벡터 DB와 선택 이유
 
-## 2. 과제 요구사항 충족 여부
+### ChromaDB
 
-### 핵심 요구사항
+- `PersistentClient`를 사용해 로컬 디스크에 영구 저장할 수 있습니다.
+- 문서를 넣으면 컬렉션의 `embedding_function`이 자동으로 임베딩을 생성하는 흐름을 보여주기 좋습니다.
+- 과제에서 요구한 `where` 기반 하이브리드 검색과 `update` / `upsert` 차이를 시연하기 좋습니다.
 
-| 항목 | 구현 내용 | 관련 파일 |
-| --- | --- | --- |
-| 임베딩 생성 및 활용 | 317곡 데이터셋을 `text-embedding-3-small`로 임베딩 | `embed_songs.py`, `data/songs.json` |
-| 임베딩 캐싱 | `embeddings.pkl`, `enriched_embeddings.pkl`, `mood_labels.pkl`로 저장 | `embed_songs.py`, `classify.py`, `cache/` |
-| 핵심 기능 1개 이상 | 시맨틱 검색 + 제로샷 무드 분류 구현 | `search.py`, `classify.py`, `app.py` |
-| 코사인 유사도 직접 구현 | 수식 기반 직접 구현 + 배치 계산 | `cosine.py` |
-| 라이브러리 결과 검증 | `scipy` 결과와 오차 검증 함수 포함 | `cosine.py` |
+### Pinecone
 
-### 확장 기능
+- 서버리스 인덱스로 운영형 벡터 DB 흐름을 보여주기 좋습니다.
+- 임베딩 벡터를 외부에서 생성한 뒤 `upsert` 하는 구조라서 ChromaDB와 접근 방식 비교가 분명합니다.
+- namespace 기반 분리와 필터 기반 검색을 함께 보여줄 수 있습니다.
 
-| 항목 | 구현 내용 | 관련 파일 |
-| --- | --- | --- |
-| t-SNE 시각화 | 임베딩을 2차원으로 축소해 무드 군집 시각화 | `tsne_visualizer.py`, `app.py` |
-| 풍부한 임베딩 | 제목, 아티스트, 무드 태그, 장르를 가사와 결합한 enriched embedding 제공 | `embed_songs.py`, `app.py` |
-| 복수 기능 구현 | 시맨틱 검색 + 제로샷 분류 동시 구현 | `search.py`, `classify.py` |
-| 키워드 검색 비교 | TF-IDF 기반 키워드 검색과 의미 검색 결과 비교 | `keyword_search.py`, `app.py` |
-| UI 구현 | Streamlit 웹 인터페이스 제공 | `app.py` |
+## 3. 사용 모델
 
-## 3. 시스템 아키텍처
+- 임베딩 모델: `text-embedding-3-small`
+- 생성 모델: `gpt-4.1-mini`
 
-### 3단계 프로세스
+임베딩은 모두 `text-embedding-3-small`로 생성합니다.  
+`gpt-4.1-mini`는 앱 내부 결과 요약과 Spotify 보조 기능에만 사용합니다.
 
-1. 데이터셋 임베딩
-   `data/songs.json`의 각 곡을 임베딩해 `cache/*.pkl`에 저장합니다.
-2. 사용자 질의 임베딩
-   사용자의 감정 표현을 같은 임베딩 공간의 벡터로 변환합니다.
-3. 유사도 계산 및 결과 반환
-   코사인 유사도로 가장 가까운 곡과 무드 레이블을 찾고, UI에 결과를 표시합니다.
-
-### 데이터 흐름
+## 4. 시스템 아키텍처
 
 ```text
 data/songs.json
-  -> embed_songs.py
-  -> cache/embeddings.pkl, cache/enriched_embeddings.pkl
+  -> vector_db/data.py
+  -> vector_db/services.py
+  -> init_db.py / vector_lab.py sync
 
-사용자 질의
+OpenAI Embeddings API
+  -> Chroma custom embedding_function
+  -> Pinecone external vector upsert
+
+ChromaDB PersistentClient
+  -> cache/chromadb/
+  -> collection: moodtune_base_all, moodtune_base_genre_*
+
+Pinecone Serverless Index
+  -> index: moodtune-song-vectors
+  -> namespace: base_all, base_genre_*
+
+Streamlit UI
   -> app.py
-  -> OpenAI embeddings.create()
-  -> cosine.py
-  -> search.py / classify.py
-  -> Streamlit UI
+  -> Vector DB / DB Map / Benchmark
 
-검색 결과
-  -> ai_summary.py
-  -> gpt-4.1-mini
-  -> 자연어 결과 요약
+CLI / Demo
+  -> init_db.py
+  -> vector_lab.py
 ```
 
-## 4. 프로젝트 구조
+## 5. 데이터셋과 메타데이터 스키마
+
+### 데이터셋
+
+- 파일: `data/songs.json`
+- 데이터 수: `1080`곡
+- 도메인: 감정 기반 음악 추천
+- 출처: 곡 제목, 아티스트, 장르, 감성 요약 가사를 직접 정리한 수작업 데이터셋
+
+### 원본 필드
+
+- `id`
+- `title`
+- `artist`
+- `genre`
+- `lyrics`
+- `mood_tags`
+- `youtube_music_url`
+
+### 벡터 DB 저장 메타데이터
+
+`vector_db/data.py`에서 아래 메타데이터를 함께 생성합니다.
+
+- `song_id`
+- `title`
+- `artist`
+- `genre`
+- `genre_key`
+- `primary_mood`
+- `mood_tags`
+- `lyrics_length`
+- `title_length`
+- `mood_count`
+- `tenant`
+- `dataset_name`
+- `variant_index`
+- `source_song_id`
+- `has_multiple_moods`
+
+과제의 최소 조건인 메타데이터 2개를 넘어서, 하이브리드 검색과 다중 컬렉션 또는 namespace 분리를 위해 여러 필드를 함께 저장합니다.
+
+## 6. 핵심 요구사항 충족 방식
+
+### A. 벡터 DB 구축
+
+- ChromaDB: `vector_db/store.py`의 `ChromaSongStore`가 `chromadb.PersistentClient`를 사용합니다.
+- Pinecone: `vector_db/store.py`의 `PineconeSongStore.ensure_index()`가 서버리스 인덱스를 생성합니다.
+- 차원 지정:
+  - `text-embedding-3-small` -> `1536`
+  - `text-embedding-3-large` -> `3072`
+- 현재 데이터셋은 `1080`곡으로 200개 이상 조건을 충족합니다.
+
+### B. CRUD
+
+- Create: `sync_backend()`와 `init_db.py`
+- Read:
+  - ID 조회: `get_backend_record()`
+  - 의미 검색: `query_backend()`
+- Update / Upsert:
+  - Chroma: `run_chroma_update_vs_upsert_demo()`
+    - `update_record()`는 기존 ID만 수정하고 새 ID를 만들지 않습니다.
+    - `sync_records(..., skip_existing=False)`는 upsert 경로로 동작해 누락 ID를 삽입할 수 있습니다.
+  - Pinecone: `run_pinecone_idempotency_demo()`
+    - 같은 upsert를 반복 실행해도 namespace count와 ID 목록이 유지되는지 확인합니다.
+- Delete:
+  - ID 삭제: `delete_backend_records(..., record_id=...)`
+  - 조건 삭제: `delete_backend_records(..., genre=..., primary_mood=...)`
+
+### C. 하이브리드 검색
+
+`vector_db/workflows.py`에 3개 시나리오를 구현했습니다.
+
+- `focus_indie_semantic_filter`
+- `rain_or_ballad_filter`
+- `travel_genre_match`
+
+사용 연산자:
+
+- `$eq`
+- `$ne`
+- `$gte`
+- `$and`
+- `$or`
+
+동일한 자연어 질의에 대해 순수 시맨틱 검색과 하이브리드 검색 결과를 나란히 비교하는 데모는 `Vector DB` 페이지와 `vector_lab.py hybrid` 명령으로 확인할 수 있습니다.
+
+### D. 파일 기반 vs 벡터 DB 비교
+
+`vector_db/services.py`의 `run_benchmark()`와 `vector_db/comparison.py`에서 다음을 비교합니다.
+
+- 검색 속도
+- 데이터 규모 변화에 따른 성능
+- 메타데이터 필터링 가능 여부
+- 데이터 추가 및 수정 복잡도
+- 영속성 처리 방식
+
+## 7. 확장 기능 구현
+
+이번 과제의 확장 기능 7가지를 모두 구현했습니다.
+
+1. ChromaDB와 Pinecone 동시 구현 및 비교
+2. OpenAI 기반 Chroma custom embedding function
+3. 다중 컬렉션과 namespace 분리
+4. upsert 멱등성 자동 시연
+5. 벡터 DB 기반 t-SNE / UMAP 시각화
+6. Streamlit UI 구현
+7. 100 / 500 / 1000 벤치마크와 대규모 데이터 확장
+
+## 8. 프로젝트 구조
 
 ```text
 MoodTune/
 ├── app.py
-├── ai_summary.py
-├── classify.py
-├── cosine.py
-├── embed_songs.py
-├── keyword_search.py
-├── search.py
-├── spotify_api.py
-├── spotify_mapper.py
-├── tsne_visualizer.py
-├── ui_reference.py
+├── init_db.py
+├── vector_lab.py
+├── vector_db/
+│   ├── __init__.py
+│   ├── benchmark.py
+│   ├── comparison.py
+│   ├── data.py
+│   ├── filters.py
+│   ├── lab.py
+│   ├── services.py
+│   ├── store.py
+│   ├── ui.py
+│   ├── visualizer.py
+│   └── workflows.py
 ├── data/
 │   └── songs.json
 ├── cache/
+│   ├── chromadb/
 │   ├── embeddings.pkl
 │   ├── enriched_embeddings.pkl
 │   └── mood_labels.pkl
 ├── tests/
+├── docs/
 ├── .env.example
-├── requirements.txt
-└── README.md
+├── .gitignore
+└── requirements.txt
 ```
 
-## 5. 데이터셋 설명
+## 9. 실행 방법
 
-- 데이터 수: 317곡
-- 구성: 한국어 중심 데이터셋 + 일부 영어 곡
-- 필드: `id`, `title`, `artist`, `lyrics`, `mood_tags`, `genre`, `youtube_music_url`
-- 목적: 감정 기반 질의에 대해 의미 유사도 검색이 가능하도록 구성
-
-### 데이터 출처 및 가공 방식
-
-- 곡 제목, 아티스트, 장르 정보는 공개적으로 알려진 음악 메타데이터를 참고해 직접 정리했습니다.
-- `lyrics` 필드는 원문 가사를 대량 수집한 데이터셋이 아니라, 검색 실험과 임베딩 비교를 위해 직접 구성한 감성 요약 텍스트입니다.
-- `youtube_music_url`은 결과 확인용 링크입니다.
-
-## 6. 사용 모델과 기능 분리
-
-### 임베딩 모델
-
-- 모델명: `text-embedding-3-small`
-- 사용 위치:
-  - 곡 데이터셋 임베딩 생성
-  - 사용자 질의 임베딩
-  - 제로샷 무드 레이블 임베딩
-
-### 생성 모델
-
-- 모델명: `gpt-4.1-mini`
-- 사용 위치:
-  - 검색 결과를 자연어로 짧게 설명하는 요약 카드
-  - Spotify 검색용 장르/영문 키워드 생성
-
-즉, 이 프로젝트에서 임베딩은 GPT 모델로 만드는 것이 아니라 OpenAI 임베딩 전용 모델로 생성합니다. `gpt-4.1-mini`는 결과 설명과 Spotify 검색 키워드 생성에 사용됩니다.
-
-## 7. 캐싱 전략
-
-과제 요구사항에 맞춰 매번 같은 데이터셋을 다시 임베딩하지 않도록 파일 캐싱을 구현했습니다.
-
-- 곡 기본 임베딩 캐시: `cache/embeddings.pkl`
-- 풍부한 임베딩 캐시: `cache/enriched_embeddings.pkl`
-- 무드 레이블 임베딩 캐시: `cache/mood_labels.pkl`
-
-앱 실행 중 반복 질의에 대해서는 Streamlit 캐시도 함께 사용합니다.
-
-- `@st.cache_data`: 질의 임베딩, 결과 요약, 캐시 파일 로딩
-- `@st.cache_resource`: OpenAI 클라이언트
-
-## 8. 실행 방법
-
-### 1. 가상환경 생성 및 패키지 설치
+### 1. 가상환경과 의존성 설치
 
 ```powershell
 python -m venv .venv
@@ -155,116 +222,140 @@ pip install -r requirements.txt
 Copy-Item .env.example .env
 ```
 
-`.env`에 아래 값을 채워 넣습니다.
+`.env`에 아래 값을 입력합니다.
 
 ```env
 OPENAI_API_KEY=your_openai_api_key
 OPENAI_SUMMARY_MODEL=gpt-4.1-mini
+OPENAI_EMBEDDING_MODEL=text-embedding-3-small
+PINECONE_API_KEY=your_pinecone_api_key
+PINECONE_INDEX_NAME=moodtune-song-vectors
 SPOTIFY_CLIENT_ID=your_spotify_client_id
 SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
 ```
 
-- `OPENAI_API_KEY`: 필수
-- `OPENAI_SUMMARY_MODEL`: 결과 요약 모델 지정용, 기본값은 코드에도 `gpt-4.1-mini`로 설정
-- Spotify 관련 값: Spotify 기능을 쓸 때만 필요
-
-### 3. 임베딩 캐시 생성
+### 3. 파일 기반 임베딩 캐시 생성
 
 ```powershell
 python embed_songs.py
 ```
 
-처음 한 번만 실행하면 되고, 이후에는 `cache/`의 `.pkl` 파일을 재사용합니다.
+### 4. 벡터 DB 초기화
 
-### 4. 앱 실행
+기본 초기화:
+
+```powershell
+python init_db.py --backend both
+```
+
+이미 저장된 ID는 기본적으로 재임베딩하지 않습니다.  
+강제로 다시 upsert 하려면 아래처럼 실행합니다.
+
+```powershell
+python init_db.py --backend both --force-upsert
+```
+
+### 5. 앱 실행
 
 ```powershell
 streamlit run app.py
 ```
 
-## 9. 주요 기능
+OpenAI 연결이 불안정한 경우 검색 화면은 종료되지 않고 keyword fallback 결과로 이어집니다.
 
-### 시맨틱 검색
+## 10. CLI 사용 예시
 
-- 사용자의 감정 표현을 임베딩한 뒤, 데이터셋에서 코사인 유사도가 높은 곡을 Top-K로 반환합니다.
-
-### 제로샷 무드 분류
-
-- 8개의 풍부한 무드 라벨을 임베딩해 두고, 질의를 가장 가까운 라벨로 자동 분류합니다.
-
-### 키워드 검색 비교
-
-- TF-IDF 기반 키워드 검색 결과를 함께 보여 주어 시맨틱 검색과 비교할 수 있습니다.
-
-### 풍부한 임베딩 비교
-
-- 단순 가사 임베딩과 enriched embedding 결과를 나란히 비교할 수 있습니다.
-
-### t-SNE 시각화
-
-- 임베딩 공간을 2차원으로 축소해 무드 분포와 질의 위치를 시각화합니다.
-
-### Spotify 추천 모드
-
-- Spotify 토글을 켜면 로컬 임베딩 검색과 무드 분류를 끄고 Spotify 추천 결과만 표시합니다.
-- Spotify 추천은 deprecated 된 recommendations 엔드포인트 대신, `gpt-4.1-mini`가 만든 장르/검색 키워드와 질의 기반 검색 조합으로 동작합니다.
-- 이 모드에서는 비교 분석과 무드 맵 같은 임베딩 전용 화면도 비활성화됩니다.
-
-## 10. 코사인 유사도 구현
-
-`cosine.py`에는 다음 내용이 포함되어 있습니다.
-
-- 코사인 유사도 직접 구현 `cosine_similarity`
-- 검색 최적화를 위한 배치 계산 `cosine_similarity_batch`
-- `scipy` 결과와의 일치 여부 검증 `verify_against_scipy`
-
-수식은 아래와 같습니다.
-
-```text
-cos(theta) = (A · B) / (||A|| ||B||)
-```
-
-## 11. 검증 방법
-
-### 기본 검증
+### 동기화
 
 ```powershell
-python -m py_compile app.py ai_summary.py classify.py cosine.py embed_songs.py keyword_search.py search.py tsne_visualizer.py
-python -m unittest discover -s tests -q
+python vector_lab.py sync --backend chroma
+python vector_lab.py sync --backend pinecone
+python vector_lab.py sync --backend both
 ```
 
-### 주요 테스트 범위
+### CRUD
 
-- `.env`에서 API 키와 모델 설정 로딩
-- Spotify 모드에서 임베딩 경로 비활성화
-- UI 상태 전환
-- 검색 결과 비교 로직
-- 코사인 유사도 직접 구현 검증
+```powershell
+python vector_lab.py get --backend chroma --id song_001
+python vector_lab.py query --backend pinecone --query "비 오는 밤 감성 노래" --genre 발라드
+python vector_lab.py delete --backend chroma --id demo_missing_record
+python vector_lab.py delete --backend pinecone --genre 인디 --primary-mood 집중
+```
 
-## 12. 보고서와 데모 영상에 바로 쓸 수 있는 포인트
+### Update / Upsert / Idempotency
 
-### 데모에서 강조할 점
+```powershell
+python vector_lab.py chroma-demo
+python vector_lab.py pinecone-demo
+```
 
-- 키워드는 겹치지 않아도 의미적으로 비슷한 질의가 검색되는 사례
-- 키워드 검색과 시맨틱 검색 결과 차이
-- 제로샷 무드 분류 결과와 유사도 점수
-- t-SNE에서 무드 군집이 어떻게 보이는지
-- Spotify 모드와 로컬 임베딩 모드의 차이
+### Hybrid Search
 
-### 보고서에서 설명하면 좋은 설계 선택
+```powershell
+python vector_lab.py hybrid --backend chroma --top-k 3
+python vector_lab.py hybrid --backend pinecone --top-k 3
+```
 
-- 왜 `text-embedding-3-small`을 선택했는지
-- 왜 enriched embedding을 따로 비교했는지
-- 왜 코사인 유사도를 직접 구현했는지
-- 어떤 질의에서 성능이 좋고, 어떤 질의에서 한계가 있는지
+### Visualization
 
-## 13. 보안 및 제출 주의사항
+```powershell
+python vector_lab.py map --backend chroma --method tsne --color-by genre
+python vector_lab.py map --backend pinecone --method umap --color-by primary_mood
+```
 
-- API 키는 코드에 하드코딩하지 않았습니다.
-- 실제 런타임 값은 루트 `.env`에서 읽고, `.env.example`은 템플릿입니다.
-- `.gitignore`에 `.env`, `cache/`, `*.pkl`이 포함되어 있어 비밀값과 캐시 파일이 기본적으로 제외됩니다.
+### Benchmark
 
-## 14. AI 도구 사용 내역
+```powershell
+python vector_lab.py benchmark --query "비 오는 날 카페에서 듣는 노래" --runs 3
+python vector_lab.py compare-matrix
+```
 
-- 구현 구조 정리, 테스트 보강, README 정리 과정에서 AI 도구를 보조적으로 활용했습니다.
-- 최종 제출 전 코드 구조와 동작, 테스트 결과를 직접 확인했습니다.
+## 11. Streamlit UI
+
+앱에서 아래 과제용 화면을 사용할 수 있습니다.
+
+- `Vector DB`
+  - 동기화
+  - ID 조회
+  - 의미 검색
+  - 삭제
+  - 순수 시맨틱 검색 vs 하이브리드 검색 비교
+  - Chroma update vs upsert 데모
+  - Pinecone idempotent upsert 데모
+- `DB Map`
+  - 벡터 DB에서 임베딩을 읽어와 t-SNE / UMAP 시각화
+- `Benchmark`
+  - 파일 기반, ChromaDB, Pinecone의 100 / 500 / 1000 스케일 성능 비교
+
+결과 카드에는 메타데이터와 `score`, `distance`가 함께 표시됩니다.
+
+## 12. 영속성, 비용 관리, 중복 처리
+
+- ChromaDB 영속 저장 위치: `cache/chromadb/`
+- Pinecone 저장 위치: 서버리스 인덱스 `moodtune-song-vectors`
+- `init_db.py`와 `sync_backend()`는 기본적으로 이미 저장된 ID를 재임베딩하지 않습니다.
+- 멱등성 시연이 필요한 경우에만 `--force-upsert` 또는 데모 명령을 사용합니다.
+
+`.env`, `cache/`, `cache/chromadb/`, `*.pkl`은 `.gitignore`에 등록되어 있습니다.
+
+## 13. 검증 방법
+
+```powershell
+python -m unittest discover -s tests -q
+python vector_lab.py compare-matrix
+```
+
+현재 테스트 스위트는 `70개`이며, 벡터 DB 모듈과 Streamlit 페이지까지 포함해 검증합니다.
+
+## 14. 참고 자료
+
+- Chroma Documentation
+- Pinecone Documentation
+- OpenAI Embeddings Documentation
+- ANN Wikipedia
+- Idempotency Wikipedia
+
+## 15. AI 도구 사용 고지
+
+구현 구조 정리, 테스트 보강, README 정리 과정에서 AI 도구를 보조적으로 활용했습니다.  
+최종 제출 전에는 코드 실행과 테스트를 통해 실제 동작을 직접 검증했습니다.

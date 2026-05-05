@@ -146,6 +146,7 @@ cython_debug/
 # MoodTune Specific
 cache/*.pkl
 cache/*.csv
+data/songs_expanded_1000.json
 .vscode/
 *.env
 secrets.json

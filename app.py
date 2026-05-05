@@ -29,8 +29,12 @@ from ui_reference import (
     build_search_state_update,
     consume_query_prefill,
     get_mood_theme,
-    get_sidebar_moods,
     truncate_text,
+)
+from vector_db.ui import (
+    render_vector_benchmark_page,
+    render_vector_db_page,
+    render_vector_map_page,
 )
 
 
@@ -45,7 +49,7 @@ st.set_page_config(
     page_title="MoodTune",
     page_icon="🎵",
     layout="wide",
-    initial_sidebar_state="auto",
+    initial_sidebar_state="collapsed",
 )
 
 
@@ -90,8 +94,7 @@ def init_state() -> None:
 def get_openai_client() -> OpenAI:
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
-        st.error("OPENAI_API_KEY 환경변수가 설정되지 않았습니다. .env 파일을 확인하세요.")
-        st.stop()
+        raise RuntimeError("OPENAI_API_KEY is not set")
     return OpenAI(api_key=api_key)
 
 
@@ -400,6 +403,10 @@ div[data-testid="stFormSubmitButton"] > button {{
   border-radius: 0 !important;
 }}
 
+[data-testid="stSidebar"], [data-testid="collapsedControl"] {{
+  display: none !important;
+}}
+
 .stButton button {{
   border-radius: 0 !important;
   font-weight: 700 !important;
@@ -429,6 +436,12 @@ div[data-testid="stFormSubmitButton"] > button[kind="primary"] { background: lin
 .stat-card .value { font-size: 2.5rem; font-weight: 800; color: var(--fg-0); margin-top: 0.5rem; }
 .stat-caption { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--fg-3); letter-spacing: 0.1em; }
 .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }
+.top-nav-shell { margin: 0 0 2rem; padding: 1rem 1.25rem 1.25rem; background: var(--bg-1); border: 1px solid var(--line); }
+.top-nav-brand { display: flex; align-items: baseline; gap: 0.85rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.top-nav-brand strong { font-size: 1.35rem; font-weight: 900; letter-spacing: -0.04em; text-transform: uppercase; }
+.top-nav-brand span { font-size: 0.82rem; color: var(--fg-3); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.top-nav-group-label { font-size: 0.72rem; font-weight: 800; color: var(--fg-3); letter-spacing: 0.12em; text-transform: uppercase; margin: 0.15rem 0 0.55rem; }
+.top-nav-rerun { margin-top: 0.9rem; }
 .compare-head { font-size: 1.25rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 3px solid var(--fg-0); }
 .compare-item { display: flex; flex-direction: column; gap: 0.25rem; }
 .compare-rank { font-weight: 800; margin-right: 0.5rem; color: var(--brand-red); }
@@ -531,125 +544,36 @@ def queue_search(query: str, source: str = "input") -> None:
         st.session_state[key] = value
 
 
-def execute_search(query: str) -> dict:
-    if st.session_state.get("use_spotify"):
-        with st.spinner("Spotify에서 실시간 추천 곡을 찾는 중..."):
-            features = map_mood_to_spotify_features(query)
-            sp = SpotifyClient()
-            region = st.session_state.get("music_region", "국내")
-            spotify_results = sp.search_recommendations(
-                features,
-                limit=st.session_state["top_k"],
-                region=region,
-                query=query,
-            )
-
-            top_mood = "Spotify 추천"
-            top_mood_score = 0.0
-
-            if spotify_results:
-                result_summary = generate_cached_result_summary(
-                    query=query,
-                    top_mood=top_mood,
-                    top_score=top_mood_score,
-                    results=spotify_results,
-                    model=get_summary_model(),
-                )
-
-                return {
-                    "last_query": query,
-                    "pending_query": "",
-                    "enriched_results": spotify_results,
-                    "simple_results": spotify_results,
-                    "kw_results": [],
-                    "mood_ranking": [],
-                    "top_mood": top_mood,
-                    "top_mood_score": top_mood_score,
-                    "query_vec": None,
-                    "result_summary": result_summary,
-                    "comparison": None,
-                    "last_search_settings": {
-                        "top_k": st.session_state["top_k"],
-                    },
-                    "view": "results",
-                    "map_requested": False,
-                }
-
-            return {
-                "last_query": query,
-                "pending_query": "",
-                "enriched_results": [],
-                "simple_results": [],
-                "kw_results": [],
-                "mood_ranking": [],
-                "top_mood": top_mood,
-                "top_mood_score": top_mood_score,
-                "query_vec": None,
-                "result_summary": "Spotify에서 조건에 맞는 곡을 찾지 못했습니다.",
-                "comparison": None,
-                "last_search_settings": {
-                    "top_k": st.session_state["top_k"],
-                },
-                "view": "results",
-                "map_requested": False,
-            }
-
-    query_vec = embed_text(query)
-    client = get_openai_client()
-    mood_embeddings = load_mood_embeddings_cache()
-    if mood_embeddings is None:
-        mood_embeddings = load_or_create_mood_embeddings(client)
-    mood_ranking = classify_mood(query_vec, mood_embeddings)
-    mood_ranking = rerank_mood_ranking(query, mood_ranking)
-    top_mood, top_mood_score = mood_ranking[0]
-    prioritized_mood = top_mood
-
-    enriched_cache_data = load_embeddings_cache(enriched=True)
-    simple_cache_data = load_embeddings_cache(enriched=False)
-    enriched_results = []
-    simple_results = []
-
-    if enriched_cache_data is not None:
-        enriched_results = search_from_query_vector(
-            query_vec=query_vec,
-            cache=enriched_cache_data,
-            top_k=st.session_state["top_k"],
-            mood_filter=None,
-            prioritized_mood=prioritized_mood,
-        )
-    if simple_cache_data is not None:
-        simple_results = search_from_query_vector(
-            query_vec=query_vec,
-            cache=simple_cache_data,
-            top_k=st.session_state["top_k"],
-            mood_filter=None,
-            prioritized_mood=prioritized_mood,
-        )
-
-    kw_results = keyword_search(query, top_k=st.session_state["top_k"])
-    for index, row in enumerate(kw_results, start=1):
+def build_search_fallback_state(query: str, reason: Exception | str) -> dict:
+    """OpenAI 단계가 실패하면 키워드 검색 결과로 검색 흐름을 이어간다."""
+    reason_text = str(reason).strip() or reason.__class__.__name__
+    try:
+        fallback_results = keyword_search(query, top_k=st.session_state["top_k"])
+    except Exception:
+        fallback_results = []
+    for index, row in enumerate(fallback_results, start=1):
         row["rank"] = index
-
-    semantic_results = enriched_results if st.session_state["use_enriched"] else simple_results
-    comparison = compare_search_results(semantic_results, kw_results, query)
-    summary = generate_cached_result_summary(
-        query=query,
-        top_mood=top_mood,
-        top_score=top_mood_score,
-        results=semantic_results,
-        model=get_summary_model(),
-    )
-
+    comparison = compare_search_results([], fallback_results, query) if fallback_results else None
+    if fallback_results:
+        summary = (
+            "OpenAI 연결 문제로 semantic 검색을 완료하지 못해 keyword fallback 결과를 보여드립니다. "
+            f"({reason_text})"
+        )
+    else:
+        summary = (
+            "OpenAI 연결 문제로 semantic 검색을 완료하지 못했고 keyword fallback 결과도 비어 있습니다. "
+            f"({reason_text})"
+        )
     return {
         "last_query": query,
         "pending_query": "",
-        "enriched_results": enriched_results,
-        "simple_results": simple_results,
-        "kw_results": kw_results,
-        "mood_ranking": mood_ranking,
-        "top_mood": top_mood,
-        "top_mood_score": top_mood_score,
-        "query_vec": query_vec,
+        "enriched_results": fallback_results,
+        "simple_results": fallback_results,
+        "kw_results": fallback_results,
+        "mood_ranking": [],
+        "top_mood": DEFAULT_MOOD,
+        "top_mood_score": 0.0,
+        "query_vec": None,
         "result_summary": summary,
         "comparison": comparison,
         "last_search_settings": {
@@ -658,6 +582,138 @@ def execute_search(query: str) -> dict:
         "view": "results",
         "map_requested": False,
     }
+
+
+def execute_search(query: str) -> dict:
+    try:
+        if st.session_state.get("use_spotify"):
+            with st.spinner("Spotify에서 실시간 추천 곡을 찾는 중..."):
+                features = map_mood_to_spotify_features(query)
+                sp = SpotifyClient()
+                region = st.session_state.get("music_region", "국내")
+                spotify_results = sp.search_recommendations(
+                    features,
+                    limit=st.session_state["top_k"],
+                    region=region,
+                    query=query,
+                )
+
+                top_mood = "Spotify 추천"
+                top_mood_score = 0.0
+
+                if spotify_results:
+                    result_summary = generate_cached_result_summary(
+                        query=query,
+                        top_mood=top_mood,
+                        top_score=top_mood_score,
+                        results=spotify_results,
+                        model=get_summary_model(),
+                    )
+
+                    return {
+                        "last_query": query,
+                        "pending_query": "",
+                        "enriched_results": spotify_results,
+                        "simple_results": spotify_results,
+                        "kw_results": [],
+                        "mood_ranking": [],
+                        "top_mood": top_mood,
+                        "top_mood_score": top_mood_score,
+                        "query_vec": None,
+                        "result_summary": result_summary,
+                        "comparison": None,
+                        "last_search_settings": {
+                            "top_k": st.session_state["top_k"],
+                        },
+                        "view": "results",
+                        "map_requested": False,
+                    }
+
+                return {
+                    "last_query": query,
+                    "pending_query": "",
+                    "enriched_results": [],
+                    "simple_results": [],
+                    "kw_results": [],
+                    "mood_ranking": [],
+                    "top_mood": top_mood,
+                    "top_mood_score": top_mood_score,
+                    "query_vec": None,
+                    "result_summary": "Spotify에서 조건에 맞는 곡을 찾지 못했습니다.",
+                    "comparison": None,
+                    "last_search_settings": {
+                        "top_k": st.session_state["top_k"],
+                    },
+                    "view": "results",
+                    "map_requested": False,
+                }
+
+        query_vec = embed_text(query)
+        client = get_openai_client()
+        mood_embeddings = load_mood_embeddings_cache()
+        if mood_embeddings is None:
+            mood_embeddings = load_or_create_mood_embeddings(client)
+        mood_ranking = classify_mood(query_vec, mood_embeddings)
+        mood_ranking = rerank_mood_ranking(query, mood_ranking)
+        top_mood, top_mood_score = mood_ranking[0]
+        prioritized_mood = top_mood
+
+        enriched_cache_data = load_embeddings_cache(enriched=True)
+        simple_cache_data = load_embeddings_cache(enriched=False)
+        enriched_results = []
+        simple_results = []
+
+        if enriched_cache_data is not None:
+            enriched_results = search_from_query_vector(
+                query_vec=query_vec,
+                cache=enriched_cache_data,
+                top_k=st.session_state["top_k"],
+                mood_filter=None,
+                prioritized_mood=prioritized_mood,
+            )
+        if simple_cache_data is not None:
+            simple_results = search_from_query_vector(
+                query_vec=query_vec,
+                cache=simple_cache_data,
+                top_k=st.session_state["top_k"],
+                mood_filter=None,
+                prioritized_mood=prioritized_mood,
+            )
+
+        kw_results = keyword_search(query, top_k=st.session_state["top_k"])
+        for index, row in enumerate(kw_results, start=1):
+            row["rank"] = index
+
+        semantic_results = enriched_results if st.session_state["use_enriched"] else simple_results
+        comparison = compare_search_results(semantic_results, kw_results, query)
+        summary = generate_cached_result_summary(
+            query=query,
+            top_mood=top_mood,
+            top_score=top_mood_score,
+            results=semantic_results,
+            model=get_summary_model(),
+        )
+
+        return {
+            "last_query": query,
+            "pending_query": "",
+            "enriched_results": enriched_results,
+            "simple_results": simple_results,
+            "kw_results": kw_results,
+            "mood_ranking": mood_ranking,
+            "top_mood": top_mood,
+            "top_mood_score": top_mood_score,
+            "query_vec": query_vec,
+            "result_summary": summary,
+            "comparison": comparison,
+            "last_search_settings": {
+                "top_k": st.session_state["top_k"],
+            },
+            "view": "results",
+            "map_requested": False,
+        }
+    except Exception as error:
+        return build_search_fallback_state(query, error)
 
 
 def render_empty_state(title: str, copy: str) -> None:
@@ -673,55 +729,65 @@ def render_empty_state(title: str, copy: str) -> None:
 
 
 def render_nav() -> None:
+    def nav_disabled(item_id: str) -> bool:
+        is_compare = item_id == "compare"
+        is_embedding_view = item_id in {"map", "compare"}
+        is_vector_view = item_id in {"vector_db", "vector_map", "benchmark"}
+        return (
+            (item_id != "home" and not st.session_state["last_query"] and not is_vector_view)
+            or (is_compare and st.session_state.get("use_spotify", False))
+            or (is_embedding_view and st.session_state.get("use_spotify", False))
+        )
+
+    def render_nav_row(items: list[dict], key_prefix: str) -> None:
+        cols = st.columns(len(items))
+        for col, item in zip(cols, items):
+            with col:
+                clicked = st.button(
+                    item["label"],
+                    key=f"{key_prefix}_{item['id']}",
+                    use_container_width=True,
+                    type="primary" if st.session_state["view"] == item["id"] else "secondary",
+                    disabled=nav_disabled(item["id"]),
+                )
+            if clicked:
+                st.session_state["view"] = item["id"]
+                st.rerun()
+
+    extra_nav_items = [
+        {"id": "vector_db", "label": "Vector DB"},
+        {"id": "vector_map", "label": "DB Map"},
+        {"id": "benchmark", "label": "Benchmark"},
+    ]
+
     st.markdown(
         """
-<div class="nav-brand">
-  <div style="font-size:1.5rem;font-weight:900;letter-spacing:-0.05em;text-transform:uppercase;">MoodTune</div>
-  <div style="font-size:0.75rem;font-weight:700;color:var(--fg-3);margin-top:0.25rem;letter-spacing:0.05em;">임베딩 기반 음악 검색</div>
+<div class="top-nav-shell">
+  <div class="top-nav-brand">
+    <strong>MoodTune</strong>
+    <span>임베딩 기반 음악 검색</span>
+  </div>
 </div>
         """,
         unsafe_allow_html=True,
     )
-
-    for item in NAV_ITEMS:
-        is_compare = item["id"] == "compare"
-        is_embedding_view = item["id"] in {"map", "compare"}
-        disabled = (item["id"] != "home" and not st.session_state["last_query"]) or \
-                   (is_compare and st.session_state.get("use_spotify", False)) or \
-                   (is_embedding_view and st.session_state.get("use_spotify", False))
-        clicked = st.button(
-            item["label"],
-            key=f"nav_{item['id']}",
-            use_container_width=True,
-            type="primary" if st.session_state["view"] == item["id"] else "secondary",
-            disabled=disabled,
-        )
-        if clicked:
-            st.session_state["view"] = item["id"]
-            st.rerun()
-
-    st.markdown("<div style='height:3rem;'></div>", unsafe_allow_html=True)
-    st.markdown("<div class='nav-title'>감성 카테고리</div>", unsafe_allow_html=True)
-    for mood in get_sidebar_moods():
-        st.markdown(
-            f"""
-<div style="display:flex;align-items:center;gap:0.75rem;padding:0.5rem 0;">
-  <span class="mood-dot" style="background:{mood['accent']};"></span>
-  <span style="color:var(--fg-1);font-size:0.9rem;font-weight:600;">{escape(mood['category'])}</span>
-</div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-    if st.session_state["last_query"]:
-        rerun_clicked = st.button(
-            "현재 쿼리로 다시 검색",
-            key="rerun_current_query",
-            use_container_width=True,
-        )
-        if rerun_clicked:
-            queue_search(st.session_state["last_query"], source="preset")
-            st.rerun()
+    nav_placeholder = st.container()
+    with nav_placeholder:
+        st.markdown("<div class='top-nav-group-label'>Main</div>", unsafe_allow_html=True)
+        render_nav_row(NAV_ITEMS, "top_nav_main")
+        st.markdown("<div class='top-nav-group-label'>Vector Lab</div>", unsafe_allow_html=True)
+        render_nav_row(extra_nav_items, "top_nav_vector")
+        if st.session_state["last_query"]:
+            st.markdown("<div class='top-nav-rerun'>", unsafe_allow_html=True)
+            rerun_clicked = st.button(
+                "현재 쿼리로 다시 검색",
+                key="rerun_current_query",
+                use_container_width=True,
+            )
+            st.markdown("</div>", unsafe_allow_html=True)
+            if rerun_clicked:
+                queue_search(st.session_state["last_query"], source="preset")
+                st.rerun()
 
 def render_home() -> None:
     prefill_updates = consume_query_prefill(st.session_state)
@@ -1167,6 +1233,12 @@ def render_main() -> None:
         render_map()
     elif view == "compare":
         render_compare()
+    elif view == "vector_db":
+        render_vector_db_page()
+    elif view == "vector_map":
+        render_vector_map_page()
+    elif view == "benchmark":
+        render_vector_benchmark_page()
     else:
         render_home()
 
@@ -1197,8 +1269,7 @@ def main() -> None:
         )
         st.stop()
 
-    with st.sidebar:
-        render_nav()
+    render_nav()
     render_main()
 
 
